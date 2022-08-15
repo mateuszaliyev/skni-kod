@@ -1,0 +1,82 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Account {
+    // Identifiers
+    id                BigInt    @id @default(autoincrement()) @db.BigInt
+    publicId          String    @unique @map("public_id")
+    // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
+    accessToken       String?   @map("access_token") @db.Text
+    expiresAt         Int?      @map("expires_at")
+    idToken           String?   @map("id_token") @db.Text
+    provider          String    @db.Text
+    providerAccountId String    @map("provider_account_id") @db.Text
+    refreshToken      String?   @map("refresh_token") @db.Text
+    scope             String?
+    sessionState      String?   @map("session_state")
+    tokenType         String?   @map("token_type")
+    type              String    @db.Text
+    userId            BigInt    @map("user_id") @db.BigInt
+    // Timestamps
+    createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamptz
+    deletedAt         DateTime? @map("deleted_at") @db.Timestamptz
+    updatedAt         DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+    // Relations
+    user              User      @relation(fields: [userId], onDelete: Cascade, references: [id])
+
+    @@unique([provider, providerAccountId])
+    @@map("accounts")
+}
+
+model Session {
+    // Identifiers
+    id           BigInt   @id @default(autoincrement()) @db.BigInt
+    publicId     String   @unique @map("public_id")
+    // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
+    expiresAt    DateTime @map("expires_at") @db.Timestamptz
+    sessionToken String   @unique @map("session_token")
+    userId       BigInt   @map("user_id") @db.BigInt
+    // Timestamps
+    createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
+    updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz
+    // Relations
+    user         User     @relation(fields: [userId], onDelete: Cascade, references: [id])
+
+    @@map("sessions")
+}
+
+model User {
+    // Identifiers
+    id              BigInt    @id @default(autoincrement()) @db.BigInt
+    publicId        String    @unique @map("public_id")
+    // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
+    email           String?   @unique
+    emailVerifiedAt DateTime? @map("email_verified_at") @db.Timestamptz
+    image           String?
+    name            String?
+    // Timestamps
+    createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz
+    deletedAt       DateTime? @map("deleted_at") @db.Timestamptz
+    updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+    // Relations
+    accounts        Account[]
+    sessions        Session[]
+
+    @@map("users")
+}
+
+model VerificationToken {
+    // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
+    expires    DateTime
+    identifier String
+    token      String   @unique
+
+    @@unique([identifier, token])
+    @@map("verification_tokens")
+}

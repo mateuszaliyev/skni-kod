@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-display: fallback;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/lato/lato-latin-regular.woff2");
+  }
+
+  #__next {
+    @apply flex flex-1 flex-col;
+  }
+}
