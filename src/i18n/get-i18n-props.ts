@@ -5,16 +5,18 @@ import { loadLocaleAsync, loadNamespaceAsync } from "./utilities.async";
 
 export const getI18nProps = async (
   locale: string = baseLocale,
-  namespaces: Namespace[]
+  namespaces?: Namespace[]
 ): Promise<{ i18n: Record<Locale, Translations> }> => {
   if (isLocale(locale)) {
     await loadLocaleAsync(locale);
 
-    await Promise.all(
-      namespaces.map(
-        async (namespace) => await loadNamespaceAsync(locale, namespace)
-      )
-    );
+    if (namespaces && namespaces.length > 0) {
+      await Promise.all(
+        namespaces.map(
+          async (namespace) => await loadNamespaceAsync(locale, namespace)
+        )
+      );
+    }
   }
 
   return {
