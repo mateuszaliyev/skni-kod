@@ -1,8 +1,5 @@
 import Head from "next/head";
 
-/**
- * @see {@link https://developers.google.com/search/docs/advanced/robots/robots_meta_tag?hl=en-GB#directives Valid indexing and serving directives}
- */
 export type RobotsDirectives<
   NoIndex extends boolean | undefined = undefined,
   NoSnippet extends boolean | undefined = undefined
@@ -147,6 +144,9 @@ export type RobotsDirectives<
   unavailableAfter?: Date;
 };
 
+/**
+ * @see {@link https://developers.google.com/search/docs/advanced/robots/robots_meta_tag?hl=en-GB#directives Valid indexing and serving directives}
+ */
 export const Robots = <
   NoIndex extends boolean | undefined = undefined,
   NoSnippet extends boolean | undefined = undefined
