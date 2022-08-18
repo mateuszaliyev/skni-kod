@@ -1,3 +1,11 @@
+const { readdirSync } = require("fs");
+const { builtinModules } = require("module");
+const { resolve } = require("path");
+
+const nodeBuiltinModules = builtinModules.join("|");
+
+const srcDirectories = readdirSync(resolve(__dirname, "./src"));
+
 /** @type {import("eslint").Linter.Config} */
 const eslintConfig = {
   env: {
@@ -38,20 +46,13 @@ const eslintConfig = {
       "warn",
       {
         groups: [
-          [`^(${require("module").builtinModules.join("|")})(\\/.*|$)`],
+          [`^(${nodeBuiltinModules})(\\/.*|$)`],
           ["^react"],
           ["^next"],
           ["^@?\\w"],
-          ["^(@\\/environment)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/i18n)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/pages)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/providers)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/server)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/styles)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/theme)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/types)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/ui)(\\/.*|\\u0000$|$)"],
-          ["^(@\\/utilities)(\\/.*|\\u0000$|$)"],
+          ...srcDirectories.map((directory) => [
+            `^(@\\/${directory})(\\/.*|\\u0000$|$)`,
+          ]),
           ["^\\u0000"],
           ["^\\.\\.(?!\\/?$)", "^\\.\\.\\/?$"],
           ["^\\.\\/(?=.*\\/)(?!\\/?$)", "^\\.(?!\\/?$)", "^\\.\\/?$"],
