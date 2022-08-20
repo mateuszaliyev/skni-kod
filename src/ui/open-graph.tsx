@@ -464,8 +464,6 @@ export const OpenGraph = <ObjectType extends keyof OpenGraphObjectType>(
     },
   };
 
-  console.log(metadata);
-
   const tags: { content: string; property: string }[] = Object.entries(
     metadata
   ).reduce((result, [key, value]) => {
