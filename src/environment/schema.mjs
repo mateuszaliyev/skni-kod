@@ -22,14 +22,21 @@ export const serverSchema = z.object({
  */
 export const clientSchema = z.object({
   NEXT_PUBLIC_BASE_URL: z.string().url(),
+  NEXT_PUBLIC_SKNI_KOD_FACEBOOK: z.string().url(),
+  NEXT_PUBLIC_SKNI_KOD_GITHUB: z.string().url(),
+  NEXT_PUBLIC_SKNI_KOD_INSTAGRAM: z.string().url(),
 });
 
 /**
  * You can't destruct `process.env` as a regular object, so you have to do it
  * manually here. This is because Next.js evaluates this at build time, and
  * only used environment variables are included in the build.
+ *
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
 export const clientEnv = {
   NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  NEXT_PUBLIC_SKNI_KOD_FACEBOOK: process.env.NEXT_PUBLIC_SKNI_KOD_FACEBOOK,
+  NEXT_PUBLIC_SKNI_KOD_GITHUB: process.env.NEXT_PUBLIC_SKNI_KOD_GITHUB,
+  NEXT_PUBLIC_SKNI_KOD_INSTAGRAM: process.env.NEXT_PUBLIC_SKNI_KOD_INSTAGRAM,
 };
