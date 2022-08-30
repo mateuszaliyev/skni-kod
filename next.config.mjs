@@ -1,3 +1,6 @@
+/* eslint-disable-next-line unused-imports/no-unused-imports */
+import { env as _env } from "./src/environment/server.mjs";
+
 /**
  * @template {import('next').NextConfig} T
  * @param {T} config - A generic parameter that flows through to the return type
