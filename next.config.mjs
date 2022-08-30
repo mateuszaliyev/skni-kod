@@ -1,5 +1,4 @@
-/* eslint-disable-next-line unused-imports/no-unused-imports */
-import { env as _env } from "./src/environment/server.mjs";
+import { env } from "./src/environment/server.mjs";
 
 /**
  * @template {import('next').NextConfig} T
@@ -78,5 +77,23 @@ export default defineNextConfig({
   },
   poweredByHeader: false,
   reactStrictMode: true,
+  redirects: async () => [
+    /* Social Media */
+    {
+      destination: env.NEXT_PUBLIC_SKNI_KOD_FACEBOOK,
+      permanent: false,
+      source: "/facebook",
+    },
+    {
+      destination: env.NEXT_PUBLIC_SKNI_KOD_GITHUB,
+      permanent: false,
+      source: "/github",
+    },
+    {
+      destination: env.NEXT_PUBLIC_SKNI_KOD_INSTAGRAM,
+      permanent: false,
+      source: "/instagram",
+    },
+  ],
   swcMinify: true,
 });
