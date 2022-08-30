@@ -1,26 +1,37 @@
-import { unstable_getServerSession as getServerSession } from "next-auth";
+import type { Session } from "next-auth";
 
 import type { inferAsyncReturnType } from "@trpc/server";
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
 
-import { nextAuthOptions } from "@/server/authentication";
+import { getServerSession } from "@/server/authentication";
 import { prisma } from "@/server/database/client";
 
 export type Context = inferAsyncReturnType<typeof createContext>;
 
-export const createContext = async (options?: CreateNextContextOptions) => {
-  const request = options?.req;
-  const response = options?.res;
+export type CreateContextOptions = {
+  session: Session | null;
+};
 
-  const session =
-    request &&
-    response &&
-    (await getServerSession(request, response, nextAuthOptions));
+/**
+ * Use this helper for:
+ * - testing, to avoid mocking Next.js' request and response,
+ * - tRPC's `createSSGHelpers`.
+ */
+export const createInnerContext = ({ session }: CreateContextOptions) => ({
+  prisma,
+  session,
+});
 
-  return {
-    prisma,
-    request,
-    response,
-    session,
-  };
+/**
+ * Context to use in a router.
+ *
+ * @see {@link https://trpc.io/docs/context tRPC Context Documentation}
+ */
+export const createContext = async ({
+  req: request,
+  res: response,
+}: CreateNextContextOptions) => {
+  const session = await getServerSession(request, response);
+
+  return createInnerContext({ session });
 };
