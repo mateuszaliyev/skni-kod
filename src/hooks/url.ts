@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 
-import { env } from "@/environment/client.mjs";
+import { BASE_URL } from "@/environment";
 
 export const useUrl = () => {
   const { asPath } = useRouter();
 
-  return `${env.NEXT_PUBLIC_BASE_URL}${asPath}`;
+  return `${BASE_URL}${asPath}`;
 };
