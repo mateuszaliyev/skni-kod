@@ -4,7 +4,7 @@ import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 
-import { env } from "@/environment/client.mjs";
+import { BASE_URL } from "@/environment";
 
 import { type Locale, type Translations, I18nProvider } from "@/i18n";
 
@@ -24,7 +24,7 @@ export const ApplicationProvider: Component<ApplicationProviderProps> = ({
   session,
 }) => (
   <SessionProvider
-    basePath={`${env.NEXT_PUBLIC_BASE_URL}/api/authentication`}
+    basePath={`${BASE_URL}/api/authentication`}
     session={session}
   >
     <I18nProvider i18n={i18n} locale={locale as Locale}>

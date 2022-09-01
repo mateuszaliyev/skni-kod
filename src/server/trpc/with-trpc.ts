@@ -3,7 +3,7 @@ import { loggerLink } from "@trpc/client/links/loggerLink";
 import { withTRPC as setupTRPC } from "@trpc/next";
 import superjson from "superjson";
 
-import { env } from "@/environment/client.mjs";
+import { BASE_URL } from "@/environment";
 
 import type { AppRouter } from "@/server/router";
 
@@ -16,7 +16,7 @@ export const withTRPC = setupTRPC<AppRouter>({
           (options.direction === "down" && options.result instanceof Error),
       }),
       httpBatchLink({
-        url: `${env.NEXT_PUBLIC_BASE_URL}/api/trpc`,
+        url: `${BASE_URL}/api/trpc`,
       }),
     ],
     /**
@@ -32,7 +32,7 @@ export const withTRPC = setupTRPC<AppRouter>({
       },
     },
     transformer: superjson,
-    url: `${env.NEXT_PUBLIC_BASE_URL}/api/trpc`,
+    url: `${BASE_URL}/api/trpc`,
   }),
   ssr: false,
 });

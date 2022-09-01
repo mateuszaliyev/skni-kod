@@ -1,7 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
-import { env } from "@/environment/server.mjs";
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from "@/environment";
 
 import { prisma } from "@/server/database/client";
 
@@ -24,8 +24,8 @@ export const nextAuthOptions: NextAuthOptions = {
   },
   providers: [
     GithubProvider({
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
+      clientId: GITHUB_CLIENT_ID,
+      clientSecret: GITHUB_CLIENT_SECRET,
     }),
   ],
 };
