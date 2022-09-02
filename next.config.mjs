@@ -1,7 +1,9 @@
+// @ts-check
+
 import bundleAnalyzer from "@next/bundle-analyzer";
 
 const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE_BUNDLE,
+  enabled: process.env.ANALYZE_BUNDLE === "true",
   openAnalyzer: false,
 });
 
