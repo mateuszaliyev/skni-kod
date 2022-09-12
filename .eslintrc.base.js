@@ -1,3 +1,5 @@
+// @ts-check
+
 const { readdirSync } = require("fs");
 const { builtinModules } = require("module");
 const { resolve } = require("path");
