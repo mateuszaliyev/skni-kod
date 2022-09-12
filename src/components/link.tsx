@@ -4,7 +4,7 @@ import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 import { useRouter } from "next/router";
 
 import type { Locale } from "@/i18n";
-import { i18nRoutes } from "@/i18n/routes";
+import { getI18nUrl } from "@/i18n/routes";
 
 import { Component } from "@/types";
 
@@ -25,10 +25,7 @@ export const Link: Component<LinkProps> = ({
 }) => {
   const { locale: currentLocale } = useRouter();
 
-  const newHref =
-    typeof href === "string"
-      ? i18nRoutes[href]?.[locale ?? (currentLocale as Locale)] ?? href
-      : href;
+  const newHref = getI18nUrl(href, currentLocale);
 
   const newRel =
     target === "_blank"
