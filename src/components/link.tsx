@@ -25,8 +25,6 @@ export const Link: Component<LinkProps> = ({
 }) => {
   const { locale: currentLocale } = useRouter();
 
-  const newHref = getI18nUrl(href, currentLocale);
-
   const newRel =
     target === "_blank"
       ? rel
@@ -35,6 +33,12 @@ export const Link: Component<LinkProps> = ({
           : `noreferrer ${rel}`
         : "noreferrer"
       : rel;
+
+  if (typeof href === "string" && href.startsWith("/")) {
+    return <a href={href} rel={rel} target={target} {...props} />;
+  }
+
+  const newHref = getI18nUrl(href, currentLocale);
 
   return (
     <NextLink
