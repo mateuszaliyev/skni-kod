@@ -5,17 +5,14 @@ export type GenerateIdOptions = {
   length?: number;
 };
 
-const generateIdDefaultOptions: GenerateIdOptions = {
-  alphabet: undefined,
-  length: 12,
-};
-
 const lowercaseAlphanumeric = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 const nanoid = customAlphabet(lowercaseAlphanumeric);
 
 export const generateId = async (
-  options: GenerateIdOptions = generateIdDefaultOptions
+  options: GenerateIdOptions = {
+    length: 12,
+  }
 ): Promise<string> => {
   if (options.alphabet) {
     const nanoid = customAlphabet(options.alphabet);
