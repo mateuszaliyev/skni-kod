@@ -8,8 +8,6 @@ import { BASE_URL } from "@/environment";
 
 import { type Locale, type Translations, I18nProvider } from "@/i18n";
 
-import type { Component } from "@/types";
-
 export type ApplicationProviderProps = {
   children: ReactNode;
   i18n?: Record<Locale, Translations>;
@@ -17,12 +15,12 @@ export type ApplicationProviderProps = {
   session: Session;
 };
 
-export const ApplicationProvider: Component<ApplicationProviderProps> = ({
+export const ApplicationProvider = ({
   children,
   i18n,
   locale,
   session,
-}) => (
+}: ApplicationProviderProps) => (
   <SessionProvider
     basePath={`${BASE_URL}/api/authentication`}
     session={session}

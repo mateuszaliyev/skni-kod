@@ -6,8 +6,6 @@ import { useRouter } from "next/router";
 import type { Locale } from "@/i18n";
 import { getI18nUrl } from "@/i18n/routes";
 
-import { Component } from "@/types";
-
 export type LinkProps = Omit<
   AnchorHTMLAttributes<HTMLAnchorElement>,
   keyof NextLinkProps
@@ -16,13 +14,7 @@ export type LinkProps = Omit<
     locale?: Locale;
   };
 
-export const Link: Component<LinkProps> = ({
-  href,
-  locale,
-  rel,
-  target,
-  ...props
-}) => {
+export const Link = ({ href, locale, rel, target, ...props }: LinkProps) => {
   const { locale: currentLocale } = useRouter();
 
   const newRel =
