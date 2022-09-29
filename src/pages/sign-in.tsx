@@ -4,15 +4,13 @@ import { signIn } from "next-auth/react";
 
 import { getI18nProps, useI18nContext } from "@/i18n";
 
-import type { Page } from "@/types";
-
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
-    ...(await getI18nProps(locale, ["authentication"])),
+    ...(await getI18nProps(locale)),
   },
 });
 
-const SignInPage: Page = () => {
+const SignInPage = () => {
   const { LL } = useI18nContext();
 
   return (

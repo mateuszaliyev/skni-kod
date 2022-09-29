@@ -1,7 +1,5 @@
 import { ReactElement, ReactNode, useEffect } from "react";
 
-import type { Component } from "@/types";
-
 import type { Translations } from "./generated-types";
 import { default as TypesafeI18nProvider, useI18nContext } from "./react";
 import type { Locale } from "./types";
@@ -18,9 +16,10 @@ export type I18nProviderProps = {
   locale: Locale;
 };
 
-export const I18nLocaleChangeProvider: Component<
-  I18nLocaleChangeProviderProps
-> = ({ children, locale }) => {
+export const I18nLocaleChangeProvider = ({
+  children,
+  locale,
+}: I18nLocaleChangeProviderProps) => {
   const { locale: contextLocale, setLocale } = useI18nContext();
 
   useEffect(() => {
@@ -32,11 +31,7 @@ export const I18nLocaleChangeProvider: Component<
   return children as ReactElement;
 };
 
-export const I18nProvider: Component<I18nProviderProps> = ({
-  children,
-  i18n,
-  locale,
-}) => {
+export const I18nProvider = ({ children, i18n, locale }: I18nProviderProps) => {
   if (i18n) {
     loadedLocales[locale] = {
       ...loadedLocales[locale],

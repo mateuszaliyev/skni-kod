@@ -7,8 +7,6 @@ import { getI18nProps, useI18nContext } from "@/i18n";
 
 import { useQuery } from "@/server/hooks";
 
-import type { Page } from "@/types";
-
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
@@ -17,7 +15,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-const Home: Page = () => {
+const Home = () => {
   const { LL } = useI18nContext();
 
   const session = useSession();
