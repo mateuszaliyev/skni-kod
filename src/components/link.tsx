@@ -34,7 +34,7 @@ export const Link: Component<LinkProps> = ({
         : "noreferrer"
       : rel;
 
-  if (typeof href === "string" && href.startsWith("/")) {
+  if (typeof href === "string" && !href.startsWith("/")) {
     return <a href={href} rel={rel} target={target} {...props} />;
   }
 
