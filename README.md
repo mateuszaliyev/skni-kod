@@ -32,7 +32,11 @@ Install dependencies.
 pnpm install
 ```
 
-Generate [Prisma]() and [typesafe-i18n]() types.
+Generate
+[Prisma](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/generating-prisma-client)
+and
+[typesafe-i18n](https://github.com/ivanhofer/typesafe-i18n/tree/main/packages/generator)
+types.
 
 ```bash
 pnpm i18n:build
