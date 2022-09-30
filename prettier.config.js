@@ -3,8 +3,8 @@
 /** @type {import("prettier").Options} */
 const prettierConfig = {
   arrowParens: "always",
-  bracketSpacing: true,
   bracketSameLine: false,
+  bracketSpacing: true,
   jsxSingleQuote: false,
   plugins: [require("prettier-plugin-tailwindcss")],
   printWidth: 80,
