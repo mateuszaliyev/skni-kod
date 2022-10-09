@@ -16,7 +16,7 @@ model Account {
     expiresAt         Int?      @map("expires_at")
     idToken           String?   @map("id_token") @db.Text
     provider          String    @db.Text
-    providerAccountId String    @map("provider_account_id") @db.Text
+    providerAccountId String    @map("provider_account_id")
     refreshToken      String?   @map("refresh_token") @db.Text
     scope             String?
     sessionState      String?   @map("session_state")
