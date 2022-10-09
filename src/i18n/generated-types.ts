@@ -13,10 +13,46 @@ export type Locales = "en" | "pl";
 export type Translation = RootTranslation & DisallowNamespaces;
 
 export type Translations = RootTranslation & {
-  authentication: NamespaceAuthenticationTranslation;
+  home: NamespaceHomeTranslation;
 };
 
 type RootTranslation = {
+  /**
+   * About
+   */
+  about: string;
+  /**
+   * Articles
+   */
+  articles: string;
+  /**
+   * Contact
+   */
+  contact: string;
+  /**
+   * Close menu
+   */
+  menuClose: string;
+  /**
+   * Open menu
+   */
+  menuOpen: string;
+  /**
+   * News
+   */
+  news: string;
+  /**
+   * Projects
+   */
+  projects: string;
+  /**
+   * Sign in
+   */
+  signIn: string;
+  /**
+   * Sign out
+   */
+  signOut: string;
   skniKod: {
     /**
      * SKNI KOD
@@ -27,30 +63,110 @@ type RootTranslation = {
      */
     name: string;
   };
+  theme: {
+    /**
+     * Dark
+     */
+    dark: string;
+    /**
+     * Light
+     */
+    light: string;
+    /**
+     * System
+     */
+    system: string;
+  };
 };
 
-export type NamespaceAuthenticationTranslation = {
+export type NamespaceHomeTranslation = {
+  hero: {
+    /**
+     * Apps
+     */
+    apps: string;
+    /**
+     * Bots
+     */
+    bots: string;
+    /**
+     * Code
+     */
+    code: string;
+    /**
+     * Student Research Group of Computer Science "Code".
+     */
+    description: string;
+    /**
+     * Games
+     */
+    games: string;
+    /**
+     * Systems
+     */
+    systems: string;
+    /**
+     * Websites
+     */
+    websites: string;
+    /**
+     * We create
+     */
+    weCreate: string;
+  };
   /**
-   * Sign in
+   * Join us
    */
-  signIn: string;
-  /**
-   * Sign out
-   */
-  signOut: string;
+  joinUs: string;
 };
 
-export type Namespaces = "authentication";
+export type Namespaces = "home";
 
 type DisallowNamespaces = {
   /**
-   * reserved for 'authentication'-namespace\
-   * you need to use the `./authentication/index.ts` file instead
+   * reserved for 'home'-namespace\
+   * you need to use the `./home/index.ts` file instead
    */
-  authentication?: "[typesafe-i18n] reserved for 'authentication'-namespace. You need to use the `./authentication/index.ts` file instead.";
+  home?: "[typesafe-i18n] reserved for 'home'-namespace. You need to use the `./home/index.ts` file instead.";
 };
 
 export type TranslationFunctions = {
+  /**
+   * About
+   */
+  about: () => LocalizedString;
+  /**
+   * Articles
+   */
+  articles: () => LocalizedString;
+  /**
+   * Contact
+   */
+  contact: () => LocalizedString;
+  /**
+   * Close menu
+   */
+  menuClose: () => LocalizedString;
+  /**
+   * Open menu
+   */
+  menuOpen: () => LocalizedString;
+  /**
+   * News
+   */
+  news: () => LocalizedString;
+  /**
+   * Projects
+   */
+  projects: () => LocalizedString;
+  /**
+   * Sign in
+   */
+  signIn: () => LocalizedString;
+  /**
+   * Sign out
+   */
+  signOut: () => LocalizedString;
   skniKod: {
     /**
      * SKNI KOD
@@ -61,15 +177,59 @@ export type TranslationFunctions = {
      */
     name: () => LocalizedString;
   };
-  authentication: {
+  theme: {
     /**
-     * Sign in
+     * Dark
      */
-    signIn: () => LocalizedString;
+    dark: () => LocalizedString;
     /**
-     * Sign out
+     * Light
      */
-    signOut: () => LocalizedString;
+    light: () => LocalizedString;
+    /**
+     * System
+     */
+    system: () => LocalizedString;
+  };
+  home: {
+    hero: {
+      /**
+       * Apps
+       */
+      apps: () => LocalizedString;
+      /**
+       * Bots
+       */
+      bots: () => LocalizedString;
+      /**
+       * Code
+       */
+      code: () => LocalizedString;
+      /**
+       * Student Research Group of Computer Science "Code".
+       */
+      description: () => LocalizedString;
+      /**
+       * Games
+       */
+      games: () => LocalizedString;
+      /**
+       * Systems
+       */
+      systems: () => LocalizedString;
+      /**
+       * Websites
+       */
+      websites: () => LocalizedString;
+      /**
+       * We create
+       */
+      weCreate: () => LocalizedString;
+    };
+    /**
+     * Join us
+     */
+    joinUs: () => LocalizedString;
   };
 };
 

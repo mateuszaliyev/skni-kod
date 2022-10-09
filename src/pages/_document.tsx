@@ -3,7 +3,6 @@ import { Head, Html, Main, NextScript } from "next/document";
 const Document = () => (
   <Html className="flex min-h-screen flex-col scroll-smooth">
     <Head>
-      {/* Favicons */}
       <link
         href="/images/favicons/apple-touch-icon.png"
         rel="apple-touch-icon"
@@ -34,16 +33,8 @@ const Document = () => (
         name="msapplication-config"
       />
       <meta content="#ffffff" name="theme-color" />
-      {/* Fonts */}
-      <link
-        as="font"
-        crossOrigin="anonymous"
-        href="/fonts/lato/lato-latin-regular.woff2"
-        rel="preload"
-        type="font/woff2"
-      />
     </Head>
-    <body className="flex flex-1 flex-col">
+    <body className="flex flex-1 flex-col bg-white text-black dark:bg-black dark:text-white">
       <Main />
       <NextScript />
     </body>
