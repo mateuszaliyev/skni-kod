@@ -34,6 +34,67 @@ model Account {
     @@map("accounts")
 }
 
+model Authorship {
+    // Identifiers
+    id        BigInt    @id @default(autoincrement()) @db.BigInt
+    publicId  String    @unique @map("public_id")
+    // Fields
+    postId    BigInt    @map("post_id") @db.BigInt
+    userId    BigInt    @map("user_id") @db.BigInt
+    // Timestamps
+    createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+    deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+    updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+    // Relations
+    post      Post      @relation(fields: [postId], onDelete: Cascade, references: [id])
+    user      User      @relation(fields: [userId], onDelete: Cascade, references: [id])
+
+    @@map("authorships")
+}
+
+model Content {
+    // Identifiers
+    id        BigInt    @id @default(autoincrement()) @db.BigInt
+    publicId  String    @unique @map("public_id")
+    // Fields
+    postId    BigInt    @map("post_id") @db.BigInt
+    locale    String
+    slug      String
+    title     String
+    summary   String
+    body      String    @db.Text
+    // Timestamps
+    createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+    deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+    updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+    // 
+    post      Post      @relation(fields: [postId], onDelete: Cascade, references: [id])
+
+    @@unique([locale, slug])
+    @@map("contents")
+}
+
+model Post {
+    // Identifiers
+    id          BigInt       @id @default(autoincrement()) @db.BigInt
+    publicId    String       @unique @map("public_id")
+    // Fields
+    type        String
+    image       String?
+    contentId   BigInt       @map("content_id") @db.BigInt
+    views       BigInt       @db.BigInt
+    publishedAt DateTime?    @map("published_at") @db.Timestamptz
+    // Timestamps
+    createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz
+    deletedAt   DateTime?    @map("deleted_at") @db.Timestamptz
+    updatedAt   DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+    // Relations
+    authors     Authorship[]
+    contents    Content[]
+
+    @@map("posts")
+}
+
 model Session {
     // Identifiers
     id           BigInt   @id @default(autoincrement()) @db.BigInt
@@ -53,19 +114,20 @@ model Session {
 
 model User {
     // Identifiers
-    id              BigInt    @id @default(autoincrement()) @db.BigInt
-    publicId        String    @unique @map("public_id")
+    id              BigInt       @id @default(autoincrement()) @db.BigInt
+    publicId        String       @unique @map("public_id")
     // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
-    email           String?   @unique
-    emailVerifiedAt DateTime? @map("email_verified_at") @db.Timestamptz
+    email           String?      @unique
+    emailVerifiedAt DateTime?    @map("email_verified_at") @db.Timestamptz
     image           String?
     name            String?
     // Timestamps
-    createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz
-    deletedAt       DateTime? @map("deleted_at") @db.Timestamptz
-    updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+    createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz
+    deletedAt       DateTime?    @map("deleted_at") @db.Timestamptz
+    updatedAt       DateTime     @updatedAt @map("updated_at") @db.Timestamptz
     // Relations
     accounts        Account[]
+    posts           Authorship[]
     sessions        Session[]
 
     @@map("users")
