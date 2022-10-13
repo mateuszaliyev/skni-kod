@@ -17,7 +17,7 @@
   "scripts": {
     "build": "pnpm i18n:build && pnpm prisma:build && pnpm next:build",
     "dev": "concurrently \"npm:*:dev\"",
-    "format": "prettier --write \"**/*.{css,js,md,mjs,scss,ts,tsx}\"",
+    "format": "prettier --config ./prettier.config.js --write \"**/*.{css,js,md,mjs,scss,ts,tsx}\"",
     "i18n:build": "typesafe-i18n --no-watch",
     "i18n:dev": "typesafe-i18n",
     "lint": "next lint",
