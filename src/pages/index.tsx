@@ -1,11 +1,10 @@
 import type { GetStaticProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
-import { getI18nProps, useI18nContext } from "@/i18n";
+import { Link } from "@/components/link";
 
-import { useQuery } from "@/server/hooks";
+import { getI18nProps, useI18nContext } from "@/i18n";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
@@ -20,18 +19,12 @@ const Home = () => {
 
   const session = useSession();
 
-  const hello = useQuery([
-    "example.hello",
-    { text: session.data?.user?.name ?? "stranger!" },
-  ]);
-
   return (
     <>
       <Head>
         <title>{LL.skniKod.name()}</title>
       </Head>
       <main className="items-center justify-center">
-        {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading...</p>}
         {session.status !== "authenticated" ? (
           <Link className="block" href="/sign-in">
             {LL.authentication.signIn()}

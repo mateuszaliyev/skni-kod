@@ -1,11 +1,11 @@
 import { generateOpenApiDocument } from "trpc-openapi";
 
-import { BASE_URL } from "@/environment";
+import { OPENAPI_URL } from "@/environment";
 
-import { router } from "@/server/router";
+import { applicationRouter } from "@/server/router";
 
-export const openApiDocument = generateOpenApiDocument(router, {
-  baseUrl: `${BASE_URL}/api/rest`,
+export const openApiDocument = generateOpenApiDocument(applicationRouter, {
+  baseUrl: OPENAPI_URL,
   title: "SKNI KOD OpenAPI",
   version: "0.0.0",
 });

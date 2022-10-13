@@ -1,4 +1,4 @@
-import type { Adapter, AdapterUser } from "next-auth/adapters";
+import type { Adapter } from "next-auth/adapters";
 
 import type { PrismaClient } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
@@ -37,14 +37,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
       userId: result.user.publicId,
     };
   },
-  createUser: async (user) => {
-    /**
-     * TODO: For some reason `user` argument loses its type when omitting `id`
-     * key of an `AdapterUser`, hence the cast below. Remove when the issue is
-     * resolved.
-     */
-    const { email, emailVerified, image, name } = user as AdapterUser;
-
+  createUser: async ({ email, emailVerified, image, name }) => {
     const result = await prisma.user.create({
       data: {
         email,
@@ -63,7 +56,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
     });
 
     return {
-      email: result.email,
+      email: result.email ?? email,
       emailVerified: result.emailVerifiedAt,
       id: result.publicId,
       image: result.image,
@@ -136,7 +129,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
         userId: result.user.publicId,
       },
       user: {
-        email: result.user.email,
+        email: result.user.email ?? "",
         emailVerified: result.user.emailVerifiedAt,
         id: result.user.publicId,
         image: result.user.image,
@@ -166,7 +159,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
     }
 
     return {
-      email: result.email,
+      email: result.email ?? "",
       emailVerified: result.emailVerifiedAt,
       id: result.publicId,
       image: result.image,
@@ -205,7 +198,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
     }
 
     return {
-      email: result.user.email,
+      email: result.user.email ?? "",
       emailVerified: result.user.emailVerifiedAt,
       id: result.user.publicId,
       image: result.user.image,
@@ -234,7 +227,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
     }
 
     return {
-      email: result.email,
+      email: result.email ?? email,
       emailVerified: result.emailVerifiedAt,
       id: result.publicId,
       image: result.image,
@@ -325,7 +318,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
     });
 
     return {
-      email: result.email,
+      email: result.email ?? "",
       emailVerified: result.emailVerifiedAt,
       id: result.publicId,
       image: result.image,
