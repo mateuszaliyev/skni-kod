@@ -3,8 +3,8 @@ import cors from "nextjs-cors";
 
 import { createOpenApiNextHandler } from "trpc-openapi";
 
-import { createContext } from "@/server/context";
 import { applicationRouter } from "@/server/router";
+import { createContext } from "@/server/trpc/context";
 
 const openApiHandler = async (
   request: NextApiRequest,
