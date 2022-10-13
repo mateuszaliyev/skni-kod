@@ -2,8 +2,8 @@ import { createNextApiHandler } from "@trpc/server/adapters/next";
 
 import { NODE_ENV } from "@/environment";
 
-import { createContext } from "@/server/context";
 import { applicationRouter } from "@/server/router";
+import { createContext } from "@/server/trpc/context";
 
 export default createNextApiHandler({
   createContext,

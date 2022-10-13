@@ -2,7 +2,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import type { OpenApiMeta } from "trpc-openapi";
 
-import type { Context } from "@/server/context";
+import type { Context } from "@/server/trpc/context";
 
 const t = initTRPC
   .context<Context>()
