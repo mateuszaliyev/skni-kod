@@ -19,11 +19,11 @@ export type Translations = RootTranslation & {
 type RootTranslation = {
   skniKod: {
     /**
-     * SKNI KOD
+     * S​K​N​I​ ​K​O​D
      */
     abbreviation: string;
     /**
-     * Student Research Group of Computer Science - "Code"
+     * S​t​u​d​e​n​t​ ​R​e​s​e​a​r​c​h​ ​G​r​o​u​p​ ​o​f​ ​C​o​m​p​u​t​e​r​ ​S​c​i​e​n​c​e​ ​-​ ​"​C​o​d​e​"
      */
     name: string;
   };
@@ -31,11 +31,11 @@ type RootTranslation = {
 
 export type NamespaceAuthenticationTranslation = {
   /**
-   * Sign in
+   * S​i​g​n​ ​i​n
    */
   signIn: string;
   /**
-   * Sign out
+   * S​i​g​n​ ​o​u​t
    */
   signOut: string;
 };
