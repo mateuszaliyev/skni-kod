@@ -1,22 +1,22 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@next/bundle-analyzer': ^12.3.1
-  '@prisma/client': ^4.5.0
-  '@tanstack/react-query': ^4.13.0
+  '@next/bundle-analyzer': 12.3.1
+  '@prisma/client': 4.5.0
+  '@tanstack/react-query': 4.13.0
   '@trpc/client': 10.0.0-proxy-beta.18
   '@trpc/next': 10.0.0-proxy-beta.18
   '@trpc/react': 10.0.0-proxy-beta.18
   '@trpc/server': 10.0.0-proxy-beta.18
   '@types/node': 18.11.3
-  '@types/prettier': ^2.7.1
+  '@types/prettier': 2.7.1
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
-  '@typescript-eslint/eslint-plugin': ^5.40.1
-  '@typescript-eslint/parser': ^5.40.1
-  '@vercel/og': ^0.0.19
-  autoprefixer: ^10.4.12
-  concurrently: ^7.5.0
+  '@typescript-eslint/eslint-plugin': 5.40.1
+  '@typescript-eslint/parser': 5.40.1
+  '@vercel/og': 0.0.19
+  autoprefixer: 10.4.12
+  concurrently: 7.5.0
   eslint: 8.26.0
   eslint-config-next: 12.3.1
   eslint-config-prettier: ^8.5.0
@@ -25,23 +25,23 @@ specifiers:
   eslint-plugin-sort-keys: ^2.3.5
   eslint-plugin-typescript-sort-keys: ^2.1.0
   eslint-plugin-unused-imports: ^2.0.0
-  nanoid: ^4.0.0
+  nanoid: 4.0.0
   next: 12.3.1
-  next-auth: ^4.14.0
-  next-themes: ^0.2.1
-  nextjs-cors: ^2.1.1
-  postcss: ^8.4.18
+  next-auth: 4.14.0
+  next-themes: 0.2.1
+  nextjs-cors: 2.1.1
+  postcss: 8.4.18
   prettier: ^2.7.1
   prettier-plugin-tailwindcss: ^0.1.13
-  prisma: ^4.5.0
+  prisma: 4.5.0
   react: 18.2.0
   react-dom: 18.2.0
-  superjson: ^1.11.0
-  tailwindcss: ^3.2.1
+  superjson: 1.11.0
+  tailwindcss: 3.2.1
   trpc-openapi: 1.0.0-alpha.2
-  typesafe-i18n: ^5.15.0
+  typesafe-i18n: 5.15.0
   typescript: 4.8.4
-  zod: ^3.19.1
+  zod: 3.19.1
 
 dependencies:
   '@next/bundle-analyzer': 12.3.1
@@ -1563,17 +1563,6 @@ packages:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
     dev: true
 
-  /fast-glob/3.2.11:
-    resolution: {integrity: sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==}
-    engines: {node: '>=8.6.0'}
-    dependencies:
-      '@nodelib/fs.stat': 2.0.5
-      '@nodelib/fs.walk': 1.2.8
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.5
-    dev: true
-
   /fast-glob/3.2.12:
     resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==}
     engines: {node: '>=8.6.0'}
@@ -1746,7 +1735,7 @@ packages:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
