@@ -19,12 +19,12 @@ specifiers:
   concurrently: 7.5.0
   eslint: 8.26.0
   eslint-config-next: 12.3.1
-  eslint-config-prettier: ^8.5.0
-  eslint-plugin-simple-import-sort: ^8.0.0
-  eslint-plugin-sort-destructure-keys: ^1.4.0
-  eslint-plugin-sort-keys: ^2.3.5
-  eslint-plugin-typescript-sort-keys: ^2.1.0
-  eslint-plugin-unused-imports: ^2.0.0
+  eslint-config-prettier: 8.5.0
+  eslint-plugin-simple-import-sort: 8.0.0
+  eslint-plugin-sort-destructure-keys: 1.4.0
+  eslint-plugin-sort-keys: 2.3.5
+  eslint-plugin-typescript-sort-keys: 2.1.0
+  eslint-plugin-unused-imports: 2.0.0
   nanoid: 4.0.0
   next: 12.3.1
   next-auth: 4.14.0
