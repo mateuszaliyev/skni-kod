@@ -3,7 +3,6 @@
   "extends": [
     "config:js-app",
     ":assignAndReview(mateuszaliyev)",
-    ":dependencyDashboardApproval",
     ":label(build)",
     ":semanticCommits",
     ":semanticCommitScopeDisabled",
