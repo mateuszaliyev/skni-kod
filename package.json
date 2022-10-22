@@ -47,7 +47,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "superjson": "1.11.0",
-    "trpc-openapi": "1.0.0-alpha.2",
+    "trpc-openapi": "1.0.0-alpha.3",
     "typesafe-i18n": "5.15.0",
     "zod": "3.19.1"
   },
