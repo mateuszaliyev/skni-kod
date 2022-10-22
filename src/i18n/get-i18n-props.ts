@@ -1,6 +1,5 @@
-import { isLocale } from "./is-locale";
 import type { Locale, Namespace, Translations } from "./types";
-import { baseLocale, loadedLocales } from "./utilities";
+import { baseLocale, isLocale, loadedLocales } from "./utilities";
 import { loadLocaleAsync, loadNamespaceAsync } from "./utilities.async";
 
 export const getI18nProps = async (
