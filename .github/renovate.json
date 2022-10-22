@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":assignAndReview(mateuszaliyev)",
+    ":dependencyDashboardApproval",
+    ":label(build)",
+    ":semanticCommits",
+    ":semanticCommitScopeDisabled",
+    ":semanticCommitType(build)"
+  ],
+  "packageRules": [
+    {
+      "description": "Group ESLint packages",
+      "groupName": "ESLint packages",
+      "matchPackageNames": ["eslint"],
+      "matchPackagePatterns": ["^eslint-"]
+    },
+    {
+      "description": "Group Prettier packages",
+      "groupName": "Prettier packages",
+      "matchPackageNames": ["prettier"],
+      "matchPackagePatterns": ["^@prettier\\/", "^prettier-plugin-"]
+    }
+  ]
+}
