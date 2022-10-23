@@ -14,7 +14,7 @@ specifiers:
   '@types/react-dom': 18.0.6
   '@typescript-eslint/eslint-plugin': 5.40.1
   '@typescript-eslint/parser': 5.40.1
-  '@vercel/og': 0.0.19
+  '@vercel/og': 0.0.20
   autoprefixer: 10.4.12
   concurrently: 7.5.0
   eslint: 8.26.0
@@ -51,7 +51,7 @@ dependencies:
   '@trpc/next': 10.0.0-proxy-beta.25_p2drx5fgd4tdsnvctum4f3ivzi
   '@trpc/react': 10.0.0-proxy-beta.20_2ig2wsqnudwlprqblia6mvwbtm
   '@trpc/server': 10.0.0-proxy-beta.25
-  '@vercel/og': 0.0.19
+  '@vercel/og': 0.0.20
   nanoid: 4.0.0
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.14.0_azq6kxkn3od7qdylwkyksrwopy
@@ -669,12 +669,12 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vercel/og/0.0.19:
-    resolution: {integrity: sha512-1LrPUlCoe8T+aEI1fGdvJDhwewK1/wpYlQnF+E9ERgJMFCnmWH4FA+NYBkQaJqxUUeHoutIxNZTHQFT39+I+BQ==}
+  /@vercel/og/0.0.20:
+    resolution: {integrity: sha512-089P+TfqWz0xBxjOvOhkZIDDtfrLcye94H4IZ+SqxoGPWpNGXaBvRJER/z5SoJxJRcCAL8tPiK5zdjRskM6tLw==}
     engines: {node: '>=16'}
     dependencies:
       '@resvg/resvg-wasm': 2.0.0-alpha.4
-      satori: 0.0.42
+      satori: 0.0.43
       yoga-wasm-web: 0.1.2
     dev: false
 
@@ -1154,6 +1154,10 @@ packages:
   /electron-to-chromium/1.4.276:
     resolution: {integrity: sha512-EpuHPqu8YhonqLBXHoU6hDJCD98FCe6KDoet3/gY1qsQ6usjJoHqBH2YIVs8FXaAtHwVL8Uqa/fsYao/vq9VWQ==}
     dev: true
+
+  /emoji-regex/10.2.1:
+    resolution: {integrity: sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==}
+    dev: false
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -2766,14 +2770,15 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: false
 
-  /satori/0.0.42:
-    resolution: {integrity: sha512-ZZaNp2Ya1ACJ4Yf++e9Ccc1Rb6GcKjC9Nhcl4SQFcdM4VqCLfWHR6Iq7AdRCTcJDDuO8u/qGE2Cs+McVoqJenw==}
+  /satori/0.0.43:
+    resolution: {integrity: sha512-SzYwr+LsELWRJU9KMviEOE9TdShry+R5AdS54YQvgAVKFDN4yniAIzwQk1/z2TtIx0ceUT9zTeosWAoWvJBEtQ==}
     engines: {node: '>=16'}
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
       css-background-parser: 0.1.0
       css-box-shadow: 1.0.0-3
       css-to-react-native: 3.0.0
+      emoji-regex: 10.2.1
       postcss-value-parser: 4.2.0
       yoga-layout-prebuilt: 1.10.0
     dev: false
