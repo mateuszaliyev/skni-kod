@@ -27,7 +27,7 @@ specifiers:
   eslint-plugin-unused-imports: 2.0.0
   nanoid: 4.0.0
   next: 12.3.1
-  next-auth: 4.14.0
+  next-auth: 4.15.0
   next-themes: 0.2.1
   nextjs-cors: 2.1.1
   postcss: 8.4.18
@@ -54,7 +54,7 @@ dependencies:
   '@vercel/og': 0.0.20
   nanoid: 4.0.0
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
-  next-auth: 4.14.0_azq6kxkn3od7qdylwkyksrwopy
+  next-auth: 4.15.0_azq6kxkn3od7qdylwkyksrwopy
   next-themes: 0.2.1_azq6kxkn3od7qdylwkyksrwopy
   nextjs-cors: 2.1.1_next@12.3.1
   react: 18.2.0
@@ -2179,8 +2179,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /next-auth/4.14.0_azq6kxkn3od7qdylwkyksrwopy:
-    resolution: {integrity: sha512-pD5sin6kq/uIx3Cod2/0JFnViEnngBTTNy4CdfRaYc2QzV2zwpWAbQny2Ezlg0GjEozDhKC53JJxRRE4AmNKEw==}
+  /next-auth/4.15.0_azq6kxkn3od7qdylwkyksrwopy:
+    resolution: {integrity: sha512-IasNzGLM2VlmyioDdZaRwBBBm8b5xo+zbbqVWHFh0bY6iQUZ3vuudrsdHNdxkXV3LSHdKNaoWEpYr4BydB7mCw==}
     engines: {node: ^12.19.0 || ^14.15.0 || ^16.13.0}
     peerDependencies:
       next: ^12.2.5
