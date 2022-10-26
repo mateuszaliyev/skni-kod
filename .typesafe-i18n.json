@@ -1,10 +1,10 @@
 {
-  "$schema": "https://unpkg.com/typesafe-i18n@5.11.0/schema/typesafe-i18n.json",
-  "adapter": "react",
-  "adapterFileName": "react",
-  "baseLocale": "en",
-  "outputPath": "./src/i18n",
-  "runAfterGenerator": "prettier --write \"./src/i18n\"",
-  "typesFileName": "generated-types",
-  "utilFileName": "utilities"
+   "$schema": "https://unpkg.com/typesafe-i18n@5.15.0/schema/typesafe-i18n.json",
+   "adapter": "react",
+   "adapterFileName": "react",
+   "baseLocale": "en",
+   "outputPath": "./src/i18n",
+   "runAfterGenerator": "prettier --write \"./src/i18n\"",
+   "typesFileName": "generated-types",
+   "utilFileName": "utilities"
 }

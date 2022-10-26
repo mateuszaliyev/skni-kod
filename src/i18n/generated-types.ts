@@ -18,62 +18,62 @@ export type Translations = RootTranslation & {
 
 type RootTranslation = {
   /**
-   * About
+   * A​b​o​u​t
    */
   about: string;
   /**
-   * Articles
+   * A​r​t​i​c​l​e​s
    */
   articles: string;
   /**
-   * Contact
+   * C​o​n​t​a​c​t
    */
   contact: string;
   /**
-   * Close menu
+   * C​l​o​s​e​ ​m​e​n​u
    */
   menuClose: string;
   /**
-   * Open menu
+   * O​p​e​n​ ​m​e​n​u
    */
   menuOpen: string;
   /**
-   * News
+   * N​e​w​s
    */
   news: string;
   /**
-   * Projects
+   * P​r​o​j​e​c​t​s
    */
   projects: string;
   /**
-   * Sign in
+   * S​i​g​n​ ​i​n
    */
   signIn: string;
   /**
-   * Sign out
+   * S​i​g​n​ ​o​u​t
    */
   signOut: string;
   skniKod: {
     /**
-     * SKNI KOD
+     * S​K​N​I​ ​K​O​D
      */
     abbreviation: string;
     /**
-     * Student Research Group of Computer Science - "Code"
+     * S​t​u​d​e​n​t​ ​R​e​s​e​a​r​c​h​ ​G​r​o​u​p​ ​o​f​ ​C​o​m​p​u​t​e​r​ ​S​c​i​e​n​c​e​ ​-​ ​"​C​o​d​e​"
      */
     name: string;
   };
   theme: {
     /**
-     * Dark
+     * D​a​r​k
      */
     dark: string;
     /**
-     * Light
+     * L​i​g​h​t
      */
     light: string;
     /**
-     * System
+     * S​y​s​t​e​m
      */
     system: string;
   };
@@ -82,40 +82,40 @@ type RootTranslation = {
 export type NamespaceHomeTranslation = {
   hero: {
     /**
-     * Apps
+     * A​p​p​s
      */
     apps: string;
     /**
-     * Bots
+     * B​o​t​s
      */
     bots: string;
     /**
-     * Code
+     * C​o​d​e
      */
     code: string;
     /**
-     * Student Research Group of Computer Science "Code".
+     * S​t​u​d​e​n​t​ ​R​e​s​e​a​r​c​h​ ​G​r​o​u​p​ ​o​f​ ​C​o​m​p​u​t​e​r​ ​S​c​i​e​n​c​e​ ​"​C​o​d​e​"​.
      */
     description: string;
     /**
-     * Games
+     * G​a​m​e​s
      */
     games: string;
     /**
-     * Systems
+     * S​y​s​t​e​m​s
      */
     systems: string;
     /**
-     * Websites
+     * W​e​b​s​i​t​e​s
      */
     websites: string;
     /**
-     * We create
+     * W​e​ ​c​r​e​a​t​e
      */
     weCreate: string;
   };
   /**
-   * Join us
+   * J​o​i​n​ ​u​s
    */
   joinUs: string;
 };

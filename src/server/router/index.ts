@@ -1,10 +1,5 @@
-import superjson from "superjson";
+import { router } from "@/server/trpc";
 
-import { createRouter } from "./create";
-import { exampleRouter } from "./example";
+export type ApplicationRouter = typeof applicationRouter;
 
-export type AppRouter = typeof router;
-
-export const router = createRouter()
-  .transformer(superjson)
-  .merge("example.", exampleRouter);
+export const applicationRouter = router({});

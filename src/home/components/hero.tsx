@@ -11,7 +11,7 @@ import { AnimatedLogo } from "./animated-logo";
 import { PrismSpinner } from "./prism-spinner";
 
 const IsometricPrism = lazy(() =>
-  import("./isometric-prism").then(({ IsometricPrism }) => ({
+  import("@/components/isometric-prism/canvas").then(({ IsometricPrism }) => ({
     default: IsometricPrism,
   }))
 );
