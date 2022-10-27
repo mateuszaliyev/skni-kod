@@ -7,7 +7,6 @@ import { Container } from "@/components/container";
 
 import { useI18nContext } from "@/i18n";
 
-import { AnimatedLogo } from "./animated-logo";
 import { Barrel } from "./barrel";
 
 const IsometricPrismCanvas = lazy(() =>
@@ -17,6 +16,13 @@ const IsometricPrismCanvas = lazy(() =>
     })
   )
 );
+
+const IsometricPrismLogo = lazy(() =>
+  import("@/components/isometric-prism/logo").then(
+    ({ IsometricPrismLogo }) => ({
+      default: IsometricPrismLogo,
+    })
+  )
 );
 
 export const Hero = () => {
@@ -88,7 +94,29 @@ export const Hero = () => {
               </a>
             </div>
           </div>
-          <AnimatedLogo className="ml-auto hidden w-[480px] stroke-2 xl:block" />
+          <Suspense fallback={null}>
+            {/* <AnimatedLogo className="ml-auto hidden w-[480px] stroke-2 xl:block" /> */}
+            <IsometricPrismLogo
+              animationFrequency={0.5}
+              background="#0ea5e9"
+              className="ml-auto hidden w-[480px] stroke-2 xl:block"
+              height={480}
+              hue={{
+                max: 220,
+                min: 200,
+              }}
+              lightness={{
+                max: 53,
+                min: 48,
+              }}
+              saturation={{
+                max: 89,
+                min: 83,
+              }}
+              size={40}
+              width={480}
+            />
+          </Suspense>
         </Container>
       </div>
     </section>
