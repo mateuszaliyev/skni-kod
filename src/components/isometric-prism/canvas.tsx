@@ -28,7 +28,9 @@ export type IsometricPrismCanvasProps = HSLRanges & {
   animationFrequency?: number;
   animationSpeed?: number;
   background?: string;
+  height?: number;
   size: number;
+  width?: number;
 };
 
 type Triangle = {
@@ -155,6 +157,7 @@ export const IsometricPrismCanvas = memo(
     lightness,
     saturation,
     size,
+    ...props
   }: IsometricPrismCanvasProps) => {
     const prefersReducedMotion = useMediaQuery(
       "(prefers-reduced-motion)",
@@ -167,7 +170,10 @@ export const IsometricPrismCanvas = memo(
 
     const triangles = useRef(new Map<number, Triangle>());
 
-    const { height, width } = useWindowSize();
+    const windowSize = useWindowSize();
+
+    const height = props.height ?? windowSize.height;
+    const width = props.width ?? windowSize.width;
 
     const renderFrame = useCallback(() => {
       if (!canvas.current) {
