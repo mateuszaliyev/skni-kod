@@ -45,7 +45,7 @@ export const Hero = () => {
                 }}
                 lightness={{
                   max: 100,
-                  min: 90,
+                  min: 95,
                 }}
                 saturation={{
                   max: 16,
