@@ -9,16 +9,42 @@ export type AnimatedLogoProps = Omit<
   "viewBox" | "xmlns"
 >;
 
+// const getLogoCenterPosition = ({
+//   height,
+//   left,
+//   top,
+//   width,
+// }: {
+//   height: number;
+//   left: number;
+//   top: number;
+//   width: number;
+// }) => ({
+//   x: left + width / 2,
+//   y: top + height / 2,
+// });
+
 export const AnimatedLogo = ({ className, ...props }: AnimatedLogoProps) => {
+  // const ref = useRef<SVGSVGElement>(null);
   const leftBracketRef = useRef<SVGPathElement>(null);
   const crossRef = useRef<SVGPathElement>(null);
   const rightBracketRef = useRef<SVGPathElement>(null);
 
   const gradientId = useId();
 
+  // const center = getLogoCenterPosition(
+  //   ref.current?.getBoundingClientRect() ?? {
+  //     height: 0,
+  //     left: 0,
+  //     top: 0,
+  //     width: 0,
+  //   }
+  // );
+
   return (
     <svg
       className={clsx("fill-transparent", className)}
+      // ref={ref}
       viewBox="0 0 581.57 543.422"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
