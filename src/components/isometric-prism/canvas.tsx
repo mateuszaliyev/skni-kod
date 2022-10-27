@@ -24,7 +24,7 @@ type HSLRanges = {
   };
 };
 
-export type IsometricPrismProps = HSLRanges & {
+export type IsometricPrismCanvasProps = HSLRanges & {
   animationFrequency?: number;
   animationSpeed?: number;
   background?: string;
@@ -146,7 +146,7 @@ const getTriangles = ({
   return new Map(triangles.map((triangle, index) => [index, triangle]));
 };
 
-export const IsometricPrism = memo(
+export const IsometricPrismCanvas = memo(
   ({
     animationFrequency = 0,
     animationSpeed = 0.0625,
@@ -155,7 +155,7 @@ export const IsometricPrism = memo(
     lightness,
     saturation,
     size,
-  }: IsometricPrismProps) => {
+  }: IsometricPrismCanvasProps) => {
     const prefersReducedMotion = useMediaQuery(
       "(prefers-reduced-motion)",
       true

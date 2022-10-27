@@ -10,10 +10,13 @@ import { useI18nContext } from "@/i18n";
 import { AnimatedLogo } from "./animated-logo";
 import { Barrel } from "./barrel";
 
-const IsometricPrism = lazy(() =>
-  import("@/components/isometric-prism/canvas").then(({ IsometricPrism }) => ({
-    default: IsometricPrism,
-  }))
+const IsometricPrismCanvas = lazy(() =>
+  import("@/components/isometric-prism/canvas").then(
+    ({ IsometricPrismCanvas }) => ({
+      default: IsometricPrismCanvas,
+    })
+  )
+);
 );
 
 export const Hero = () => {
@@ -36,7 +39,7 @@ export const Hero = () => {
         <>
           <div className="absolute inset-0 overflow-x-hidden">
             <Suspense fallback={null}>
-              <IsometricPrism
+              <IsometricPrismCanvas
                 animationFrequency={0.5}
                 background="#f8f8fa"
                 hue={{
