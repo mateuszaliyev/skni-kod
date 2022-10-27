@@ -8,17 +8,17 @@ import { loadedFormatters, loadedLocales, locales } from "./utilities";
 import en from "./en";
 import pl from "./pl";
 
-import en_authentication from "./en/authentication";
-import pl_authentication from "./pl/authentication";
+import en_home from "./en/home";
+import pl_home from "./pl/home";
 
 const localeTranslations = {
   en: {
     ...en,
-    authentication: en_authentication,
+    home: en_home,
   },
   pl: {
     ...pl,
-    authentication: pl_authentication,
+    home: pl_home,
   },
 };
 

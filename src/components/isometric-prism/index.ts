@@ -1,1 +1,2 @@
-export * from "./isometric-prism-svg";
+export * from "./canvas";
+export * from "./svg";
