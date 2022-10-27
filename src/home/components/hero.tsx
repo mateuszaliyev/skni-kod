@@ -63,7 +63,7 @@ export const Hero = () => {
           <div className="basis-full xl:basis-1/2">
             <h1 className="select-none text-6xl font-extralight leading-none lg:text-9xl">
               {LL.home.hero.weCreate()}
-              <PrismSpinner height={128}>
+              <PrismSpinner className="flex justify-center xl:justify-start">
                 {heroValues.map((value) => (
                   <div
                     className="bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 bg-clip-text font-bold text-transparent"

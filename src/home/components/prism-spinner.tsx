@@ -8,17 +8,18 @@ import {
   useState,
 } from "react";
 
+import { useWindowSize } from "@/hooks/window-size";
+
 export type PrismSpinnerProps = Omit<HTMLAttributes<HTMLDivElement>, "ref"> & {
   animationDuration?: number;
-  height: number;
 };
 
 export const PrismSpinner = ({
   animationDuration = 5000,
   children,
-  height,
   ...props
 }: PrismSpinnerProps) => {
+  const [height, setHeight] = useState(0);
   const [face, setFace] = useState(0);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -26,6 +27,8 @@ export const PrismSpinner = ({
   const faces = Children.count(children);
 
   const childrenRef = useRef<HTMLElement[]>([]);
+
+  const { width } = useWindowSize();
 
   useEffect(() => {
     const animate = () => {
@@ -38,6 +41,20 @@ export const PrismSpinner = ({
       clearInterval(interval);
     };
   }, [animationDuration, faces]);
+
+  useEffect(() => {
+    if (!childrenRef.current) {
+      return;
+    }
+
+    setHeight(
+      childrenRef.current.reduce(
+        (maxHeight, child) =>
+          Math.max(maxHeight, child.getBoundingClientRect().height),
+        0
+      )
+    );
+  }, [children, width]);
 
   return (
     <div
@@ -61,7 +78,6 @@ export const PrismSpinner = ({
             ref: (ref: HTMLElement) => (childrenRef.current[currentFace] = ref),
             style: {
               ...props.style,
-              height,
               position: "absolute",
               transform: `${
                 face === previousFace
