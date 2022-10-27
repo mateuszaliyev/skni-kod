@@ -8,7 +8,7 @@ import { Container } from "@/components/container";
 import { useI18nContext } from "@/i18n";
 
 import { AnimatedLogo } from "./animated-logo";
-import { PrismSpinner } from "./prism-spinner";
+import { Barrel } from "./barrel";
 
 const IsometricPrism = lazy(() =>
   import("@/components/isometric-prism/canvas").then(({ IsometricPrism }) => ({
@@ -22,12 +22,12 @@ export const Hero = () => {
   const { resolvedTheme } = useTheme();
 
   const heroValues = [
-    LL.home.hero.code().toUpperCase(),
-    LL.home.hero.apps().toLowerCase(),
-    LL.home.hero.bots().toLowerCase(),
-    LL.home.hero.games().toLowerCase(),
-    LL.home.hero.systems().toLowerCase(),
-    LL.home.hero.websites().toLowerCase(),
+    `${LL.home.hero.code().toUpperCase()}.`,
+    `${LL.home.hero.apps().toLowerCase()}.`,
+    `${LL.home.hero.bots().toLowerCase()}.`,
+    `${LL.home.hero.games().toLowerCase()}.`,
+    `${LL.home.hero.systems().toLowerCase()}.`,
+    `${LL.home.hero.websites().toLowerCase()}.`,
   ];
 
   return (
@@ -63,16 +63,14 @@ export const Hero = () => {
           <div className="flex basis-full flex-col items-center xl:basis-1/2 xl:items-start">
             <h1 className="select-none text-center text-6xl font-extralight leading-none sm:text-8xl md:text-9xl xl:text-left">
               {LL.home.hero.weCreate()}
-              <PrismSpinner className="flex justify-center xl:justify-start">
-                {heroValues.map((value) => (
-                  <div
-                    className="bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 bg-clip-text font-bold text-transparent"
-                    key={value}
-                  >
-                    {value}.
-                  </div>
-                ))}
-              </PrismSpinner>
+              <Barrel
+                className="text-center xl:text-left"
+                lineProps={{
+                  className:
+                    "bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 bg-clip-text font-bold text-transparent",
+                }}
+                lines={heroValues}
+              />
             </h1>
             <p className="my-16 max-w-prose text-center text-lg text-gray-500 md:text-2xl xl:text-left">
               {LL.home.hero.description()}
