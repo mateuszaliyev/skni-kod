@@ -11,7 +11,7 @@ specifiers:
   '@types/node': 18.11.3
   '@types/prettier': 2.7.1
   '@types/react': 18.0.24
-  '@types/react-dom': 18.0.6
+  '@types/react-dom': 18.0.8
   '@typescript-eslint/eslint-plugin': 5.40.1
   '@typescript-eslint/parser': 5.40.1
   '@vercel/og': 0.0.20
@@ -72,7 +72,7 @@ devDependencies:
   '@types/node': 18.11.3
   '@types/prettier': 2.7.1
   '@types/react': 18.0.24
-  '@types/react-dom': 18.0.6
+  '@types/react-dom': 18.0.8
   '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
   '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
   autoprefixer: 10.4.12_postcss@8.4.18
@@ -447,8 +447,8 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react-dom/18.0.6:
-    resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
+  /@types/react-dom/18.0.8:
+    resolution: {integrity: sha512-C3GYO0HLaOkk9dDAz3Dl4sbe4AKUGTCfFIZsz3n/82dPNN8Du533HzKatDxeUYWu24wJgMP1xICqkWk1YOLOIw==}
     dependencies:
       '@types/react': 18.0.24
     dev: true
