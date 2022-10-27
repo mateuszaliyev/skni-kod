@@ -5,6 +5,8 @@ import { useTheme } from "next-themes";
 import { GradientButton } from "@/components/button";
 import { Container } from "@/components/container";
 
+import { useMounted } from "@/hooks/mounted";
+
 import { useI18nContext } from "@/i18n";
 
 import { Barrel } from "./barrel";
@@ -39,9 +41,11 @@ export const Hero = () => {
     `${LL.home.hero.websites().toLowerCase()}.`,
   ];
 
+  const isMounted = useMounted();
+
   return (
     <section className="relative h-screen min-h-[640px] lg:min-h-[768px]">
-      {resolvedTheme === "light" && (
+      {isMounted() && resolvedTheme === "light" && (
         <>
           <div className="absolute inset-0 overflow-x-hidden">
             <Suspense fallback={null}>
