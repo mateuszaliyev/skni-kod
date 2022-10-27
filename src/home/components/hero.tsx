@@ -31,14 +31,14 @@ export const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen">
+    <section className="relative h-screen min-h-[640px] lg:min-h-[768px]">
       {resolvedTheme === "light" && (
         <>
           <div className="absolute inset-0 overflow-x-hidden">
             <Suspense fallback={null}>
               <IsometricPrism
                 animationFrequency={0.5}
-                background="#f0f2f4"
+                background="#f8f8fa"
                 hue={{
                   max: 210,
                   min: 210,
@@ -60,8 +60,8 @@ export const Hero = () => {
       )}
       <div className="absolute inset-0 pt-20">
         <Container className="flex h-full items-center">
-          <div className="basis-full xl:basis-1/2">
-            <h1 className="select-none text-6xl font-extralight leading-none lg:text-9xl">
+          <div className="flex basis-full flex-col items-center xl:basis-1/2 xl:items-start">
+            <h1 className="select-none text-center text-6xl font-extralight leading-none sm:text-8xl md:text-9xl xl:text-left">
               {LL.home.hero.weCreate()}
               <PrismSpinner className="flex justify-center xl:justify-start">
                 {heroValues.map((value) => (
@@ -74,10 +74,10 @@ export const Hero = () => {
                 ))}
               </PrismSpinner>
             </h1>
-            <p className="my-16 max-w-prose text-2xl text-gray-500">
+            <p className="my-16 max-w-prose text-center text-lg text-gray-500 md:text-2xl xl:text-left">
               {LL.home.hero.description()}
             </p>
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col items-center gap-4 sm:flex-row">
               <GradientButton>{LL.home.joinUs()}</GradientButton>
               <a
                 className="inline-block select-none rounded-md px-8 py-4 text-lg font-bold transition-colors hover:text-sky-400"
