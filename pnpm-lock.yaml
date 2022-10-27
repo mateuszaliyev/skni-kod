@@ -37,7 +37,7 @@ specifiers:
   prisma: 4.5.0
   react: 18.2.0
   react-dom: 18.2.0
-  react-icons: 4.4.0
+  react-icons: 4.6.0
   superjson: 1.11.0
   tailwindcss: 3.2.1
   trpc-openapi: 1.0.0-alpha.3
@@ -62,7 +62,7 @@ dependencies:
   nextjs-cors: 2.1.1_next@12.3.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-icons: 4.4.0_react@18.2.0
+  react-icons: 4.6.0_react@18.2.0
   superjson: 1.11.0
   trpc-openapi: 1.0.0-alpha.3_csyr7sxw4na5chfsvnup7uuisu
   typesafe-i18n: 5.15.0_typescript@4.8.4
@@ -2668,8 +2668,8 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-icons/4.4.0_react@18.2.0:
-    resolution: {integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==}
+  /react-icons/4.6.0_react@18.2.0:
+    resolution: {integrity: sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==}
     peerDependencies:
       react: '*'
     dependencies:
