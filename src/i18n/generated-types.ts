@@ -94,7 +94,7 @@ export type NamespaceHomeTranslation = {
      */
     code: string;
     /**
-     * S​t​u​d​e​n​t​ ​R​e​s​e​a​r​c​h​ ​G​r​o​u​p​ ​o​f​ ​C​o​m​p​u​t​e​r​ ​S​c​i​e​n​c​e​ ​"​C​o​d​e​"​.
+     * A​t​ ​S​t​u​d​e​n​t​ ​R​e​s​e​a​r​c​h​ ​G​r​o​u​p​ ​o​f​ ​C​o​m​p​u​t​e​r​ ​S​c​i​e​n​c​e​ ​"​C​o​d​e​"​ ​w​e​ ​d​e​v​e​l​o​p​ ​p​r​o​j​e​c​t​s​ ​t​o​g​e​t​h​e​r​ ​u​s​i​n​g​ ​m​o​d​e​r​n​ ​t​e​c​h​n​o​l​o​g​i​e​s​ ​t​h​a​t​ ​i​n​t​e​r​e​s​t​ ​u​s​.
      */
     description: string;
     /**
@@ -118,6 +118,24 @@ export type NamespaceHomeTranslation = {
    * J​o​i​n​ ​u​s
    */
   joinUs: string;
+  /**
+   * L​e​a​r​n​ ​m​o​r​e
+   */
+  learnMore: string;
+  partners: {
+    /**
+     * W​e​ ​c​o​l​l​a​b​o​r​a​t​e​ ​w​i​t​h​ ​c​o​m​p​a​n​i​e​s​ ​f​r​o​m​ ​v​a​r​i​o​u​s​ ​s​e​c​t​o​r​s​ ​o​f​ ​t​h​e​ ​I​T​ ​i​n​d​u​s​t​r​y​.​ ​O​u​r​ ​p​a​r​t​n​e​r​s​ ​o​r​g​a​n​i​z​e​ ​t​r​a​i​n​i​n​g​ ​s​e​s​s​s​i​o​n​s​ ​w​i​t​h​ ​e​x​p​e​r​t​s​,​ ​p​r​o​v​i​d​e​ ​u​s​ ​w​i​t​h​ ​o​p​p​o​r​t​u​n​i​t​i​e​s​ ​t​o​ ​g​a​i​n​ ​p​r​o​f​e​s​s​i​o​n​a​l​ ​e​x​p​e​r​i​e​n​c​e​ ​a​n​d​ ​s​u​p​p​l​y​ ​u​s​ ​w​i​t​h​ ​a​c​c​e​s​s​ ​t​o​ ​s​p​e​c​i​a​l​i​z​e​d​ ​h​a​r​d​w​a​r​e​.
+     */
+    deck: string;
+    /**
+     * B​a​c​k​e​d​ ​b​y​ ​t​h​e​ ​b​e​s​t
+     */
+    headline: string;
+    /**
+     * O​u​r​ ​p​a​r​t​n​e​r​s
+     */
+    kicker: string;
+  };
 };
 
 export type Namespaces = "home";
@@ -206,7 +224,7 @@ export type TranslationFunctions = {
        */
       code: () => LocalizedString;
       /**
-       * Student Research Group of Computer Science "Code".
+       * At Student Research Group of Computer Science "Code" we develop projects together using modern technologies that interest us.
        */
       description: () => LocalizedString;
       /**
@@ -230,6 +248,24 @@ export type TranslationFunctions = {
      * Join us
      */
     joinUs: () => LocalizedString;
+    /**
+     * Learn more
+     */
+    learnMore: () => LocalizedString;
+    partners: {
+      /**
+       * We collaborate with companies from various sectors of the IT industry. Our partners organize training sesssions with experts, provide us with opportunities to gain professional experience and supply us with access to specialized hardware.
+       */
+      deck: () => LocalizedString;
+      /**
+       * Backed by the best
+       */
+      headline: () => LocalizedString;
+      /**
+       * Our partners
+       */
+      kicker: () => LocalizedString;
+    };
   };
 };
 

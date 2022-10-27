@@ -51,6 +51,9 @@ const tailwindCssConfig = {
           },
         },
       },
+      letterSpacing: {
+        kicker: "0.2em",
+      },
     },
     zIndex: {
       header: "1",
