@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useRef } from "react";
 
 import { useMediaQuery } from "@/hooks/media-query";
-import { useWindowSize } from "@/hooks/window-resize";
+import { useWindowSize } from "@/hooks/window-size";
 
 type GetTrianglesOptions = HSLRanges & {
   height?: number;

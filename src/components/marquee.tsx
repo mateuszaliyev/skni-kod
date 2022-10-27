@@ -2,7 +2,7 @@ import { type HTMLAttributes, useEffect, useRef, useState } from "react";
 
 import { clsx } from "clsx";
 
-import { useWindowSize } from "@/hooks/window-resize";
+import { useWindowSize } from "@/hooks/window-size";
 
 type MarqueeBooleanOption =
   | boolean
