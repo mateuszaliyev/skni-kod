@@ -24,7 +24,7 @@ export const baseLocale: Locales = "en";
 
 export const locales: Locales[] = ["en", "pl"];
 
-export const namespaces: Namespaces[] = ["authentication"];
+export const namespaces: Namespaces[] = ["home"];
 
 export const isLocale = (locale: string): locale is Locales =>
   locales.includes(locale as Locales);
