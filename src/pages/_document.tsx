@@ -34,7 +34,7 @@ const Document = () => (
       />
       <meta content="#ffffff" name="theme-color" />
     </Head>
-    <body className="flex flex-1 flex-col bg-white text-black dark:bg-black dark:text-white">
+    <body className="flex flex-grow flex-col bg-white text-black dark:bg-black dark:text-white">
       <Main />
       <NextScript />
     </body>

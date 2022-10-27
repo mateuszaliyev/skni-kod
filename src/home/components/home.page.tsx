@@ -57,7 +57,7 @@ export const HomePage = () => {
       />
       <Robots />
       <HeaderLogo logotype>
-        <Navigation className="flex-1">
+        <Navigation className="flex-grow">
           <NavigationLink href="/about">{LL.about()}</NavigationLink>
           <NavigationLink href="/news">{LL.news()}</NavigationLink>
           <NavigationLink href="/articles">{LL.articles()}</NavigationLink>
