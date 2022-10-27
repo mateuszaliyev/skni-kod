@@ -47,7 +47,7 @@
     "nextjs-cors": "2.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "4.4.0",
+    "react-icons": "4.6.0",
     "superjson": "1.11.0",
     "trpc-openapi": "1.0.0-alpha.3",
     "typesafe-i18n": "5.15.0",
