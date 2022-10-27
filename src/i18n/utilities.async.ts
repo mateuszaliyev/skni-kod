@@ -12,10 +12,10 @@ const localeTranslationLoaders = {
 
 const localeNamespaceLoaders = {
   en: {
-    authentication: () => import("./en/authentication"),
+    home: () => import("./en/home"),
   },
   pl: {
-    authentication: () => import("./pl/authentication"),
+    home: () => import("./pl/home"),
   },
 };
 
