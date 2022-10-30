@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, useEffect } from "react";
+import { type ReactElement, type ReactNode, useEffect } from "react";
 
 import type { Translations } from "./generated-types";
 import { default as TypesafeI18nProvider, useI18nContext } from "./react";

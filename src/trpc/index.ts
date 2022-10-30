@@ -1,6 +1,6 @@
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
-import { GetInferenceHelpers } from "@trpc/server";
+import type { GetInferenceHelpers } from "@trpc/server";
 import superjson from "superjson";
 
 import { TRPC_URL } from "@/environment";
