@@ -1,4 +1,4 @@
-import { ReactNode, useId } from "react";
+import { type ReactNode, useId } from "react";
 
 import { Container } from "@/components/container";
 import { CyanSkyBlueGradient } from "@/components/gradient/cyan-sky-blue";

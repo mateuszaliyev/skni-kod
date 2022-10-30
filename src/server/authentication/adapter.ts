@@ -1,7 +1,7 @@
 import type { Adapter } from "next-auth/adapters";
 
 import type { PrismaClient } from "@prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import type { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 
 import { generateId } from "@/utilities/generate-id";
 

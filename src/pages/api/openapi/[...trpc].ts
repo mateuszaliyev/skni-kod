@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
 import cors from "nextjs-cors";
 
 import { createOpenApiNextHandler } from "trpc-openapi";
