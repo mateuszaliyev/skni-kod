@@ -9,7 +9,7 @@ import "@/styles/globals.css";
 const Application: Application = ({
   Component,
   pageProps: { i18n, session, ...pageProps },
-  router
+  router,
 }) => (
   <ApplicationProvider i18n={i18n} locale={router.locale} session={session}>
     <Component {...pageProps} />
