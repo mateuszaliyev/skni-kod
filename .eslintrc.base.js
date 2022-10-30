@@ -44,6 +44,7 @@ const eslintConfig = {
   ],
   rules: {
     "no-unused-vars": "off",
+    "simple-import-sort/exports": "warn",
     "simple-import-sort/imports": [
       "warn",
       {
