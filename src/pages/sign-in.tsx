@@ -2,7 +2,7 @@ import type { GetStaticProps } from "next";
 import Head from "next/head";
 import { signIn } from "next-auth/react";
 
-import { getI18nProps, useI18nContext } from "@/i18n";
+import { getI18nProps, useI18n } from "@/i18n";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 });
 
 const SignInPage = () => {
-  const { LL } = useI18nContext();
+  const { LL } = useI18n();
 
   return (
     <>

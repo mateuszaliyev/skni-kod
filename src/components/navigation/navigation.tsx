@@ -16,7 +16,7 @@ import {
 
 import { useMediaQuery } from "@/hooks/media-query";
 
-import { useI18nContext } from "@/i18n";
+import { useI18n } from "@/i18n";
 
 export type NavigationProps = HTMLAttributes<HTMLDivElement>;
 
@@ -25,7 +25,7 @@ export const Navigation = ({
   className,
   ...props
 }: NavigationProps) => {
-  const { LL } = useI18nContext();
+  const { LL } = useI18n();
 
   const session = useSession();
 
