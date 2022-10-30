@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import type { GetStaticProps } from "next";
 import { useTheme } from "next-themes";
 
@@ -9,6 +7,8 @@ import { Meta } from "@/components/meta";
 import { Navigation, NavigationLink } from "@/components/navigation";
 import { OpenGraph } from "@/components/open-graph";
 import { Robots } from "@/components/robots";
+
+import { useMounted } from "@/hooks/mounted";
 
 import { getI18nProps, useI18n } from "@/i18n";
 
@@ -22,15 +22,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 });
 
 export const HomePage = () => {
-  const [mounted, setMounted] = useState(false);
-
   const { LL } = useI18n();
 
-  const { setTheme, theme } = useTheme();
+  const isMounted = useMounted();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { setTheme, theme } = useTheme();
 
   return (
     <>
@@ -74,7 +70,7 @@ export const HomePage = () => {
           <Link href="/" locale="pl">
             Polski
           </Link>
-          {mounted && (
+          {isMounted() && (
             <select
               onChange={(event) => setTheme(event.target.value)}
               value={theme}
