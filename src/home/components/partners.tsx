@@ -9,7 +9,7 @@ import { Kicker } from "@/components/kicker";
 import { Link } from "@/components/link";
 import { Marquee } from "@/components/marquee";
 
-import { useI18nContext } from "@/i18n";
+import { useI18n } from "@/i18n";
 
 export type Partner = {
   href: string;
@@ -116,7 +116,7 @@ const partners: Partner[] = [
 ];
 
 export const Partners = () => {
-  const { LL } = useI18nContext();
+  const { LL } = useI18n();
 
   return (
     <section className="space-y-4 py-4">

@@ -10,7 +10,7 @@ import { Navigation, NavigationLink } from "@/components/navigation";
 import { OpenGraph } from "@/components/open-graph";
 import { Robots } from "@/components/robots";
 
-import { getI18nProps, useI18nContext } from "@/i18n";
+import { getI18nProps, useI18n } from "@/i18n";
 
 import { Hero } from "./hero";
 import { Partners } from "./partners";
@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 export const HomePage = () => {
   const [mounted, setMounted] = useState(false);
 
-  const { LL } = useI18nContext();
+  const { LL } = useI18n();
 
   const { setTheme, theme } = useTheme();
 

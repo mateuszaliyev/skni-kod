@@ -2,7 +2,7 @@ import NextHead from "next/head";
 
 import { useUrl } from "@/hooks/url";
 
-import { useI18nContext } from "@/i18n";
+import { useI18n } from "@/i18n";
 
 export type Font =
   | "black"
@@ -30,7 +30,7 @@ export type MetaProps = {
 };
 
 export const Meta = ({ description, preloadFonts = [], title }: MetaProps) => {
-  const { LL } = useI18nContext();
+  const { LL } = useI18n();
 
   const url = useUrl();
 

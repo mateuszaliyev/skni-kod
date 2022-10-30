@@ -7,7 +7,7 @@ import { Container } from "@/components/container";
 
 import { useMounted } from "@/hooks/mounted";
 
-import { useI18nContext } from "@/i18n";
+import { useI18n } from "@/i18n";
 
 import { Barrel } from "./barrel";
 
@@ -28,7 +28,7 @@ const IsometricPrismLogo = lazy(() =>
 );
 
 export const Hero = () => {
-  const { LL } = useI18nContext();
+  const { LL } = useI18n();
 
   const { resolvedTheme } = useTheme();
 
