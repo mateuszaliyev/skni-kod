@@ -88,11 +88,11 @@ export const Hero = () => {
             <p className="my-16 max-w-prose text-center text-lg text-gray-500 md:text-2xl xl:text-left">
               {LL.home.hero.description()}
             </p>
-            <div className="flex flex-col items-center gap-4 sm:flex-row">
+            <div className="flex flex-col items-center gap-12 sm:flex-row">
               <GradientButton>{LL.home.joinUs()}</GradientButton>
               <a
-                className="inline-block select-none rounded-md px-8 py-4 text-lg font-bold transition-colors hover:text-sky-400"
-                role="button"
+                className="select-none rounded-md text-lg font-bold transition-colors hover:text-sky-400"
+                href="#"
               >
                 {LL.home.learnMore()}
               </a>
