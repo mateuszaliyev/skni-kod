@@ -19,14 +19,6 @@ const IsometricPrismCanvas = lazy(() =>
   )
 );
 
-const IsometricPrismLogo = lazy(() =>
-  import("@/components/isometric-prism/logo").then(
-    ({ IsometricPrismLogo }) => ({
-      default: IsometricPrismLogo,
-    })
-  )
-);
-
 export const Hero = () => {
   const { LL } = useI18nContext();
 
@@ -98,29 +90,32 @@ export const Hero = () => {
               </a>
             </div>
           </div>
-          <Suspense fallback={null}>
-            {/* <AnimatedLogo className="ml-auto hidden w-[480px] stroke-2 xl:block" /> */}
-            <IsometricPrismLogo
-              animationFrequency={0.5}
-              background="#0ea5e9"
-              className="ml-auto hidden w-[480px] stroke-2 xl:block"
-              height={480}
-              hue={{
-                max: 220,
-                min: 200,
-              }}
-              lightness={{
-                max: 53,
-                min: 48,
-              }}
-              saturation={{
-                max: 89,
-                min: 83,
-              }}
-              size={40}
-              width={480}
-            />
-          </Suspense>
+          {/* <AnimatedLogo className="ml-auto hidden w-[480px] stroke-2 xl:block" /> */}
+          {isMounted() && (
+            <div className="ml-auto hidden w-[480px] stroke-2 [mask-image:url(/images/logo/logomark.svg)] [mask-repeat:no-repeat] xl:block">
+              <Suspense fallback={null}>
+                <IsometricPrismCanvas
+                  animationFrequency={0.5}
+                  background="#0ea5e9"
+                  height={480}
+                  hue={{
+                    max: 220,
+                    min: 200,
+                  }}
+                  lightness={{
+                    max: 53,
+                    min: 48,
+                  }}
+                  saturation={{
+                    max: 89,
+                    min: 83,
+                  }}
+                  size={40}
+                  width={480}
+                />
+              </Suspense>
+            </div>
+          )}
         </Container>
       </div>
     </section>
