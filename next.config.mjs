@@ -12,7 +12,6 @@ const nextConfig = {
   experimental: {
     browsersListForSwc: true,
     legacyBrowsers: false,
-    newNextLinkBehavior: true,
   },
   headers: async () => [
     {
@@ -91,7 +90,6 @@ const nextConfig = {
       source: "/instagram",
     },
   ],
-  swcMinify: true,
 };
 
 export default withBundleAnalyzer(nextConfig);
