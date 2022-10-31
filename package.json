@@ -33,7 +33,7 @@
   "dependencies": {
     "@next/bundle-analyzer": "13.0.0",
     "@prisma/client": "4.5.0",
-    "@tanstack/react-query": "4.13.4",
+    "@tanstack/react-query": "4.13.5",
     "@trpc/client": "10.0.0-rc.1",
     "@trpc/next": "10.0.0-rc.1",
     "@trpc/react-query": "10.0.0-rc.1",
