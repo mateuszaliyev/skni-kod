@@ -64,10 +64,11 @@ export const Navigation = ({
         {children}
         {session.status === "unauthenticated" && (
           <button
-            className="flex h-10 items-center justify-center rounded-md border border-black bg-black px-3 text-sm font-bold text-white transition-colors hover:bg-transparent hover:text-current dark:border-white dark:bg-white dark:text-black dark:hover:bg-transparent dark:hover:text-current lg:h-8"
+            className="flex h-10 items-center justify-center gap-2 rounded-md border border-gray-800 bg-gray-800 px-3 text-sm font-bold text-white transition-colors hover:bg-transparent hover:text-gray-800 dark:border-white dark:bg-white dark:text-gray-800 dark:hover:bg-transparent dark:hover:text-current lg:h-8"
             onClick={() => void signIn("github")}
           >
-            {LL.signIn()}
+            <FaGithub className="h-5 w-5" />
+            <span>{LL.signIn()}</span>
           </button>
         )}
         {isLargeScreen &&
