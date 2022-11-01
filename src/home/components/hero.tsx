@@ -1,5 +1,6 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 
 import { GradientButton } from "@/components/button";
@@ -11,12 +12,14 @@ import { useI18n } from "@/i18n";
 
 import { Barrel } from "./barrel";
 
-const IsometricPrismCanvas = lazy(() =>
-  import("@/components/isometric-prism/canvas").then(
-    ({ IsometricPrismCanvas }) => ({
-      default: IsometricPrismCanvas,
-    })
-  )
+const IsometricPrismCanvas = dynamic(
+  () =>
+    import("@/components/isometric-prism/canvas").then(
+      ({ IsometricPrismCanvas }) => ({ default: IsometricPrismCanvas })
+    ),
+  {
+    suspense: true,
+  }
 );
 
 export const Hero = () => {
@@ -91,31 +94,29 @@ export const Hero = () => {
             </div>
           </div>
           {/* <AnimatedLogo className="ml-auto hidden w-[480px] stroke-2 xl:block" /> */}
-          {isMounted() && (
-            <div className="ml-auto hidden w-[480px] stroke-2 [mask-image:url(/images/logo/logomark.svg)] [mask-repeat:no-repeat] xl:block">
-              <Suspense fallback={null}>
-                <IsometricPrismCanvas
-                  animationFrequency={0.5}
-                  background="#0ea5e9"
-                  height={480}
-                  hue={{
-                    max: 220,
-                    min: 200,
-                  }}
-                  lightness={{
-                    max: 53,
-                    min: 48,
-                  }}
-                  saturation={{
-                    max: 89,
-                    min: 83,
-                  }}
-                  size={40}
-                  width={480}
-                />
-              </Suspense>
-            </div>
-          )}
+          <div className="ml-auto hidden w-[480px] stroke-2 [mask-image:url(/images/logo/logomark.svg)] [mask-repeat:no-repeat] xl:block">
+            <Suspense fallback={null}>
+              <IsometricPrismCanvas
+                animationFrequency={0.5}
+                background="#0ea5e9"
+                height={480}
+                hue={{
+                  max: 220,
+                  min: 200,
+                }}
+                lightness={{
+                  max: 53,
+                  min: 48,
+                }}
+                saturation={{
+                  max: 89,
+                  min: 83,
+                }}
+                size={40}
+                width={480}
+              />
+            </Suspense>
+          </div>
         </Container>
       </div>
     </section>
