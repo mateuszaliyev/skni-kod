@@ -19,7 +19,7 @@
 # production
 /build
 
-# misc
+# miscellaneous
 .DS_Store
 *.pem
 
@@ -29,7 +29,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
+# local enviroment files
 .env
 .env*.local
 
@@ -38,3 +38,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# visual studio code
+/.vscode

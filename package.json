@@ -28,7 +28,8 @@
     "prisma:push": "prisma db push",
     "prisma:studio": "prisma studio -b none",
     "start": "next start",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "vscode:generate": "pnpm dlx tsx ./scripts/vscode.ts"
   },
   "dependencies": {
     "@next/bundle-analyzer": "13.0.1",
