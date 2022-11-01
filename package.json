@@ -31,7 +31,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "13.0.0",
+    "@next/bundle-analyzer": "13.0.1",
     "@prisma/client": "4.5.0",
     "@tanstack/react-query": "4.13.5",
     "@trpc/client": "10.0.0-rc.2",
@@ -41,7 +41,7 @@
     "@vercel/og": "0.0.20",
     "clsx": "1.2.1",
     "nanoid": "4.0.0",
-    "next": "13.0.0",
+    "next": "13.0.1",
     "next-auth": "4.15.0",
     "next-themes": "0.2.1",
     "nextjs-cors": "2.1.1",
