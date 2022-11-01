@@ -10,7 +10,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   experimental: {
-    browsersListForSwc: true,
     legacyBrowsers: false,
   },
   headers: async () => [
