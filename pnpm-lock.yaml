@@ -20,7 +20,7 @@ specifiers:
   clsx: 1.2.1
   concurrently: 7.5.0
   eslint: 8.26.0
-  eslint-config-next: 13.0.0
+  eslint-config-next: 13.0.1
   eslint-config-prettier: 8.5.0
   eslint-plugin-simple-import-sort: 8.0.0
   eslint-plugin-sort-destructure-keys: 1.4.0
@@ -80,7 +80,7 @@ devDependencies:
   autoprefixer: 10.4.13_postcss@8.4.18
   concurrently: 7.5.0
   eslint: 8.26.0
-  eslint-config-next: 13.0.0_wyqvi574yv7oiwfeinomdzmc3m
+  eslint-config-next: 13.0.1_wyqvi574yv7oiwfeinomdzmc3m
   eslint-config-prettier: 8.5.0_eslint@8.26.0
   eslint-plugin-simple-import-sort: 8.0.0_eslint@8.26.0
   eslint-plugin-sort-destructure-keys: 1.4.0_eslint@8.26.0
@@ -160,8 +160,8 @@ packages:
     resolution: {integrity: sha512-65v9BVuah2Mplohm4+efsKEnoEuhmlGm8B2w6vD1geeEP2wXtlSJCvR/cCRJ3fD8wzCQBV41VcMBQeYET6MRkg==}
     dev: false
 
-  /@next/eslint-plugin-next/13.0.0:
-    resolution: {integrity: sha512-z+gnX4Zizatqatc6f4CQrcC9oN8Us3Vrq/OLyc98h7K/eWctrnV91zFZodmJHUjx0cITY8uYM7LXD7IdYkg3kg==}
+  /@next/eslint-plugin-next/13.0.1:
+    resolution: {integrity: sha512-t3bggJhKE/oB4pvMM7hMNnmIpIqsMGJ+OLklk8llOkSeXtfCV+MBQbhImWxf5QODkxNAmMK3IJGAAecQhBTc/Q==}
     dependencies:
       glob: 7.1.7
     dev: true
@@ -1250,8 +1250,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-next/13.0.0_wyqvi574yv7oiwfeinomdzmc3m:
-    resolution: {integrity: sha512-y2nqWS2tycWySdVhb+rhp6CuDmDazGySqkzzQZf3UTyfHyC7og1m5m/AtMFwCo5mtvDqvw1BENin52kV9733lg==}
+  /eslint-config-next/13.0.1_wyqvi574yv7oiwfeinomdzmc3m:
+    resolution: {integrity: sha512-/N9UpSwkbEMj5pIiB235p7QHaSW08ta/iKVaIHF44wufxr+PuJVLwg5LzlAaQbmCZCBpYvVttl3ZxTusP1g2sg==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -1259,7 +1259,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@next/eslint-plugin-next': 13.0.0
+      '@next/eslint-plugin-next': 13.0.1
       '@rushstack/eslint-patch': 1.2.0
       '@typescript-eslint/parser': 5.42.0_wyqvi574yv7oiwfeinomdzmc3m
       eslint: 8.26.0
