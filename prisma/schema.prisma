@@ -8,21 +8,19 @@ datasource db {
 }
 
 model Account {
-    // Identifiers
-    id                BigInt    @id @default(autoincrement()) @db.BigInt
-    publicId          String    @unique @map("public_id")
+    id                String    @id
     // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
     accessToken       String?   @map("access_token") @db.Text
     expiresAt         Int?      @map("expires_at")
     idToken           String?   @map("id_token") @db.Text
-    provider          String    @db.Text
+    provider          String
     providerAccountId String    @map("provider_account_id")
     refreshToken      String?   @map("refresh_token") @db.Text
     scope             String?
     sessionState      String?   @map("session_state")
     tokenType         String?   @map("token_type")
-    type              String    @db.Text
-    userId            BigInt    @map("user_id") @db.BigInt
+    type              String
+    userId            String    @map("user_id")
     // Timestamps
     createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamptz
     deletedAt         DateTime? @map("deleted_at") @db.Timestamptz
@@ -35,13 +33,11 @@ model Account {
 }
 
 model Session {
-    // Identifiers
-    id           BigInt   @id @default(autoincrement()) @db.BigInt
-    publicId     String   @unique @map("public_id")
+    id           String   @id
     // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
-    expiresAt    DateTime @map("expires_at") @db.Timestamptz
+    expires      DateTime @map("expires") @db.Timestamptz
     sessionToken String   @unique @map("session_token")
-    userId       BigInt   @map("user_id") @db.BigInt
+    userId       String   @map("user_id")
     // Timestamps
     createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
     updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz
@@ -52,21 +48,19 @@ model Session {
 }
 
 model User {
-    // Identifiers
-    id              BigInt    @id @default(autoincrement()) @db.BigInt
-    publicId        String    @unique @map("public_id")
+    id            String    @id
     // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
-    email           String?   @unique
-    emailVerifiedAt DateTime? @map("email_verified_at") @db.Timestamptz
-    image           String?
-    name            String?
+    email         String?   @unique
+    emailVerified DateTime? @map("email_verified") @db.Timestamptz
+    image         String?
+    name          String?
     // Timestamps
-    createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz
-    deletedAt       DateTime? @map("deleted_at") @db.Timestamptz
-    updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+    createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz
+    deletedAt     DateTime? @map("deleted_at") @db.Timestamptz
+    updatedAt     DateTime  @updatedAt @map("updated_at") @db.Timestamptz
     // Relations
-    accounts        Account[]
-    sessions        Session[]
+    accounts      Account[]
+    sessions      Session[]
 
     @@map("users")
 }

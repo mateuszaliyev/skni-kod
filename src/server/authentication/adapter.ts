@@ -6,78 +6,50 @@ import type { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { generateId } from "@/utilities/generate-id";
 
 export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
-  createSession: async (session) => {
-    const result = await prisma.session.create({
+  createSession: async (session) =>
+    await prisma.session.create({
       data: {
-        expiresAt: session.expires,
-        publicId: await generateId(),
-        sessionToken: session.sessionToken,
-        user: {
-          connect: {
-            publicId: session.userId,
-          },
-        },
+        ...session,
+        id: await generateId(),
       },
       select: {
-        expiresAt: true,
-        publicId: true,
+        expires: true,
+        id: true,
         sessionToken: true,
-        user: {
-          select: {
-            publicId: true,
-          },
-        },
+        userId: true,
       },
-    });
-
-    return {
-      expires: result.expiresAt,
-      id: result.publicId,
-      sessionToken: result.sessionToken,
-      userId: result.user.publicId,
-    };
-  },
-  createUser: async ({ email, emailVerified, image, name }) => {
-    const result = await prisma.user.create({
+    }),
+  createUser: async (user) => {
+    const { email, ...result } = await prisma.user.create({
       data: {
-        email,
-        emailVerifiedAt: emailVerified,
-        image,
-        name,
-        publicId: await generateId(),
+        ...user,
+        id: await generateId(),
       },
       select: {
         email: true,
-        emailVerifiedAt: true,
+        emailVerified: true,
+        id: true,
         image: true,
         name: true,
-        publicId: true,
       },
     });
 
     return {
-      email: result.email ?? email,
-      emailVerified: result.emailVerifiedAt,
-      id: result.publicId,
-      image: result.image,
-      name: result.name,
+      ...result,
+      email: email ?? user.email,
     };
   },
-  createVerificationToken: async (data) => {
-    const verificationToken = await prisma.verificationToken.create({
+  createVerificationToken: async (data) =>
+    await prisma.verificationToken.create({
       data,
-    });
-
-    return verificationToken;
-  },
-  deleteSession: async (sessionToken) => {
+    }),
+  deleteSession: async (sessionToken) =>
     await prisma.session.delete({
       where: {
         sessionToken,
       },
-    });
-  },
-  deleteUser: async (publicId) => {
+    }),
+  deleteUser: async (id) => {
     await prisma.user.updateMany({
       data: {
         deletedAt: new Date(),
@@ -86,23 +58,23 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
         deletedAt: {
           equals: null,
         },
-        publicId,
+        id,
       },
     });
   },
   getSessionAndUser: async (sessionToken) => {
     const result = await prisma.session.findFirst({
       select: {
-        expiresAt: true,
-        publicId: true,
+        expires: true,
+        id: true,
         sessionToken: true,
         user: {
           select: {
             email: true,
-            emailVerifiedAt: true,
+            emailVerified: true,
+            id: true,
             image: true,
             name: true,
-            publicId: true,
           },
         },
         userId: true,
@@ -121,36 +93,33 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
       return null;
     }
 
+    const {
+      user: { email, ...user },
+      ...session
+    } = result;
+
     return {
-      session: {
-        expires: result.expiresAt,
-        id: result.publicId,
-        sessionToken: result.sessionToken,
-        userId: result.user.publicId,
-      },
+      session,
       user: {
-        email: result.user.email ?? "",
-        emailVerified: result.user.emailVerifiedAt,
-        id: result.user.publicId,
-        image: result.user.image,
-        name: result.user.name,
+        ...user,
+        email: email ?? "",
       },
     };
   },
-  getUser: async (publicId) => {
+  getUser: async (id) => {
     const result = await prisma.user.findFirst({
       select: {
         email: true,
-        emailVerifiedAt: true,
+        emailVerified: true,
+        id: true,
         image: true,
         name: true,
-        publicId: true,
       },
       where: {
         deletedAt: {
           equals: null,
         },
-        publicId,
+        id,
       },
     });
 
@@ -158,12 +127,11 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
       return null;
     }
 
+    const { email, ...user } = result;
+
     return {
-      email: result.email ?? "",
-      emailVerified: result.emailVerifiedAt,
-      id: result.publicId,
-      image: result.image,
-      name: result.name,
+      ...user,
+      email: email ?? "",
     };
   },
   getUserByAccount: async ({ provider, providerAccountId }) => {
@@ -172,10 +140,10 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
         user: {
           select: {
             email: true,
-            emailVerifiedAt: true,
+            emailVerified: true,
+            id: true,
             image: true,
             name: true,
-            publicId: true,
           },
         },
       },
@@ -197,22 +165,23 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
       return null;
     }
 
+    const {
+      user: { email, ...user },
+    } = result;
+
     return {
-      email: result.user.email ?? "",
-      emailVerified: result.user.emailVerifiedAt,
-      id: result.user.publicId,
-      image: result.user.image,
-      name: result.user.name,
+      ...user,
+      email: email ?? "",
     };
   },
   getUserByEmail: async (email) => {
-    const result = await prisma.user.findFirst({
+    const user = await prisma.user.findFirst({
       select: {
         email: true,
-        emailVerifiedAt: true,
+        emailVerified: true,
+        id: true,
         image: true,
         name: true,
-        publicId: true,
       },
       where: {
         deletedAt: {
@@ -222,42 +191,38 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
       },
     });
 
-    if (!result) {
+    if (!user) {
       return null;
     }
 
     return {
-      email: result.email ?? email,
-      emailVerified: result.emailVerifiedAt,
-      id: result.publicId,
-      image: result.image,
-      name: result.name,
+      ...user,
+      email: user.email ?? email,
     };
   },
-  linkAccount: async (account) => {
-    await prisma.account.create({
+  linkAccount: async ({
+    access_token,
+    expires_at,
+    id_token,
+    refresh_token,
+    session_state,
+    token_type,
+    ...account
+  }) =>
+    void (await prisma.account.create({
       data: {
-        accessToken: account.access_token,
-        expiresAt: account.expires_at,
-        idToken: account.id_token,
-        provider: account.provider,
-        providerAccountId: account.providerAccountId,
-        publicId: await generateId(),
-        refreshToken: account.refresh_token,
-        scope: account.scope,
-        sessionState: account.session_state,
-        tokenType: account.token_type,
-        type: account.type,
-        user: {
-          connect: {
-            publicId: account.userId,
-          },
-        },
+        ...account,
+        accessToken: access_token,
+        expiresAt: expires_at,
+        id: await generateId(),
+        idToken: id_token,
+        refreshToken: refresh_token,
+        sessionState: session_state,
+        tokenType: token_type,
       },
-    });
-  },
-  unlinkAccount: async ({ provider, providerAccountId }) => {
-    await prisma.account.updateMany({
+    })),
+  unlinkAccount: async ({ provider, providerAccountId }) =>
+    void (await prisma.account.updateMany({
       data: {
         deletedAt: new Date(),
       },
@@ -268,72 +233,49 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
         provider,
         providerAccountId,
       },
-    });
-  },
-  updateSession: async (session) => {
-    const result = await prisma.session.update({
+    })),
+  updateSession: async (session) =>
+    await prisma.session.update({
       data: {
-        expiresAt: session.expires,
+        expires: session.expires,
       },
       select: {
-        expiresAt: true,
-        publicId: true,
+        expires: true,
+        id: true,
         sessionToken: true,
-        user: {
-          select: {
-            publicId: true,
-          },
-        },
+        userId: true,
       },
       where: {
         sessionToken: session.sessionToken,
       },
-    });
-
-    return {
-      expires: result.expiresAt,
-      id: result.publicId,
-      sessionToken: result.sessionToken,
-      userId: result.user.publicId,
-    };
-  },
-  updateUser: async (user) => {
-    const result = await prisma.user.update({
-      data: {
-        email: user.email,
-        emailVerifiedAt: user.emailVerified,
-        image: user.image,
-        name: user.name,
-      },
+    }),
+  updateUser: async ({ id, ...data }) => {
+    const user = await prisma.user.update({
+      data,
       select: {
         email: true,
-        emailVerifiedAt: true,
+        emailVerified: true,
+        id: true,
         image: true,
         name: true,
-        publicId: true,
       },
       where: {
-        publicId: user.id,
+        id,
       },
     });
 
     return {
-      email: result.email ?? "",
-      emailVerified: result.emailVerifiedAt,
-      id: result.publicId,
-      image: result.image,
-      name: result.name,
+      ...user,
+      email: user.email ?? "",
     };
   },
   useVerificationToken: async (identifier_token) => {
     try {
-      const verificationToken = await prisma.verificationToken.delete({
+      return await prisma.verificationToken.delete({
         where: {
           identifier_token,
         },
       });
-
-      return verificationToken;
     } catch (error) {
       /**
        * If token already used/deleted, just return null.
