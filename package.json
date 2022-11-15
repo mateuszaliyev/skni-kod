@@ -51,7 +51,7 @@
     "react-icons": "4.6.0",
     "superjson": "1.11.0",
     "trpc-openapi": "1.0.0-alpha.4",
-    "typesafe-i18n": "5.16.2",
+    "typesafe-i18n": "5.16.3",
     "zod": "3.19.1"
   },
   "devDependencies": {
