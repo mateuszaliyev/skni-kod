@@ -1,8 +1,8 @@
 import { type CSSProperties, type SVGProps, useId, useRef } from "react";
 
-import { clsx } from "clsx";
-
 import { CyanSkyBlueGradient } from "@/components/gradient/cyan-sky-blue";
+
+import { cx } from "@/utilities/cx";
 
 export type AnimatedLogoProps = Omit<
   SVGProps<SVGSVGElement>,
@@ -43,7 +43,7 @@ export const AnimatedLogo = ({ className, ...props }: AnimatedLogoProps) => {
 
   return (
     <svg
-      className={clsx("fill-transparent", className)}
+      className={cx("fill-transparent", className)}
       // ref={ref}
       viewBox="0 0 581.57 543.422"
       xmlns="http://www.w3.org/2000/svg"

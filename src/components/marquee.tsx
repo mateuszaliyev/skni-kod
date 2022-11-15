@@ -1,8 +1,8 @@
 import { type HTMLAttributes, useEffect, useRef, useState } from "react";
 
-import { clsx } from "clsx";
-
 import { useWindowSize } from "@/hooks/window-size";
+
+import { cx } from "@/utilities/cx";
 
 type MarqueeBooleanOption =
   | boolean
@@ -93,12 +93,12 @@ export const Marquee = ({
 
   return (
     <div
-      className={clsx("relative flex w-full overflow-x-hidden", className)}
+      className={cx("relative flex w-full overflow-x-hidden", className)}
       ref={containerRef}
       {...props}
     >
       <div
-        className={clsx(
+        className={cx(
           marqueeBaseClassName,
           isEnabled && "animate-marquee",
           marqueeClassName
@@ -116,7 +116,7 @@ export const Marquee = ({
       {isEnabled && (
         <div
           aria-hidden="true"
-          className={clsx(
+          className={cx(
             marqueeBaseClassName,
             "animate-marquee",
             marqueeClassName

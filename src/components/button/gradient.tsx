@@ -1,13 +1,13 @@
 import { forwardRef } from "react";
 
-import { clsx } from "clsx";
-
 import type { ForwardRefComponent } from "@/types";
+
+import { cx } from "@/utilities/cx";
 
 export const GradientButton = forwardRef(
   ({ as: Component = "button", children, className, ...props }, ref) => (
     <Component
-      className={clsx(
+      className={cx(
         "group relative flex h-12 w-48 cursor-pointer select-none rounded-md bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 p-px before:absolute before:block before:h-full before:w-full before:border-[12px] before:border-transparent before:bg-gradient-to-br before:from-cyan-400 before:via-sky-500 before:to-blue-600 before:bg-clip-padding before:blur-2xl",
         className
       )}

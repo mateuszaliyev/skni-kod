@@ -1,6 +1,6 @@
 import { type HTMLAttributes, useEffect, useState } from "react";
 
-import { clsx } from "clsx";
+import { cx } from "@/utilities/cx";
 
 export type AnimatedHeadlineProps = HTMLAttributes<HTMLDivElement> & {
   animationDuration?: number;
@@ -46,7 +46,7 @@ export const Barrel = ({
   }, [animationDuration, lines.length]);
 
   return (
-    <div className={clsx("relative overflow-y-hidden", className)} {...props}>
+    <div className={cx("relative overflow-y-hidden", className)} {...props}>
       {lines.map((line, index) => {
         const isPreviousLine = index === getLine(-1, currentLine, lines.length);
         const isCurrentLine = index === currentLine;
@@ -61,7 +61,7 @@ export const Barrel = ({
 
         return (
           <span
-            className={clsx(
+            className={cx(
               "block w-full transition-transform duration-1000",
               index === 0 ? "relative" : "absolute",
               lineClassName

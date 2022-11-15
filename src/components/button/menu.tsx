@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from "react";
 
-import { clsx } from "clsx";
+import { cx } from "@/utilities/cx";
 
 export type ButtonMenuProps = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -21,7 +21,7 @@ export const ButtonMenu = ({
 }: ButtonMenuProps) => (
   <button
     aria-label={open ? label.close : label.open}
-    className={clsx(
+    className={cx(
       "h-6 w-6 before:block before:h-px before:bg-current before:transition-transform after:block after:h-px after:bg-current after:transition-transform",
       open
         ? "before:translate-y-px before:rotate-45 after:-rotate-45"
