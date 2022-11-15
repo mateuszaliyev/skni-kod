@@ -55,7 +55,7 @@
     "zod": "3.19.1"
   },
   "devDependencies": {
-    "@types/eslint": "8.4.9",
+    "@types/eslint": "8.4.10",
     "@types/node": "18.11.9",
     "@types/prettier": "2.7.1",
     "@types/react": "18.0.24",

@@ -8,7 +8,7 @@ specifiers:
   '@trpc/next': 10.0.0-rc.3
   '@trpc/react-query': 10.0.0-rc.3
   '@trpc/server': 10.0.0-rc.3
-  '@types/eslint': 8.4.9
+  '@types/eslint': 8.4.10
   '@types/node': 18.11.9
   '@types/prettier': 2.7.1
   '@types/react': 18.0.24
@@ -70,7 +70,7 @@ dependencies:
   zod: 3.19.1
 
 devDependencies:
-  '@types/eslint': 8.4.9
+  '@types/eslint': 8.4.10
   '@types/node': 18.11.9
   '@types/prettier': 2.7.1
   '@types/react': 18.0.24
@@ -429,8 +429,8 @@ packages:
     resolution: {integrity: sha512-aSs3uDQ5wumwVjtxj855WLDjlDC+v50QoqHzvuptI33NhJZV7meu0pU2EJkrSZXFt27CSNfP9o2ZPfoReoPUuw==}
     dev: false
 
-  /@types/eslint/8.4.9:
-    resolution: {integrity: sha512-jFCSo4wJzlHQLCpceUhUnXdrPuCNOjGFMQ8Eg6JXxlz3QaCKOb7eGi2cephQdM4XTYsNej69P9JDJ1zqNIbncQ==}
+  /@types/eslint/8.4.10:
+    resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
       '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
