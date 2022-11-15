@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-import { clsx } from "clsx";
-
 import { Container } from "@/components/container";
 import { Deck } from "@/components/deck";
 import { Headline } from "@/components/headline";
@@ -10,6 +8,8 @@ import { Link } from "@/components/link";
 import { Marquee } from "@/components/marquee";
 
 import { useI18n } from "@/i18n";
+
+import { cx } from "@/utilities/cx";
 
 export type Partner = {
   href: string;
@@ -63,7 +63,7 @@ const partners: Partner[] = [
     href: "https://hobbistycznie.pl/",
     logo: (
       <svg
-        className={clsx("mt-2", partnerLogoClassNames)}
+        className={cx("mt-2", partnerLogoClassNames)}
         viewBox="0 0 742.62 80.088"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -76,7 +76,7 @@ const partners: Partner[] = [
     href: "https://ideo.pl/",
     logo: (
       <svg
-        className={clsx(
+        className={cx(
           "group-hover:fill-ideo dark:group-hover:fill-current",
           partnerLogoClassNames
         )}
@@ -92,7 +92,7 @@ const partners: Partner[] = [
     href: "https://sklep-elektronika.com/",
     logo: (
       <svg
-        className={clsx("mt-2", partnerLogoClassNames)}
+        className={cx("mt-2", partnerLogoClassNames)}
         viewBox="0 0 742.03 68.001"
         xmlns="http://www.w3.org/2000/svg"
       >

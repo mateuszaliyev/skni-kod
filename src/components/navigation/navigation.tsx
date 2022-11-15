@@ -3,8 +3,6 @@ import { FaFacebook, FaGithub, FaInstagram } from "react-icons/fa";
 
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import { clsx } from "clsx";
-
 import { ButtonMenu } from "@/components/button";
 import { Link } from "@/components/link";
 
@@ -17,6 +15,8 @@ import {
 import { useMediaQuery } from "@/hooks/media-query";
 
 import { useI18n } from "@/i18n";
+
+import { cx } from "@/utilities/cx";
 
 export type NavigationProps = HTMLAttributes<HTMLDivElement>;
 
@@ -51,9 +51,9 @@ export const Navigation = ({
   }, [isLargeScreen, menuOpen]);
 
   return (
-    <div className={clsx("flex", className)} {...props}>
+    <div className={cx("flex", className)} {...props}>
       <nav
-        className={clsx(
+        className={cx(
           isLargeScreen
             ? "ml-auto flex items-center gap-6"
             : "fixed inset-0 z-navigation flex-col divide-y divide-black/10 bg-white/80 px-6 pt-20 backdrop-blur-sm backdrop-saturate-[180%] transition-[opacity,transform] duration-500 dark:divide-white/10 dark:bg-black/50",

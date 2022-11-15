@@ -1,13 +1,13 @@
 import { forwardRef } from "react";
 
-import clsx from "clsx";
-
 import type { ForwardRefComponent } from "@/types";
+
+import { cx } from "@/utilities/cx";
 
 export const Kicker = forwardRef(
   ({ as: Component = "div", className, ...props }, ref) => (
     <Component
-      className={clsx(
+      className={cx(
         "text-center text-sm font-black uppercase tracking-kicker text-sky-400",
         className
       )}
