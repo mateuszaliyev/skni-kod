@@ -8,11 +8,11 @@ specifiers:
   '@trpc/next': 10.0.0-rc.3
   '@trpc/react-query': 10.0.0-rc.3
   '@trpc/server': 10.0.0-rc.3
-  '@types/eslint': 8.4.9
+  '@types/eslint': 8.4.10
   '@types/node': 18.11.9
   '@types/prettier': 2.7.1
-  '@types/react': 18.0.24
-  '@types/react-dom': 18.0.8
+  '@types/react': 18.0.25
+  '@types/react-dom': 18.0.9
   '@typescript-eslint/eslint-plugin': 5.42.0
   '@typescript-eslint/parser': 5.42.0
   '@vercel/og': 0.0.20
@@ -31,7 +31,7 @@ specifiers:
   next: 13.0.1
   next-auth: 4.15.0
   next-themes: 0.2.1
-  nextjs-cors: 2.1.1
+  nextjs-cors: 2.1.2
   postcss: 8.4.19
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13
@@ -60,7 +60,7 @@ dependencies:
   next: 13.0.1_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.15.0_cuttyyug54cjzme6dhlgj6veu4
   next-themes: 0.2.1_cuttyyug54cjzme6dhlgj6veu4
-  nextjs-cors: 2.1.1_next@13.0.1
+  nextjs-cors: 2.1.2_next@13.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.6.0_react@18.2.0
@@ -70,11 +70,11 @@ dependencies:
   zod: 3.19.1
 
 devDependencies:
-  '@types/eslint': 8.4.9
+  '@types/eslint': 8.4.10
   '@types/node': 18.11.9
   '@types/prettier': 2.7.1
-  '@types/react': 18.0.24
-  '@types/react-dom': 18.0.8
+  '@types/react': 18.0.25
+  '@types/react-dom': 18.0.9
   '@typescript-eslint/eslint-plugin': 5.42.0_6xw5wg2354iw4zujk2f3vyfrzu
   '@typescript-eslint/parser': 5.42.0_wyqvi574yv7oiwfeinomdzmc3m
   autoprefixer: 10.4.13_postcss@8.4.19
@@ -429,8 +429,8 @@ packages:
     resolution: {integrity: sha512-aSs3uDQ5wumwVjtxj855WLDjlDC+v50QoqHzvuptI33NhJZV7meu0pU2EJkrSZXFt27CSNfP9o2ZPfoReoPUuw==}
     dev: false
 
-  /@types/eslint/8.4.9:
-    resolution: {integrity: sha512-jFCSo4wJzlHQLCpceUhUnXdrPuCNOjGFMQ8Eg6JXxlz3QaCKOb7eGi2cephQdM4XTYsNej69P9JDJ1zqNIbncQ==}
+  /@types/eslint/8.4.10:
+    resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
       '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
@@ -460,14 +460,14 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react-dom/18.0.8:
-    resolution: {integrity: sha512-C3GYO0HLaOkk9dDAz3Dl4sbe4AKUGTCfFIZsz3n/82dPNN8Du533HzKatDxeUYWu24wJgMP1xICqkWk1YOLOIw==}
+  /@types/react-dom/18.0.9:
+    resolution: {integrity: sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==}
     dependencies:
-      '@types/react': 18.0.24
+      '@types/react': 18.0.25
     dev: true
 
-  /@types/react/18.0.24:
-    resolution: {integrity: sha512-wRJWT6ouziGUy+9uX0aW4YOJxAY0bG6/AOk5AW5QSvZqI7dk6VBIbXvcVgIw/W5Jrl24f77df98GEKTJGOLx7Q==}
+  /@types/react/18.0.25:
+    resolution: {integrity: sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -2290,10 +2290,10 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /nextjs-cors/2.1.1_next@13.0.1:
-    resolution: {integrity: sha512-HxE4w4Wng5VdTtnn0DWPphuWKwd1Ty+lpyTZ/sQGgaNnd5demYMchKf+W1LtI8YFYxu2HnRb3MrxERRV0QKLKA==}
+  /nextjs-cors/2.1.2_next@13.0.1:
+    resolution: {integrity: sha512-2yOVivaaf2ILe4f/qY32hnj3oC77VCOsUQJQfhVMGsXE/YMEWUY2zy78sH9FKUCM7eG42/l3pDofIzMD781XGA==}
     peerDependencies:
-      next: ^8.1.1-canary.54 || ^9.0.0 || ^10.0.0-0 || ^11.0.0 || ^12.0.0
+      next: ^8.1.1-canary.54 || ^9.0.0 || ^10.0.0-0 || ^11.0.0 || ^12.0.0 || ^13.0.0
     dependencies:
       cors: 2.8.5
       next: 13.0.1_biqbaboplfbrettd7655fr4n2y
