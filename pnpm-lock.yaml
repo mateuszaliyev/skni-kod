@@ -31,7 +31,7 @@ specifiers:
   next: 13.0.1
   next-auth: 4.15.0
   next-themes: 0.2.1
-  nextjs-cors: 2.1.1
+  nextjs-cors: 2.1.2
   postcss: 8.4.18
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13
@@ -60,7 +60,7 @@ dependencies:
   next: 13.0.1_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.15.0_cuttyyug54cjzme6dhlgj6veu4
   next-themes: 0.2.1_cuttyyug54cjzme6dhlgj6veu4
-  nextjs-cors: 2.1.1_next@13.0.1
+  nextjs-cors: 2.1.2_next@13.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.6.0_react@18.2.0
@@ -2290,10 +2290,10 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /nextjs-cors/2.1.1_next@13.0.1:
-    resolution: {integrity: sha512-HxE4w4Wng5VdTtnn0DWPphuWKwd1Ty+lpyTZ/sQGgaNnd5demYMchKf+W1LtI8YFYxu2HnRb3MrxERRV0QKLKA==}
+  /nextjs-cors/2.1.2_next@13.0.1:
+    resolution: {integrity: sha512-2yOVivaaf2ILe4f/qY32hnj3oC77VCOsUQJQfhVMGsXE/YMEWUY2zy78sH9FKUCM7eG42/l3pDofIzMD781XGA==}
     peerDependencies:
-      next: ^8.1.1-canary.54 || ^9.0.0 || ^10.0.0-0 || ^11.0.0 || ^12.0.0
+      next: ^8.1.1-canary.54 || ^9.0.0 || ^10.0.0-0 || ^11.0.0 || ^12.0.0 || ^13.0.0
     dependencies:
       cors: 2.8.5
       next: 13.0.1_biqbaboplfbrettd7655fr4n2y
