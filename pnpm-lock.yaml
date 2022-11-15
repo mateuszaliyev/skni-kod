@@ -29,7 +29,7 @@ specifiers:
   eslint-plugin-unused-imports: 2.0.0
   nanoid: 4.0.0
   next: 13.0.1
-  next-auth: 4.15.0
+  next-auth: 4.16.4
   next-themes: 0.2.1
   nextjs-cors: 2.1.2
   postcss: 8.4.19
@@ -58,7 +58,7 @@ dependencies:
   clsx: 1.2.1
   nanoid: 4.0.0
   next: 13.0.1_biqbaboplfbrettd7655fr4n2y
-  next-auth: 4.15.0_cuttyyug54cjzme6dhlgj6veu4
+  next-auth: 4.16.4_cuttyyug54cjzme6dhlgj6veu4
   next-themes: 0.2.1_cuttyyug54cjzme6dhlgj6veu4
   nextjs-cors: 2.1.2_next@13.0.1
   react: 18.2.0
@@ -2207,11 +2207,11 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /next-auth/4.15.0_cuttyyug54cjzme6dhlgj6veu4:
-    resolution: {integrity: sha512-IasNzGLM2VlmyioDdZaRwBBBm8b5xo+zbbqVWHFh0bY6iQUZ3vuudrsdHNdxkXV3LSHdKNaoWEpYr4BydB7mCw==}
-    engines: {node: ^12.19.0 || ^14.15.0 || ^16.13.0}
+  /next-auth/4.16.4_cuttyyug54cjzme6dhlgj6veu4:
+    resolution: {integrity: sha512-KXW578+ER1u5RcWLwCHMdb/RIBIO6JM8r6xlf9RIPSKzkvDcX9FHiZfJS2vOq/SurHXPJZc4J3OS4IDJpF74Dw==}
+    engines: {node: ^12.19.0 || ^14.15.0 || ^16.13.0 || ^18.12.0}
     peerDependencies:
-      next: ^12.2.5
+      next: ^12.2.5 || ^13
       nodemailer: ^6.6.5
       react: ^17.0.2 || ^18
       react-dom: ^17.0.2 || ^18
