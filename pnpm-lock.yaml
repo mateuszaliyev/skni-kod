@@ -4,10 +4,10 @@ specifiers:
   '@next/bundle-analyzer': 13.0.3
   '@prisma/client': 4.5.0
   '@tanstack/react-query': 4.16.1
-  '@trpc/client': 10.0.0-rc.3
-  '@trpc/next': 10.0.0-rc.3
-  '@trpc/react-query': 10.0.0-rc.3
-  '@trpc/server': 10.0.0-rc.3
+  '@trpc/client': 10.0.0-rc.8
+  '@trpc/next': 10.0.0-rc.8
+  '@trpc/react-query': 10.0.0-rc.8
+  '@trpc/server': 10.0.0-rc.8
   '@types/eslint': 8.4.10
   '@types/node': 18.11.9
   '@types/prettier': 2.7.1
@@ -50,10 +50,10 @@ dependencies:
   '@next/bundle-analyzer': 13.0.3
   '@prisma/client': 4.5.0_prisma@4.5.0
   '@tanstack/react-query': 4.16.1_biqbaboplfbrettd7655fr4n2y
-  '@trpc/client': 10.0.0-rc.3_@trpc+server@10.0.0-rc.3
-  '@trpc/next': 10.0.0-rc.3_udezkiqk5afmnxd7ogr6jf4znm
-  '@trpc/react-query': 10.0.0-rc.3_qjiqv3xzgi64ke7evtr5nuxaom
-  '@trpc/server': 10.0.0-rc.3
+  '@trpc/client': 10.0.0-rc.8_@trpc+server@10.0.0-rc.8
+  '@trpc/next': 10.0.0-rc.8_js37qhiwaz7seiawrwo5qa4qoq
+  '@trpc/react-query': 10.0.0-rc.8_bd5nqhlee2rdtlo5aa5wyumt5u
+  '@trpc/server': 10.0.0-rc.8
   '@vercel/og': 0.0.20
   clsx: 1.2.1
   nanoid: 4.0.0
@@ -65,7 +65,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.6.0_react@18.2.0
   superjson: 1.11.0
-  trpc-openapi: 1.0.0-alpha.4_d5q5wvr6kcg6ye4epbspigy2xq
+  trpc-openapi: 1.0.0-alpha.4_m7lve6cjvd26xbjqz4zsiln46q
   typesafe-i18n: 5.16.3_typescript@4.8.4
   zod: 3.19.1
 
@@ -380,53 +380,53 @@ packages:
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
-  /@trpc/client/10.0.0-rc.3_@trpc+server@10.0.0-rc.3:
-    resolution: {integrity: sha512-gZYVfZra1YB2DluDY+GcIrL7KqPXCI9y0mF4utXYAUAl+jrxfLyG63pCv30USRRYlwwSKaoLJNpjQB9k05aYaw==}
+  /@trpc/client/10.0.0-rc.8_@trpc+server@10.0.0-rc.8:
+    resolution: {integrity: sha512-NuQl7g1tkfFYn6P6dZJJkVsxnxutYpaxmpG/w5ZKW3QVu6cY1joUOrWakunKrghh3HS+svgLaPz0Xl0PlmdSlw==}
     peerDependencies:
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/server': 10.0.0-rc.8
     dependencies:
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/server': 10.0.0-rc.8
     dev: false
 
-  /@trpc/next/10.0.0-rc.3_udezkiqk5afmnxd7ogr6jf4znm:
-    resolution: {integrity: sha512-L9sHV93dPA4lZ/I8opfn3BJONnlnnJzJERggv7srt8H3aEhKVlNWIqxciNLHGXSq9q0C9i3Q6ND4F5kpRSQ5YA==}
+  /@trpc/next/10.0.0-rc.8_js37qhiwaz7seiawrwo5qa4qoq:
+    resolution: {integrity: sha512-l2TZF22virmC3RROD7qu0dnc3sdYfVvkOhAu1qP5+8fRgs4cgHKBFdalQ+SKBnU0RNuVLYVw0CkyvU+gHo5u2w==}
     peerDependencies:
       '@tanstack/react-query': ^4.3.8
-      '@trpc/client': 10.0.0-rc.3
+      '@trpc/client': 10.0.0-rc.8
       '@trpc/react-query': ^10.0.0-proxy-beta.21
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/server': 10.0.0-rc.8
       next: '*'
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@tanstack/react-query': 4.16.1_biqbaboplfbrettd7655fr4n2y
-      '@trpc/client': 10.0.0-rc.3_@trpc+server@10.0.0-rc.3
-      '@trpc/react-query': 10.0.0-rc.3_qjiqv3xzgi64ke7evtr5nuxaom
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/client': 10.0.0-rc.8_@trpc+server@10.0.0-rc.8
+      '@trpc/react-query': 10.0.0-rc.8_bd5nqhlee2rdtlo5aa5wyumt5u
+      '@trpc/server': 10.0.0-rc.8
       next: 13.0.3_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-ssr-prepass: 1.5.0_react@18.2.0
     dev: false
 
-  /@trpc/react-query/10.0.0-rc.3_qjiqv3xzgi64ke7evtr5nuxaom:
-    resolution: {integrity: sha512-nEBqkTdKsd+vIE4RuDRX/b8U5ayxENp0G2vnh/fn4hiIszrLiPTGvnhGCZm/fT2GGW5nk7EEBcqf2o0z3r8Ftg==}
+  /@trpc/react-query/10.0.0-rc.8_bd5nqhlee2rdtlo5aa5wyumt5u:
+    resolution: {integrity: sha512-LKL29llvGtwYmfKGuCYSgNNChOL8/6PInY90i+ZgI8TLO6ZCJaVrPBSvqtxKj3MSezbK3kOxWIviKVFwV35L0A==}
     peerDependencies:
       '@tanstack/react-query': ^4.3.8
-      '@trpc/client': 10.0.0-rc.3
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/client': 10.0.0-rc.8
+      '@trpc/server': 10.0.0-rc.8
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@tanstack/react-query': 4.16.1_biqbaboplfbrettd7655fr4n2y
-      '@trpc/client': 10.0.0-rc.3_@trpc+server@10.0.0-rc.3
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/client': 10.0.0-rc.8_@trpc+server@10.0.0-rc.8
+      '@trpc/server': 10.0.0-rc.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@trpc/server/10.0.0-rc.3:
-    resolution: {integrity: sha512-aSs3uDQ5wumwVjtxj855WLDjlDC+v50QoqHzvuptI33NhJZV7meu0pU2EJkrSZXFt27CSNfP9o2ZPfoReoPUuw==}
+  /@trpc/server/10.0.0-rc.8:
+    resolution: {integrity: sha512-+NsQqaJGHTiiBcOesH1bIictnnSO+SXaCOy5pM/324QBnJRt9VOO8oYDLcHSwAbJpAbOA+vl6YHs8OoykW6D2g==}
     dev: false
 
   /@types/eslint/8.4.10:
@@ -3053,13 +3053,13 @@ packages:
     hasBin: true
     dev: true
 
-  /trpc-openapi/1.0.0-alpha.4_d5q5wvr6kcg6ye4epbspigy2xq:
+  /trpc-openapi/1.0.0-alpha.4_m7lve6cjvd26xbjqz4zsiln46q:
     resolution: {integrity: sha512-Zt+IUlYY/pw3Kk78ByTCOZb47r8zJFBUqr1imiOzyVjpaUMVMSPA2RpATCiOJQGSvR70YqoZAMPAu+KPoDmh2w==}
     peerDependencies:
       '@trpc/server': ^10.0.0-rc.7
       zod: ^3.14.4
     dependencies:
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/server': 10.0.0-rc.8
       co-body: 6.1.0
       lodash.clonedeep: 4.5.0
       node-mocks-http: 1.11.0
