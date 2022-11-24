@@ -1,16 +1,18 @@
 import type { GetStaticProps } from "next";
 import { useTheme } from "next-themes";
 
+import { ButtonLink } from "@/components/button";
 import { HeaderLogo } from "@/components/header/logo";
-import { Link } from "@/components/link";
 import { Meta } from "@/components/meta";
-import { Navigation, NavigationLink } from "@/components/navigation";
+import { Navigation } from "@/components/navigation";
 import { OpenGraph } from "@/components/open-graph";
 import { Robots } from "@/components/robots";
 
 import { useMounted } from "@/hooks/mounted";
 
 import { getI18nProps, useI18n } from "@/i18n";
+
+import { CONTAINER_STYLES } from "@/styles";
 
 import { Hero } from "./hero";
 import { Partners } from "./partners";
@@ -54,32 +56,34 @@ export const HomePage = () => {
       <Robots />
       <HeaderLogo logotype>
         <Navigation className="flex-grow">
-          <NavigationLink href="/about">{LL.about()}</NavigationLink>
-          <NavigationLink href="/news">{LL.news()}</NavigationLink>
-          <NavigationLink href="/articles">{LL.articles()}</NavigationLink>
-          <NavigationLink href="/projects">{LL.projects()}</NavigationLink>
+          <ButtonLink href="/about">{LL.about()}</ButtonLink>
+          <ButtonLink href="/news">{LL.news()}</ButtonLink>
+          <ButtonLink href="/articles">{LL.articles()}</ButtonLink>
+          <ButtonLink href="/projects">{LL.projects()}</ButtonLink>
         </Navigation>
       </HeaderLogo>
       <main>
         <Hero />
         <Partners />
-        <section className="flex space-x-4 pt-8">
-          <Link href="/" locale="en">
-            English
-          </Link>
-          <Link href="/" locale="pl">
-            Polski
-          </Link>
-          {isMounted() && (
-            <select
-              onChange={(event) => setTheme(event.target.value)}
-              value={theme}
-            >
-              <option value="dark">{LL.theme.dark()}</option>
-              <option value="light">{LL.theme.light()}</option>
-              <option value="system">{LL.theme.system()}</option>
-            </select>
-          )}
+        <section className="flex gap-4 pt-8">
+          <div className={CONTAINER_STYLES}>
+            <ButtonLink href="/" locale="en">
+              English
+            </ButtonLink>
+            <ButtonLink href="/" locale="pl">
+              Polski
+            </ButtonLink>
+            {isMounted() && (
+              <select
+                onChange={(event) => setTheme(event.target.value)}
+                value={theme}
+              >
+                <option value="dark">{LL.theme.dark()}</option>
+                <option value="light">{LL.theme.light()}</option>
+                <option value="system">{LL.theme.system()}</option>
+              </select>
+            )}
+          </div>
         </section>
       </main>
     </>

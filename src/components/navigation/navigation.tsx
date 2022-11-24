@@ -3,7 +3,8 @@ import { FaFacebook, FaGithub, FaInstagram } from "react-icons/fa";
 
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import { ButtonMenu } from "@/components/button";
+import { Avatar } from "@/components/avatar";
+import { Button, ButtonHamburger } from "@/components/button";
 import { Link } from "@/components/link";
 
 import {
@@ -63,30 +64,31 @@ export const Navigation = ({
       >
         {children}
         {session.status === "unauthenticated" && (
-          <button
-            className="flex h-10 items-center justify-center gap-2 rounded-md border border-gray-800 bg-gray-800 px-3 text-sm font-bold text-white transition-colors hover:bg-transparent hover:text-gray-800 dark:border-white dark:bg-white dark:text-gray-800 dark:hover:bg-transparent dark:hover:text-current lg:h-8"
-            onClick={() => void signIn("github")}
+          <Button
+            // className="flex h-10 items-center justify-center gap-2 rounded-md border border-gray-800 bg-gray-800 px-3 text-sm font-bold text-white transition-colors hover:bg-transparent hover:text-gray-800 dark:border-white dark:bg-white dark:text-gray-800 dark:hover:bg-transparent dark:hover:text-current lg:h-8"
+            icon={<FaGithub className="h-5 w-5" />}
+            onPress={() => void signIn("github")}
+            size="small"
+            variant="contained"
           >
-            <FaGithub className="h-5 w-5" />
-            <span>{LL.signIn()}</span>
-          </button>
+            {/* <FaGithub className="h-5 w-5" /> */}
+            {LL.signIn()}
+          </Button>
         )}
         {isLargeScreen &&
           session.status === "authenticated" &&
           session.data.user?.image &&
           session.data.user?.name && (
             <button onClick={() => void signOut()}>
-              <img
+              <Avatar
                 alt={session.data.user.name}
-                className="cursor-pointer rounded-full"
-                height={56}
+                size={48}
                 src={session.data.user.image}
-                width={56}
               />
             </button>
           )}
         {!isLargeScreen && (
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center gap-4">
             <Link href={SKNI_KOD_FACEBOOK} target="_blank">
               <FaFacebook className="h-8 w-8" />
             </Link>
@@ -99,13 +101,10 @@ export const Navigation = ({
           </div>
         )}
       </nav>
-      <ButtonMenu
+      <ButtonHamburger
+        aria-label={menuOpen ? LL.menuClose() : LL.menuOpen()}
         className="z-navigation ml-auto lg:hidden"
-        label={{
-          close: LL.menuClose(),
-          open: LL.menuOpen(),
-        }}
-        onClick={() => toggleMenu()}
+        onPress={() => toggleMenu()}
         open={menuOpen}
       />
     </div>

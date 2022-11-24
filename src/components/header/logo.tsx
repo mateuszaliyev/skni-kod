@@ -1,10 +1,13 @@
 import { type ReactNode, useId } from "react";
 
-import { Container } from "@/components/container";
 import { CyanSkyBlueGradient } from "@/components/gradient/cyan-sky-blue";
 import { Link } from "@/components/link";
 
 import { useRouter } from "@/hooks/router";
+
+import { CONTAINER_STYLES } from "@/styles";
+
+import { cx } from "@/utilities/cx";
 
 export type HeaderLogoProps = {
   children?: ReactNode;
@@ -18,9 +21,9 @@ export const HeaderLogo = ({ children, logotype }: HeaderLogoProps) => {
 
   return (
     <header className="absolute z-header h-20 w-full">
-      <Container className="flex h-full items-center py-4">
+      <div className={cx(CONTAINER_STYLES, "flex h-full items-center py-4")}>
         <Link
-          className="group z-header-logo flex h-full select-none items-center space-x-4 transition-opacity"
+          className="group z-header-logo flex h-full select-none items-center gap-4 transition-opacity"
           href="/"
           onContextMenu={(event) => {
             if (window.matchMedia("(pointer: fine)").matches) {
@@ -59,7 +62,7 @@ export const HeaderLogo = ({ children, logotype }: HeaderLogoProps) => {
           )}
         </Link>
         {children}
-      </Container>
+      </div>
     </header>
   );
 };
