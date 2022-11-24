@@ -46,7 +46,7 @@ export const Barrel = ({
   }, [animationDuration, lines.length]);
 
   return (
-    <div className={cx("relative overflow-y-hidden", className)} {...props}>
+    <div className={cx("relative overflow-hidden", className)} {...props}>
       {lines.map((line, index) => {
         const isPreviousLine = index === getLine(-1, currentLine, lines.length);
         const isCurrentLine = index === currentLine;

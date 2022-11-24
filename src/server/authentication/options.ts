@@ -20,7 +20,7 @@ export const nextAuthOptions: NextAuthOptions = {
   },
   pages: {
     error: "/error",
-    signIn: "/sign-in",
+    signIn: "/",
   },
   providers: [
     GithubProvider({

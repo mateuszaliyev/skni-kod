@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SSRProvider } from "react-aria";
 
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
@@ -25,8 +26,10 @@ export const ApplicationProvider = ({
     basePath={`${BASE_URL}/api/authentication`}
     session={session}
   >
-    <I18nProvider i18n={i18n} locale={locale as Locale}>
-      <ThemeProvider attribute="class">{children}</ThemeProvider>
-    </I18nProvider>
+    <SSRProvider>
+      <I18nProvider i18n={i18n} locale={locale as Locale}>
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
+      </I18nProvider>
+    </SSRProvider>
   </SessionProvider>
 );

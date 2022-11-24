@@ -1,13 +1,16 @@
 import type { ReactNode } from "react";
 
-import { Container } from "@/components/container";
-import { Deck } from "@/components/deck";
-import { Headline } from "@/components/headline";
-import { Kicker } from "@/components/kicker";
 import { Link } from "@/components/link";
 import { Marquee } from "@/components/marquee";
 
 import { useI18n } from "@/i18n";
+
+import {
+  CONTAINER_STYLES,
+  DECK_STYLES,
+  HEADLINE_STYLES,
+  KICKER_STYLES,
+} from "@/styles";
 
 import { cx } from "@/utilities/cx";
 
@@ -120,11 +123,15 @@ export const Partners = () => {
 
   return (
     <section className="space-y-4 py-4">
-      <Container>
-        <Kicker className="mb-6">{LL.home.partners.kicker()}</Kicker>
-        <Headline>{LL.home.partners.headline()}</Headline>
-        <Deck className="mt-6 mb-12">{LL.home.partners.deck()}</Deck>
-      </Container>
+      <div className={CONTAINER_STYLES}>
+        <div className={cx(KICKER_STYLES, "mb-6")}>
+          {LL.home.partners.kicker()}
+        </div>
+        <h2 className={HEADLINE_STYLES}>{LL.home.partners.headline()}</h2>
+        <p className={cx(DECK_STYLES, "mt-6 mb-12")}>
+          {LL.home.partners.deck()}
+        </p>
+      </div>
       <Marquee
         enabled={({ containerWidth, marqueeWidth }) =>
           containerWidth < marqueeWidth

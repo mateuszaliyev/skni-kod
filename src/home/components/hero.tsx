@@ -3,12 +3,16 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 
-import { GradientButton } from "@/components/button";
-import { Container } from "@/components/container";
+import { ButtonLink, GradientButton } from "@/components/button";
+import { Link } from "@/components/link";
 
 import { useMounted } from "@/hooks/mounted";
 
 import { useI18n } from "@/i18n";
+
+import { CONTAINER_STYLES } from "@/styles";
+
+import { cx } from "@/utilities/cx";
 
 import { Barrel } from "./barrel";
 
@@ -67,7 +71,7 @@ export const Hero = () => {
         </>
       )}
       <div className="absolute inset-0 pt-20">
-        <Container className="flex h-full items-center">
+        <div className={cx(CONTAINER_STYLES, "flex h-full items-center")}>
           <div className="flex basis-full flex-col items-center xl:basis-1/2 xl:items-start">
             <h1 className="select-none text-center text-6xl font-extralight leading-none sm:text-8xl md:text-9xl xl:text-left">
               {LL.home.hero.weCreate()}
@@ -84,13 +88,12 @@ export const Hero = () => {
               {LL.home.hero.description()}
             </p>
             <div className="flex flex-col items-center gap-12 sm:flex-row">
-              <GradientButton>{LL.home.joinUs()}</GradientButton>
-              <a
-                className="select-none rounded-md text-lg font-bold transition-colors hover:text-sky-400"
-                href="#"
-              >
+              <GradientButton component={Link} href="#">
+                {LL.home.joinUs()}
+              </GradientButton>
+              <ButtonLink href="#" size="large">
                 {LL.home.learnMore()}
-              </a>
+              </ButtonLink>
             </div>
           </div>
           {/* <AnimatedLogo className="ml-auto hidden w-[480px] stroke-2 xl:block" /> */}
@@ -117,7 +120,7 @@ export const Hero = () => {
               />
             </Suspense>
           </div>
-        </Container>
+        </div>
       </div>
     </section>
   );
