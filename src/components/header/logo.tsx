@@ -23,7 +23,7 @@ export const HeaderLogo = ({ children, logotype }: HeaderLogoProps) => {
     <header className="absolute z-header h-20 w-full">
       <div className={cx(CONTAINER_STYLES, "flex h-full items-center py-4")}>
         <Link
-          className="group z-header-logo flex h-full select-none items-center gap-4 transition-opacity"
+          className="group z-header-logo flex h-full select-none items-center gap-4 transition"
           href="/"
           onContextMenu={(event) => {
             if (window.matchMedia("(pointer: fine)").matches) {

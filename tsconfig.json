@@ -13,12 +13,13 @@
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
+      "@/public/*": ["./public/*"],
       "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es5"
+    "target": "es2015"
   },
   "exclude": ["node_modules"],
   "include": [

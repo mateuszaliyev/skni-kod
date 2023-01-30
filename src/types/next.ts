@@ -1,9 +1,12 @@
-import type { NextApiHandler, NextComponentType } from "next";
+import type {
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextApiHandler,
+  NextComponentType,
+} from "next";
 import type { AppContextType, AppPropsType } from "next/dist/shared/lib/utils";
 import type { NextRouter } from "next/router";
 import type { Session } from "next-auth";
-
-import type { Locale, Translations } from "@/i18n";
 
 export type ApiHandler<ResponseBody = unknown> = NextApiHandler<ResponseBody>;
 
@@ -20,6 +23,8 @@ export type Application = NextComponentType<
 >;
 
 export type ApplicationPageProps = {
-  i18n?: Record<Locale, Translations>;
   session: Session;
 };
+
+export type InferGetStaticProps<GetStaticPropsFunction extends GetStaticProps> =
+  Omit<InferGetStaticPropsType<GetStaticPropsFunction>, "trpcState">;

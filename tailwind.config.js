@@ -1,15 +1,34 @@
 // @ts-check
 
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 /** @type {import("tailwindcss").Config} */
 const tailwindCssConfig = {
   content: ["./src/**/*.{js,ts,tsx}"],
   darkMode: "class",
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        ".bg-prism": {
+          backgroundImage: "url('/assets/images/prism.svg')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "140.164px 81.6px",
+        },
+      });
+    }),
+  ],
   theme: {
+    backdropBlur: {
+      sm: "4px",
+    },
+    backdropSaturate: {
+      180: "1.80",
+    },
     extend: {
       animation: {
+        gradient: "gradient 8s infinite alternate",
         marquee: "marquee var(--marquee-duration) linear 0s infinite",
         path: "path 8s linear 0s infinite backwards",
       },
@@ -29,9 +48,19 @@ const tailwindCssConfig = {
         },
       },
       fontFamily: {
-        sans: ["Lato", ...defaultTheme.fontFamily.sans],
+        sans: ["var(--font-lato)", ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
+        gradient: {
+          from: {
+            backgroundPosition: "left",
+            backgroundSize: "400%",
+          },
+          to: {
+            backgroundPosition: "right",
+            backgroundSize: "400%",
+          },
+        },
         marquee: {
           from: {
             transform: "translateX(0%)",
@@ -58,7 +87,9 @@ const tailwindCssConfig = {
     zIndex: {
       header: "1",
       "header-logo": "3",
+      menu: "4",
       navigation: "2",
+      snackbar: "5",
     },
   },
 };

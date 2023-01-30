@@ -133,8 +133,8 @@ export const Marquee = ({
       )}
       {hasFade && (
         <>
-          <div className="absolute left-0 h-full w-32 bg-gradient-to-r from-white dark:from-black"></div>
-          <div className="absolute right-0 h-full w-32 bg-gradient-to-l from-white dark:from-black"></div>
+          <div className="pointer-events-none absolute left-0 h-full w-32 bg-gradient-to-r from-white dark:from-black"></div>
+          <div className="pointer-events-none absolute right-0 h-full w-32 bg-gradient-to-l from-white dark:from-black"></div>
         </>
       )}
     </div>

@@ -1,11 +1,22 @@
 import { type HTMLAttributes, useEffect, useState } from "react";
 import { FaFacebook, FaGithub, FaInstagram } from "react-icons/fa";
+import {
+  MdLightMode,
+  MdLogout,
+  MdMonitor,
+  MdNightlightRound,
+  MdPostAdd,
+} from "react-icons/md";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
 
 import { Avatar } from "@/components/avatar";
-import { Button, ButtonHamburger } from "@/components/button";
+import { ButtonHamburger } from "@/components/button";
 import { Link } from "@/components/link";
+import { Menu, MenuItemButton, MenuItemLink } from "@/components/menu";
+
+import { ROLES } from "@/constants/strings";
 
 import {
   SKNI_KOD_FACEBOOK,
@@ -15,9 +26,10 @@ import {
 
 import { useMediaQuery } from "@/hooks/media-query";
 
-import { useI18n } from "@/i18n";
-
 import { cx } from "@/utilities/cx";
+import { isModerator } from "@/utilities/permissions";
+
+import { MenuSection } from "../menu/section";
 
 export type NavigationProps = HTMLAttributes<HTMLDivElement>;
 
@@ -26,9 +38,9 @@ export const Navigation = ({
   className,
   ...props
 }: NavigationProps) => {
-  const { LL } = useI18n();
-
   const session = useSession();
+
+  const { setTheme, theme } = useTheme();
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -46,9 +58,11 @@ export const Navigation = ({
     });
 
   useEffect(() => {
-    if (isLargeScreen && menuOpen) {
-      toggleMenu(false);
-    }
+    if (isLargeScreen && menuOpen) toggleMenu(false);
+
+    return () => {
+      if (menuOpen) toggleMenu(false);
+    };
   }, [isLargeScreen, menuOpen]);
 
   return (
@@ -57,36 +71,96 @@ export const Navigation = ({
         className={cx(
           isLargeScreen
             ? "ml-auto flex items-center gap-6"
-            : "fixed inset-0 z-navigation flex-col divide-y divide-black/10 bg-white/80 px-6 pt-20 backdrop-blur-sm backdrop-saturate-[180%] transition-[opacity,transform] duration-500 dark:divide-white/10 dark:bg-black/50",
+            : "fixed inset-0 z-navigation flex-col divide-y divide-black/10 bg-white/80 px-6 pt-20 backdrop-blur-sm backdrop-saturate-180 transition duration-500 dark:divide-white/10 dark:bg-black/50",
           !isLargeScreen && menuOpen && "flex",
           !isLargeScreen && !menuOpen && "hidden"
         )}
       >
         {children}
-        {session.status === "unauthenticated" && (
-          <Button
-            // className="flex h-10 items-center justify-center gap-2 rounded-md border border-gray-800 bg-gray-800 px-3 text-sm font-bold text-white transition-colors hover:bg-transparent hover:text-gray-800 dark:border-white dark:bg-white dark:text-gray-800 dark:hover:bg-transparent dark:hover:text-current lg:h-8"
-            icon={<FaGithub className="h-5 w-5" />}
-            onPress={() => void signIn("github")}
-            size="small"
-            variant="contained"
+        {isLargeScreen && (
+          <Menu
+            button={
+              <button className="rounded-full focus:outline-2 focus:outline-offset-4">
+                <Avatar
+                  alt={session.data?.user?.name ?? undefined}
+                  size={48}
+                  src={session.data?.user?.image ?? undefined}
+                  title={session.data?.user?.name ?? undefined}
+                />
+              </button>
+            }
+            placement="right"
           >
-            {/* <FaGithub className="h-5 w-5" /> */}
-            {LL.signIn()}
-          </Button>
+            {isModerator(session.data?.user?.role) && (
+              <>
+                <MenuSection
+                  title={
+                    session.data?.user?.role
+                      ? ROLES[session.data.user.role]
+                      : undefined
+                  }
+                >
+                  <MenuItemLink
+                    href="/blog/nowy"
+                    icon={<MdPostAdd className="h-5 w-5" />}
+                  >
+                    Nowy post
+                  </MenuItemLink>
+                  {/* {isAdministrator(session.data.user?.role) && (
+                    <MenuItemLink
+                      href="/uzytkownicy"
+                      icon={<MdGroups className="h-5 w-5" />}
+                    >
+                      Użytkownicy
+                    </MenuItemLink>
+                  )} */}
+                </MenuSection>
+              </>
+            )}
+            <MenuSection>
+              <MenuItemButton
+                icon={
+                  theme === "dark" ? (
+                    <MdNightlightRound className="h-5 w-5" />
+                  ) : theme === "light" ? (
+                    <MdLightMode className="h-5 w-5" />
+                  ) : (
+                    <MdMonitor className="h-5 w-5" />
+                  )
+                }
+                onClick={() =>
+                  theme === "system"
+                    ? setTheme("dark")
+                    : theme === "dark"
+                    ? setTheme("light")
+                    : setTheme("system")
+                }
+              >
+                Motyw
+              </MenuItemButton>
+              <MenuItemButton
+                disabled={session.status === "loading"}
+                icon={
+                  session.status === "authenticated" ? (
+                    <MdLogout className="h-5 w-5" />
+                  ) : (
+                    <FaGithub className="h-5 w-5" />
+                  )
+                }
+                onClick={
+                  session.status === "authenticated"
+                    ? () => void signOut()
+                    : session.status === "unauthenticated"
+                    ? () => void signIn("github")
+                    : undefined
+                }
+              >
+                {session.status === "authenticated" && "Wyloguj się"}
+                {session.status === "unauthenticated" && "Zaloguj się"}
+              </MenuItemButton>
+            </MenuSection>
+          </Menu>
         )}
-        {isLargeScreen &&
-          session.status === "authenticated" &&
-          session.data.user?.image &&
-          session.data.user?.name && (
-            <button onClick={() => void signOut()}>
-              <Avatar
-                alt={session.data.user.name}
-                size={48}
-                src={session.data.user.image}
-              />
-            </button>
-          )}
         {!isLargeScreen && (
           <div className="flex justify-center gap-4">
             <Link href={SKNI_KOD_FACEBOOK} target="_blank">
@@ -102,9 +176,9 @@ export const Navigation = ({
         )}
       </nav>
       <ButtonHamburger
-        aria-label={menuOpen ? LL.menuClose() : LL.menuOpen()}
+        aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
         className="z-navigation ml-auto lg:hidden"
-        onPress={() => toggleMenu()}
+        onClick={() => toggleMenu()}
         open={menuOpen}
       />
     </div>

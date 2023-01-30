@@ -3,7 +3,7 @@ import type { Adapter } from "next-auth/adapters";
 import type { PrismaClient } from "@prisma/client";
 import type { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 
-import { generateId } from "@/utilities/generate-id";
+import { generateId } from "@/utilities/id";
 
 export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
   createSession: async (session) =>
@@ -31,6 +31,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
         id: true,
         image: true,
         name: true,
+        role: true,
       },
     });
 
@@ -75,6 +76,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
             id: true,
             image: true,
             name: true,
+            role: true,
           },
         },
         userId: true,
@@ -114,6 +116,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
         id: true,
         image: true,
         name: true,
+        role: true,
       },
       where: {
         deletedAt: {
@@ -144,6 +147,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
             id: true,
             image: true,
             name: true,
+            role: true,
           },
         },
       },
@@ -182,6 +186,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
         id: true,
         image: true,
         name: true,
+        role: true,
       },
       where: {
         deletedAt: {
@@ -258,6 +263,7 @@ export const PrismaAdapter = (prisma: PrismaClient): Adapter => ({
         id: true,
         image: true,
         name: true,
+        role: true,
       },
       where: {
         id,

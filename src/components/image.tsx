@@ -1,6 +1,6 @@
 import {
-  type ImageProps as NextImageProps,
   default as NextImage,
+  type ImageProps as NextImageProps,
 } from "next/image";
 
 export type ImageProps = NextImageProps;

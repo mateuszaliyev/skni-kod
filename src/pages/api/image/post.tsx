@@ -2,7 +2,7 @@
 
 import type { NextApiHandler } from "next";
 
-import { type ImageResponseOptions, ImageResponse } from "@vercel/og";
+import { ImageResponse, type ImageResponseOptions } from "@vercel/og";
 
 import { IsometricPrismSvg } from "@/components/isometric-prism";
 
@@ -11,7 +11,7 @@ import { BASE_URL } from "@/environment";
 import { colorFromText, getHexColorBrightness } from "@/utilities/color";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 type Font = Exclude<ImageResponseOptions["fonts"], undefined>[number];
@@ -39,7 +39,7 @@ const postImageHandler: NextApiHandler = async (request) => {
 
   authorName.forEach((name, index) => {
     authors.push({
-      image: authorImage[index],
+      image: authorImage[index] === "none" ? undefined : authorImage[index],
       name,
     });
   });
@@ -51,19 +51,19 @@ const postImageHandler: NextApiHandler = async (request) => {
       getFont({
         name: "Lato",
         style: "normal",
-        url: `${BASE_URL}/fonts/lato/lato-bold.ttf`,
+        url: `${BASE_URL}/assets/fonts/lato/lato-bold.ttf`,
         weight: 700,
       }),
       getFont({
         name: "Lato",
         style: "normal",
-        url: `${BASE_URL}/fonts/lato/lato-light.ttf`,
+        url: `${BASE_URL}/assets/fonts/lato/lato-light.ttf`,
         weight: 300,
       }),
       getFont({
         name: "Lato",
         style: "normal",
-        url: `${BASE_URL}/fonts/lato/lato-regular.ttf`,
+        url: `${BASE_URL}/assets/fonts/lato/lato-regular.ttf`,
         weight: 400,
       }),
     ])
@@ -104,7 +104,7 @@ const postImageHandler: NextApiHandler = async (request) => {
         <img
           alt="SKNI KOD Logo"
           height={416 * 0.5}
-          src="http://localhost:3000/images/logo/logomark-color.png"
+          src="http://localhost:3000/assets/images/logo/logomark-color.png"
           width={457 * 0.5}
         />
         <div

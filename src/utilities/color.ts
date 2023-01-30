@@ -1,6 +1,6 @@
 export const colorFromText = (text: string) => {
   let hash = 0;
-  let i;
+  let i: number;
 
   for (i = 0; i < text.length; i++) {
     hash = text.charCodeAt(i) + ((hash << 5) - hash);

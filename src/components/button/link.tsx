@@ -1,29 +1,30 @@
-import { forwardRef } from "react";
-import { mergeProps, useFocusRing } from "react-aria";
+import { type ReactNode } from "react";
 
-import { type LinkProps, Link } from "@/components/link";
+import { Link, type LinkProps } from "@/components/link";
 
-import type { Merge } from "@/types";
+import { button, type ButtonVariants } from "./styles";
 
-import { type ButtonVariants, button } from "./styles";
+// declare module "react" {
+//   function forwardRef<Element, Props = {}>(
+//     render: (props: Props, ref: Ref<Element>) => ReactElement | null
+//   ): (props: Props & RefAttributes<Element>) => ReactElement | null;
+// }
 
-export type ButtonLinkProps = Merge<
-  LinkProps,
-  Omit<ButtonVariants, "isFocusVisible">
->;
+export type ButtonLinkProps = Omit<LinkProps, "variant"> &
+  ButtonVariants & {
+    icon?: ReactNode;
+  };
 
-export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
-  (props, ref) => {
-    const { className, size, variant, ...otherProps } = props;
-
-    const { focusProps, isFocusVisible } = useFocusRing();
-
-    return (
-      <Link
-        className={button({ className, isFocusVisible, size, variant })}
-        ref={ref}
-        {...mergeProps(focusProps, otherProps)}
-      />
-    );
-  }
+export const ButtonLink = ({
+  children,
+  className,
+  icon,
+  size,
+  variant,
+  ...props
+}: ButtonLinkProps) => (
+  <Link className={button({ className, size, variant })} {...props}>
+    {icon}
+    <span className="inline-block truncate">{children}</span>
+  </Link>
 );
