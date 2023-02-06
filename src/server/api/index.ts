@@ -1,6 +1,6 @@
 import type { Session } from "next-auth";
 
-import { inferAsyncReturnType, initTRPC, TRPCError } from "@trpc/server";
+import { initTRPC, TRPCError } from "@trpc/server";
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import type { OpenApiMeta } from "trpc-openapi";
@@ -9,8 +9,6 @@ import { getServerSession } from "@/server/authentication";
 import { prisma } from "@/server/database/client";
 
 import { isModerator } from "@/utilities/permissions";
-
-export type Context = inferAsyncReturnType<typeof createContext>;
 
 export type CreateContextOptions = {
   session: Session | null;
@@ -33,14 +31,21 @@ export const createInnerContext = (
  *
  * @see {@link https://trpc.io/docs/context tRPC Context Documentation}
  */
-export const createContext = async ({ req, res }: CreateNextContextOptions) => {
-  const session = await getServerSession(req, res);
+export const createContext = async ({
+  req: request,
+  res: response,
+}: CreateNextContextOptions) => {
+  const session = await getServerSession(request, response);
 
-  return createInnerContext({ session });
+  return {
+    ...createInnerContext({ session }),
+    request,
+    response,
+  };
 };
 
 export const { middleware, procedure, router } = initTRPC
-  .context<Context>()
+  .context<typeof createContext>()
   .meta<OpenApiMeta>()
   .create({
     errorFormatter: ({ shape }) => shape,
@@ -62,24 +67,24 @@ const authenticationMiddleware = middleware(({ ctx: { session }, next }) => {
   });
 });
 
-const moderatorMiddleware = middleware(({ ctx: { session }, next }) => {
-  if (!session?.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
-  }
+const moderatorMiddleware = authenticationMiddleware.unstable_pipe(
+  ({ ctx: { session }, next }) => {
+    if (!isModerator(session.user.role)) {
+      throw new TRPCError({ code: "FORBIDDEN" });
+    }
 
-  if (!isModerator(session.user.role)) {
-    throw new TRPCError({ code: "FORBIDDEN" });
-  }
-
-  return next({
-    ctx: {
-      session: {
-        ...session,
-        user: session.user,
+    return next({
+      ctx: {
+        session: {
+          ...session,
+          user: {
+            ...session.user,
+            role: session.user.role,
+          },
+        },
       },
-    },
-  });
-});
-
+    });
+  }
+);
 export const moderatorProcedure = procedure.use(moderatorMiddleware);
 export const protectedProcedure = procedure.use(authenticationMiddleware);

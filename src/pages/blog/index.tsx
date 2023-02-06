@@ -2,7 +2,8 @@ import type { GetStaticProps } from "next";
 
 import { api } from "@/api";
 
-import { LayoutMain } from "@/components/layout";
+import { BalancerProvider } from "@/components/balancer";
+import { LayoutIsometricPrism } from "@/components/layout/isometric-prism";
 import { Meta } from "@/components/meta";
 import { OpenGraph } from "@/components/open-graph";
 
@@ -12,7 +13,7 @@ import {
   SKNI_KOD_ABBREVIATION,
 } from "@/constants/strings";
 
-import { PostCard } from "@/content/post-card";
+import { PostCard } from "@/content/post/card";
 
 import { BASE_URL } from "@/environment";
 
@@ -35,7 +36,6 @@ export const getStaticProps = (async () => {
     props: {
       trpcState: ssg.dehydrate(),
     },
-    revalidate: 600,
   };
 }) satisfies GetStaticProps;
 
@@ -47,7 +47,10 @@ const ArticlesPage = () => {
   const title = `Blog - ${SKNI_KOD_ABBREVIATION}`;
 
   return (
-    <LayoutMain className="pt-20">
+    <LayoutIsometricPrism
+      className="gap-16"
+      header={<h1 className={cx(HEADLINE_STYLES)}>Blog</h1>}
+    >
       <Meta title={title} />
       <OpenGraph
         og={{
@@ -68,38 +71,39 @@ const ArticlesPage = () => {
           type: "website",
         }}
       />
-      <h1 className={cx(CONTAINER_STYLES, HEADLINE_STYLES, "py-16")}>Blog</h1>
       <section
         className={cx(
           CONTAINER_STYLES,
           "flex flex-col gap-16 md:gap-24 lg:gap-32"
         )}
       >
-        {posts?.map((post, index) => (
-          <PostCard
-            authors={post.authors.map(({ user }) => ({
-              id: user.id,
-              image: user.image ?? undefined,
-              name: user.name ?? undefined,
-            }))}
-            category={CATEGORIES[post.category as PostCategory]}
-            date={post.publishedAt ?? undefined}
-            href={`/blog/${post.slug}`}
-            image={
-              index
-                ? post.image
-                : post.image
-                ? { ...post.image, priority: true }
-                : undefined
-            }
-            key={post.id}
-            summary={post.summary}
-            title={post.title}
-            views={Number(post.views)}
-          />
-        ))}
+        <BalancerProvider>
+          {posts?.map((post, index) => (
+            <PostCard
+              authors={post.authors.map(({ user }) => ({
+                id: user.id,
+                image: user.image ?? undefined,
+                name: user.name ?? undefined,
+              }))}
+              category={CATEGORIES[post.category as PostCategory]}
+              date={post.publishedAt ?? undefined}
+              href={`/blog/${post.slug}`}
+              image={
+                index
+                  ? post.image
+                  : post.image
+                  ? { ...post.image, priority: true }
+                  : undefined
+              }
+              key={post.id}
+              summary={post.summary}
+              title={post.title}
+              views={Number(post.views)}
+            />
+          ))}
+        </BalancerProvider>
       </section>
-    </LayoutMain>
+    </LayoutIsometricPrism>
   );
 };
 

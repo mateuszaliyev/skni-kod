@@ -30,7 +30,7 @@ export const LayoutIsometricPrism = ({
 }: LayoutIsometricPrismProps) => (
   <LayoutMain className={cx("flex flex-grow flex-col", className)} {...props}>
     <header className="relative w-full">
-      <div className="absolute top-0 left-0 right-0 h-full border-b border-gray-200 dark:border-none dark:bg-gradient-to-b dark:from-transparent dark:via-transparent dark:to-sky-900">
+      <div className="absolute top-0 left-0 right-0 h-full border-b border-gray-200 dark:border-none">
         <IsometricPrismCanvasBackground className="h-full" />
       </div>
       <div

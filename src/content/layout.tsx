@@ -3,6 +3,7 @@ import { MdEdit } from "react-icons/md";
 import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
 
+import { Balancer } from "@/components/balancer";
 import { ButtonLink } from "@/components/button";
 import { DateTime } from "@/components/date-time";
 import { Image } from "@/components/image";
@@ -68,7 +69,7 @@ export const LayoutContent = ({
               "relative my-20 flex flex-col justify-center gap-8 py-8"
             )}
           >
-            <div className="flex flex-wrap items-center gap-4 font-bold text-gray-500">
+            <div className="flex h-10 flex-wrap items-center gap-4 font-bold text-gray-500">
               {date && <DateTime date={date} options={{ dateStyle: "full" }} />}
               {!preview &&
               slug &&
@@ -76,14 +77,16 @@ export const LayoutContent = ({
               isModerator(session.data.user.role) ? (
                 <ButtonLink
                   className="ml-auto"
-                  href={`/blog/${slug}/edytuj`}
+                  href={`/blog/formularz?slug=${slug}`}
                   icon={<MdEdit />}
                 >
                   Edytuj
                 </ButtonLink>
               ) : null}
             </div>
-            <h1 className="text-4xl font-bold lg:text-6xl">{title}</h1>
+            <h1 className="text-4xl font-bold lg:text-6xl">
+              <Balancer>{title}</Balancer>
+            </h1>
             <ul className="flex items-center gap-4">
               {authors.map((author) => (
                 <Author
@@ -107,9 +110,7 @@ export const LayoutContent = ({
             />
           </figure>
         )}
-        <section className={cx(CONTAINER_STYLES, "flex flex-col items-center")}>
-          {children}
-        </section>
+        <section className={cx(CONTAINER_STYLES)}>{children}</section>
       </article>
     </LayoutMain>
   );

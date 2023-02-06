@@ -1,5 +1,6 @@
 import { MdChevronRight } from "react-icons/md";
 
+import { Balancer } from "@/components/balancer";
 import { DateTime } from "@/components/date-time";
 import { Image } from "@/components/image";
 import { Link } from "@/components/link";
@@ -10,7 +11,7 @@ import { KICKER_STYLES } from "@/styles";
 
 import { cx } from "@/utilities/cx";
 
-import { Author } from "./author";
+import { Author } from "../author";
 
 export type PostCardProps = {
   authors?: {
@@ -53,7 +54,9 @@ export const PostCard = ({
   >
     <div className={cx(KICKER_STYLES, "[grid-area:category]")}>{category}</div>
     <h2 className="text-4xl font-bold leading-snug [grid-area:title] md:pr-16">
-      <Link href={href}>{title}</Link>
+      <Balancer>
+        <Link href={href}>{title}</Link>
+      </Balancer>
     </h2>
     <div className="grid grid-cols-1 items-start gap-y-4 [grid-area:authors] sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
       {authors?.map((author) => (

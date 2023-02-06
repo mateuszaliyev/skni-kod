@@ -101,7 +101,7 @@ export const Navigation = ({
                   }
                 >
                   <MenuItemLink
-                    href="/blog/nowy"
+                    href="/blog/formularz"
                     icon={<MdPostAdd className="h-5 w-5" />}
                   >
                     Nowy post

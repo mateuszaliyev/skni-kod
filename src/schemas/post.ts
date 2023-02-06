@@ -4,17 +4,25 @@ import { idSchema } from "@/utilities/id";
 
 export type PostCategory = (typeof POST_CATEGORIES)[number];
 
-export type CheckSlugAvailabilitySchema = z.infer<
-  typeof checkSlugAvailabilitySchema
->;
 export type CreatePostSchema = z.infer<typeof createPostSchema>;
 export type FindPostBySlugSchema = z.infer<typeof findPostBySlugSchema>;
+export type FindPostSlugSchema = z.infer<typeof findPostSlugSchema>;
 export type FindPostsSchema = z.infer<typeof findPostsSchema>;
 export type IncrementPostViewsSchema = z.infer<typeof incrementPostViewsSchema>;
 export type PostFormSchema = z.infer<typeof postFormSchema>;
 export type UpdatePostByIdSchema = z.infer<typeof updatePostByIdSchema>;
 
 export const POST_CATEGORIES = ["article", "news"] as const;
+
+export const privatePostSchema = z.object({
+  public: z.literal(false).optional(),
+  publishedAt: z.date().optional(),
+});
+
+export const publicPostSchema = z.object({
+  public: z.literal(true),
+  publishedAt: z.date(),
+});
 
 export const slugSchema = z
   .string()
@@ -27,8 +35,6 @@ export const slugSchema = z
 export const slugPropertySchema = z.object({
   slug: slugSchema,
 });
-
-export const checkSlugAvailabilitySchema = slugPropertySchema;
 
 const createPostSchemaBase = z.object({
   authors: z
@@ -55,21 +61,13 @@ const createPostSchemaBase = z.object({
 });
 
 export const createPostSchema = z.union([
-  createPostSchemaBase.merge(
-    z.object({
-      public: z.literal(true),
-      publishedAt: z.date(),
-    })
-  ),
-  createPostSchemaBase.merge(
-    z.object({
-      public: z.literal(false).optional(),
-      publishedAt: z.date().optional(),
-    })
-  ),
+  createPostSchemaBase.merge(publicPostSchema),
+  createPostSchemaBase.merge(privatePostSchema),
 ]);
 
 export const findPostBySlugSchema = slugPropertySchema;
+
+export const findPostSlugSchema = slugPropertySchema;
 
 export const findPostsSchema = z
   .object({
@@ -106,26 +104,27 @@ export const postFormSchema = createPostSchemaBase
       .or(z.literal(""))
       .transform((url) => url || undefined),
     public: z.boolean(),
-    publishedAt: z.date({
-      errorMap: () => ({ message: "Data publikacji jest wymagana." }),
-    }),
+    publishedAt: z
+      .string()
+      .min(1, "Data publikacji jest wymagana.")
+      .transform((value) => new Date(value)),
   });
 
 export const updatePostByIdSchemaBase = createPostSchemaBase.extend({
   id: idSchema,
 });
 
+export const updatePostByIdProcedureSchemaBase =
+  updatePostByIdSchemaBase.extend({
+    oldSlug: slugSchema,
+  });
+
+export const updatePostByIdProcedureSchema = z.union([
+  updatePostByIdProcedureSchemaBase.merge(publicPostSchema),
+  updatePostByIdProcedureSchemaBase.merge(privatePostSchema),
+]);
+
 export const updatePostByIdSchema = z.union([
-  updatePostByIdSchemaBase.merge(
-    z.object({
-      public: z.literal(true),
-      publishedAt: z.date(),
-    })
-  ),
-  updatePostByIdSchemaBase.merge(
-    z.object({
-      public: z.literal(false).optional(),
-      publishedAt: z.date().optional(),
-    })
-  ),
+  updatePostByIdSchemaBase.merge(publicPostSchema),
+  updatePostByIdSchemaBase.merge(privatePostSchema),
 ]);

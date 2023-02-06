@@ -22,7 +22,7 @@ const link = cva("", {
   variants: {
     variant: {
       content:
-        "break-words text-sky-500 outline-none transition hover:text-current focus:text-current",
+        "break-words text-sky-500 outline-none transition hover:text-black focus:text-black dark:hover:text-white dark:focus:text-white",
     },
   },
 });

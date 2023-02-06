@@ -36,7 +36,7 @@ export const button = cva(
       },
       variant: {
         contained:
-          "rounded-md border border-black bg-black font-bold text-white transition-colors hover:bg-transparent hover:text-gray-800 focus:bg-transparent focus:text-current dark:border-white dark:bg-white dark:enabled:text-black dark:enabled:hover:bg-transparent dark:enabled:hover:text-current focus:dark:bg-transparent focus:dark:text-current disabled:bg-gray-50 disabled:text-gray-400 disabled:border-gray-200 dark:disabled:bg-gray-800 dark:disabled:border-gray-700",
+          "rounded-md border border-black bg-black font-bold text-white transition-colors hover:bg-transparent hover:text-gray-800 focus:bg-transparent focus:text-current disabled:border-gray-200 disabled:bg-gray-50 disabled:text-gray-400 dark:border-white dark:bg-white dark:enabled:text-black dark:enabled:hover:bg-transparent dark:enabled:hover:text-current dark:enabled:focus:bg-transparent dark:enabled:focus:text-current dark:disabled:border-gray-700 dark:disabled:bg-gray-800",
         input:
           "rounded-r-md border-y border-r border-gray-300 bg-gray-50 px-3 py-2 shadow-sm transition enabled:hover:bg-gray-200 enabled:focus:bg-gray-200 disabled:border-gray-200 disabled:bg-gray-50 disabled:text-gray-400 disabled:shadow-none dark:border-white dark:bg-white dark:enabled:border-l dark:enabled:text-black dark:enabled:hover:bg-black dark:enabled:hover:text-white dark:enabled:focus:bg-black dark:enabled:focus:text-white dark:disabled:border-gray-700 dark:disabled:bg-gray-800",
         text: "rounded-md font-bold hover:text-sky-500 focus:text-sky-500 disabled:text-gray-500 disabled:hover:text-gray-500 disabled:focus:text-gray-500",

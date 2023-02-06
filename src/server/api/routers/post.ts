@@ -4,33 +4,33 @@ import { z } from "zod";
 import { serializeMdx } from "@/content/mdx/serialize";
 
 import {
-  checkSlugAvailabilitySchema,
   createPostSchema,
   findPostBySlugSchema,
+  findPostSlugSchema,
   findPostsSchema,
   incrementPostViewsSchema,
-  updatePostByIdSchema,
+  updatePostByIdProcedureSchema,
 } from "@/schemas/post";
 
 import { moderatorProcedure, procedure, router } from "@/server/api";
 import {
-  checkSlugAvailability,
   createPost,
   findPostBySlug,
   findPosts,
+  findPostSlug,
   incrementPostViews,
   updatePostById,
 } from "@/server/database/post";
 
 export const post = router({
-  checkSlugAvailability: moderatorProcedure
-    .input(checkSlugAvailabilitySchema)
-    .query(
-      ({ input }) => input.slug !== "nowy" && checkSlugAvailability(input)
-    ),
   create: moderatorProcedure
     .input(createPostSchema)
-    .mutation(({ input }) => createPost(input)),
+    .mutation(async ({ ctx: { response }, input }) => {
+      const post = await createPost(input);
+      await response.revalidate("/blog");
+      await response.revalidate(`/blog/${input.slug}`);
+      return post;
+    }),
   find: router({
     all: procedure
       .input(findPostsSchema)
@@ -46,15 +46,21 @@ export const post = router({
 
       return post;
     }),
+    slug: moderatorProcedure
+      .input(findPostSlugSchema)
+      .query(({ input }) => input.slug === "formularz" || findPostSlug(input)),
   }),
   serialize: moderatorProcedure
     .input(z.object({ body: z.string() }))
-    .query(async ({ input }) => await serializeMdx(input.body)),
+    .mutation(({ input }) => serializeMdx(input.body)),
   update: router({
     byId: moderatorProcedure
-      .input(updatePostByIdSchema)
-      .mutation(({ input }) => {
-        const result = updatePostById(input);
+      .input(updatePostByIdProcedureSchema)
+      .mutation(async ({ ctx: { response }, input: { oldSlug, ...input } }) => {
+        const result = await updatePostById(input);
+        await response.revalidate("/blog");
+        await response.revalidate(`/blog/${oldSlug}`);
+        await response.revalidate(`/blog/${input.slug}`);
         return result;
       }),
     views: router({

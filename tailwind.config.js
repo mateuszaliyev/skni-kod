@@ -83,6 +83,9 @@ const tailwindCssConfig = {
       letterSpacing: {
         kicker: "0.2em",
       },
+      opacity: {
+        15: "0.15",
+      },
     },
     zIndex: {
       header: "1",

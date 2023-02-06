@@ -1,7 +1,7 @@
 import type {
-  CheckSlugAvailabilitySchema,
   CreatePostSchema,
   FindPostBySlugSchema,
+  FindPostSlugSchema,
   FindPostsSchema,
   IncrementPostViewsSchema,
   UpdatePostByIdSchema,
@@ -11,15 +11,6 @@ import { prisma } from "@/server/database/client";
 
 import { generateId } from "@/utilities/id";
 import { nullToUndefined } from "@/utilities/null-to-undefined";
-
-export const checkSlugAvailability = async ({
-  slug,
-}: CheckSlugAvailabilitySchema) =>
-  !(await prisma.post.findUnique({
-    where: {
-      slug,
-    },
-  }));
 
 export const createPost = async ({
   authors,
@@ -137,6 +128,15 @@ export const findPostBySlug = async ({ slug }: FindPostBySlugSchema) =>
       },
       where: {
         deletedAt: null,
+        slug,
+      },
+    })
+  );
+
+export const findPostSlug = async ({ slug }: FindPostSlugSchema) =>
+  Boolean(
+    await prisma.post.findUnique({
+      where: {
         slug,
       },
     })

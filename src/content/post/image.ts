@@ -10,6 +10,7 @@ export const getPostImage = ({ authors, title }: GetPostImageOptions) => {
   const urlSearchParams = new URLSearchParams();
 
   if (title) urlSearchParams.append("title", title);
+
   if (authors) {
     for (const author of authors) {
       if (author.name) {

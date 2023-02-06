@@ -11,7 +11,7 @@ import { SKNI_KOD, SKNI_KOD_ABBREVIATION } from "@/constants/strings";
 
 import { serializeMdx } from "@/content/mdx/serialize";
 import { Post } from "@/content/post";
-import { getPostImage } from "@/content/post-image";
+import { getPostImage } from "@/content/post/image";
 
 import { slugPropertySchema } from "@/schemas/post";
 
