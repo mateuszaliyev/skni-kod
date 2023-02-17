@@ -37,7 +37,7 @@ export const Marquee = ({
   fade = false,
   marqueeProps = {},
   play = true,
-  speed = 20,
+  speed = 50,
   ...props
 }: MarqueeProps) => {
   const [containerWidth, setContainerWidth] = useState(0);

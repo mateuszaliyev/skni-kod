@@ -1,8 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
-import { ButtonLink } from "@/components/button";
 import { Footer } from "@/components/footer";
-import { HeaderLogo } from "@/components/header/logo";
+import { Header } from "@/components/header";
 import { Navigation } from "@/components/navigation";
 
 export type LayoutMainProps = HTMLAttributes<HTMLElement> & {
@@ -11,11 +10,9 @@ export type LayoutMainProps = HTMLAttributes<HTMLElement> & {
 
 export const LayoutMain = (props: LayoutMainProps) => (
   <>
-    <HeaderLogo logotype>
-      <Navigation className="flex-grow">
-        <ButtonLink href="/blog">Blog</ButtonLink>
-      </Navigation>
-    </HeaderLogo>
+    <Header>
+      <Navigation className="flex-grow" />
+    </Header>
     <main {...props} />
     <Footer />
   </>

@@ -2,7 +2,7 @@ import { Fragment, type Key, type ReactNode } from "react";
 import { MdDone, MdExpandMore } from "react-icons/md";
 
 import { Listbox, Transition } from "@headlessui/react";
-import { VariantProps } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 
 import { input, item } from "@/components/input/styles";
 

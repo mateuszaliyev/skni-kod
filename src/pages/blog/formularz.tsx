@@ -10,7 +10,7 @@ import { PostForm } from "@/content/post/form";
 
 import { useRouter } from "@/hooks/router";
 
-import { PostCategory } from "@/schemas/post";
+import type { PostCategory } from "@/schemas/post";
 
 import { getServerSession } from "@/server/authentication";
 

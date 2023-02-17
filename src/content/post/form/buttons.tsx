@@ -1,5 +1,5 @@
 import type { MouseEventHandler } from "react";
-import { type Control, useWatch, useFormState } from "react-hook-form";
+import { type Control, useFormState, useWatch } from "react-hook-form";
 import { MdSave, MdVisibility } from "react-icons/md";
 
 import { Button } from "@/components/button";
@@ -30,6 +30,7 @@ export const PostFormButtons = ({
       <Button
         className="w-32"
         disabled={!Object.keys(dirtyFields).length}
+        height
         icon={<MdSave className="h-5 w-5" />}
         variant="contained"
       >
@@ -38,6 +39,7 @@ export const PostFormButtons = ({
       <Button
         className="w-32"
         disabled={previewDisabled}
+        height
         icon={<MdVisibility className="h-5 w-5" />}
         onClick={previewDisabled ? undefined : onPreviewClick}
         type="button"

@@ -24,8 +24,14 @@ export const publicPostSchema = z.object({
   publishedAt: z.date(),
 });
 
+export const imageUrlSchema = z
+  .string()
+  .max(767, "Adres URL obrazu nie może zawierać więcej niż 767 znaków.")
+  .url();
+
 export const slugSchema = z
   .string()
+  .max(190, "Slug nie może zawierać więcej niż 190 znaków.")
   .min(1, "Slug jest wymagany.")
   .regex(
     /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
@@ -48,16 +54,19 @@ const createPostSchemaBase = z.object({
   image: z
     .object({
       height: z.number().min(1),
-      url: z.string().url(),
+      url: imageUrlSchema,
       width: z.number().min(1),
     })
     .optional(),
   slug: slugSchema,
   summary: z
     .string()
-    .max(900, "Pdsumowanie nie może zawierać więcej niż 900 znaków.")
+    .max(900, "Podsumowanie nie może zawierać więcej niż 900 znaków.")
     .min(1, "Podsumowanie jest wymagane."),
-  title: z.string().min(1, "Tytuł jest wymagany."),
+  title: z
+    .string()
+    .max(190, "Tytuł nie może zawierać więcej niż 190 znaków.")
+    .min(1, "Tytuł jest wymagany."),
 });
 
 export const createPostSchema = z.union([
@@ -98,9 +107,7 @@ export const postFormSchema = createPostSchemaBase
       })
       .array()
       .min(1, "Co najmniej 1 autor jest wymagany."),
-    image: z
-      .string()
-      .url("Nieprawidłowy adres URL.")
+    image: imageUrlSchema
       .or(z.literal(""))
       .transform((url) => url || undefined),
     public: z.boolean(),

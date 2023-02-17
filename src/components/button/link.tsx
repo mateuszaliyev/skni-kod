@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { Link, type LinkProps } from "@/components/link";
 
@@ -18,12 +18,13 @@ export type ButtonLinkProps = Omit<LinkProps, "variant"> &
 export const ButtonLink = ({
   children,
   className,
+  height,
   icon,
   size,
   variant,
   ...props
 }: ButtonLinkProps) => (
-  <Link className={button({ className, size, variant })} {...props}>
+  <Link className={button({ className, height, size, variant })} {...props}>
     {icon}
     <span className="inline-block truncate">{children}</span>
   </Link>

@@ -11,6 +11,8 @@ import { prisma } from "@/server/database/client";
 import { isModerator } from "@/utilities/permissions";
 
 export type CreateContextOptions = {
+  request?: CreateNextContextOptions["req"];
+  response?: CreateNextContextOptions["res"];
   session: Session | null;
 };
 
@@ -20,10 +22,10 @@ export type CreateContextOptions = {
  * - tRPC's `createSSGHelpers`.
  */
 export const createInnerContext = (
-  { session }: CreateContextOptions = { session: null }
+  options: CreateContextOptions = { session: null }
 ) => ({
+  ...options,
   prisma,
-  session,
 });
 
 /**
@@ -34,15 +36,12 @@ export const createInnerContext = (
 export const createContext = async ({
   req: request,
   res: response,
-}: CreateNextContextOptions) => {
-  const session = await getServerSession(request, response);
-
-  return {
-    ...createInnerContext({ session }),
+}: CreateNextContextOptions) =>
+  createInnerContext({
     request,
     response,
-  };
-};
+    session: await getServerSession(request, response),
+  });
 
 export const { middleware, procedure, router } = initTRPC
   .context<typeof createContext>()
@@ -86,5 +85,33 @@ const moderatorMiddleware = authenticationMiddleware.unstable_pipe(
     });
   }
 );
-export const moderatorProcedure = procedure.use(moderatorMiddleware);
-export const protectedProcedure = procedure.use(authenticationMiddleware);
+
+const requestResponseMiddleware = middleware(
+  ({ ctx: { request, response, ...context }, next }) => {
+    if (!request || !response) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Either `request` or `response` is unavailable.",
+      });
+    }
+
+    return next({
+      ctx: {
+        ...context,
+        request,
+        response,
+      },
+    });
+  }
+);
+
+export const requestResponseProcedure = procedure.use(
+  requestResponseMiddleware
+);
+
+export const moderatorProcedure =
+  requestResponseProcedure.use(moderatorMiddleware);
+
+export const protectedProcedure = requestResponseProcedure.use(
+  authenticationMiddleware
+);

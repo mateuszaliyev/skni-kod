@@ -1,5 +1,4 @@
-import { MdChevronRight } from "react-icons/md";
-
+import { Arrow } from "@/components/arrow";
 import { Balancer } from "@/components/balancer";
 import { DateTime } from "@/components/date-time";
 import { Image } from "@/components/image";
@@ -53,7 +52,7 @@ export const PostCard = ({
     )}
   >
     <div className={cx(KICKER_STYLES, "[grid-area:category]")}>{category}</div>
-    <h2 className="text-4xl font-bold leading-snug [grid-area:title] md:pr-16">
+    <h2 className="text-3xl font-bold leading-snug [grid-area:title] md:pr-16 md:text-4xl">
       <Balancer>
         <Link href={href}>{title}</Link>
       </Balancer>
@@ -89,11 +88,11 @@ export const PostCard = ({
     </p>
     <div className="flex [grid-area:read-more]">
       <Link
-        className="flex items-end gap-1 font-bold text-sky-500 transition hover:text-current"
+        className="group flex items-center font-bold text-sky-500 transition hover:text-current"
         href={href}
       >
         <span>Czytaj dalej</span>
-        <MdChevronRight className="h-5 w-5" />
+        <Arrow className="h-6 w-6 translate-y-px fill-current" />
       </Link>
     </div>
     <div className="text-gray-600 [grid-area:views] dark:text-gray-400">

@@ -10,11 +10,11 @@ import { CONTAINER_STYLES } from "@/styles";
 
 import { cx } from "@/utilities/cx";
 
-export type HeaderLogoProps = {
+export type HeaderProps = {
   children?: ReactNode;
 };
 
-export const HeaderLogo = ({ children }: HeaderLogoProps) => {
+export const Header = ({ children }: HeaderProps) => {
   const router = useRouter();
 
   return (

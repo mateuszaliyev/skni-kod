@@ -16,6 +16,11 @@ export const DateTime = ({
   options,
   ...props
 }: DateTimeProps) => {
+  const dateTime =
+    typeof date === "number" || typeof date === "string"
+      ? new Date(date)
+      : date;
+
   const dateTimeFormat = new Intl.DateTimeFormat(
     POLISH_LOCALE_IDENTIFIER,
     options
@@ -25,7 +30,9 @@ export const DateTime = ({
     <dl className={className} {...props}>
       <dt className="sr-only inline">Data</dt>
       <dd className="inline">
-        <time>{dateTimeFormat.format(date)}</time>
+        <time dateTime={dateTime ? dateTime.toISOString() : undefined}>
+          {dateTimeFormat.format(date)}
+        </time>
       </dd>
     </dl>
   );

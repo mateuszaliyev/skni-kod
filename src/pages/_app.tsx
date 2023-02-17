@@ -1,3 +1,5 @@
+import { Provider as BalancerProvider } from "react-wrap-balancer";
+
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 
@@ -18,9 +20,11 @@ const Application: Application = ({
 }) => (
   <SessionProvider session={session}>
     <ThemeProvider attribute="class" disableTransitionOnChange>
-      <Fonts />
-      <Component {...pageProps} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <BalancerProvider>
+        <Fonts />
+        <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </BalancerProvider>
     </ThemeProvider>
   </SessionProvider>
 );

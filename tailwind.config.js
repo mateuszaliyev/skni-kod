@@ -7,9 +7,12 @@ const plugin = require("tailwindcss/plugin");
 const tailwindCssConfig = {
   content: ["./src/**/*.{js,ts,tsx}"],
   darkMode: "class",
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   plugins: [
     require("@tailwindcss/typography"),
-    plugin(({ addUtilities }) => {
+    plugin(({ addUtilities, matchUtilities, theme }) => {
       addUtilities({
         ".bg-prism": {
           backgroundImage: "url('/assets/images/prism.svg')",
@@ -17,6 +20,16 @@ const tailwindCssConfig = {
           backgroundSize: "140.164px 81.6px",
         },
       });
+      matchUtilities(
+        {
+          "animation-delay": (value) => ({
+            "animation-delay": value,
+          }),
+        },
+        {
+          values: theme("transitionDelay"),
+        }
+      );
     }),
   ],
   theme: {
@@ -28,29 +41,35 @@ const tailwindCssConfig = {
     },
     extend: {
       animation: {
+        "fade-in": "fade-in 1.2s ease backwards",
         gradient: "gradient 8s infinite alternate",
         marquee: "marquee var(--marquee-duration) linear 0s infinite",
         path: "path 8s linear 0s infinite backwards",
       },
       colors: {
-        ideo: "#0f76a4",
-        kod: {
-          50: "#eef8fe",
-          100: "#def2fd",
-          200: "#bee5fb",
-          300: "#8fd2f9",
-          400: "#3cb1f4",
-          500: "#0c8ed9",
-          600: "#0972ae",
-          700: "#086499",
-          800: "#074f79",
-          900: "#054163",
+        botland: "#e74c3c",
+        deloitte: "#80c342",
+        gray: {
+          1000: "#090C14",
         },
+        ideo: "#0f76a4",
+        opteam: "#004e9f",
+        "sklep-elektronika": "#e13322",
       },
       fontFamily: {
         sans: ["var(--font-lato)", ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
+        "fade-in": {
+          from: {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "none",
+          },
+        },
         gradient: {
           from: {
             backgroundPosition: "left",
@@ -88,10 +107,12 @@ const tailwindCssConfig = {
       },
     },
     zIndex: {
-      header: "1",
-      "header-logo": "3",
-      menu: "4",
-      navigation: "2",
+      "-1": "-1",
+      0: "0",
+      1: "1",
+      header: "2",
+      menu: "3",
+      navigation: "4",
       snackbar: "5",
     },
   },

@@ -12,7 +12,6 @@ import {
   MdArticle,
   MdDone,
   MdInfo,
-  MdSave,
   MdSpellcheck,
 } from "react-icons/md";
 
@@ -47,8 +46,8 @@ import { cx } from "@/utilities/cx";
 import { getImage } from "@/utilities/image";
 import { toSlug } from "@/utilities/slug";
 
-import { usePostFormImage, usePostFormSlug, usePostFormSource } from "./hooks";
 import { PostFormButtons } from "./buttons";
+import { usePostFormImage, usePostFormSlug, usePostFormSource } from "./hooks";
 
 export type PostFormProps = {
   defaultValues?: Partial<PostFormSchema>;
@@ -147,6 +146,7 @@ export const PostForm = ({
       <Post
         post={{
           authors: getValues().authors,
+          category: getValues().category,
           image,
           publishedAt: new Date(getValues().publishedAt),
           slug: getValues().slug,
@@ -165,6 +165,7 @@ export const PostForm = ({
           role="separator"
         />
         <Button
+          height
           icon={<MdArrowBack className="h-5 w-5" />}
           onClick={() => setPreview(false)}
           type="button"

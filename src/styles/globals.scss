@@ -69,7 +69,7 @@
         }
 
         .word {
-          @apply rounded-md bg-gray-500 bg-opacity-15 p-1 dark:bg-opacity-30;
+          @apply relative z-1 before:absolute before:-inset-x-1 before:-inset-y-0.5 before:-z-1 before:rounded-md before:bg-gray-500 before:bg-opacity-15 dark:before:bg-opacity-30;
         }
       }
     }

@@ -22,7 +22,7 @@ const link = cva("", {
   variants: {
     variant: {
       content:
-        "break-words text-sky-500 outline-none transition hover:text-black focus:text-black dark:hover:text-white dark:focus:text-white",
+        "break-words text-sky-500 outline-none transition hover:text-black focus-visible:text-black dark:hover:text-white dark:focus-visible:text-white",
     },
   },
 });
@@ -38,7 +38,18 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
           : "noreferrer"
         : rel;
 
-    return (
+    const samePage = typeof href === "string" && href.startsWith("#");
+
+    return samePage ? (
+      <a
+        className={link({ className, variant })}
+        href={href}
+        ref={ref}
+        rel={newRel}
+        target={target}
+        {...props}
+      />
+    ) : (
       <NextLink
         className={link({ className, variant })}
         href={href}

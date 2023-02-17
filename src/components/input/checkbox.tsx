@@ -13,7 +13,7 @@ export const Checkbox = ({ checked, onChange }: CheckboxProps) => (
   <Switch
     checked={checked}
     className={cx(
-      "h-4 w-4 rounded border outline-none transition focus:border-sky-500 focus:ring-1 focus:ring-sky-500",
+      "h-4 w-4 rounded border outline-none transition focus-visible:border-sky-500 focus-visible:ring-1 focus-visible:ring-sky-500",
       checked ? "border-sky-500" : "border-gray-300 dark:border-gray-700"
     )}
     onChange={onChange}

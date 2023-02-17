@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes } from "react";
 
-import { type MDXRemoteProps } from "next-mdx-remote";
+import type { MDXRemoteProps } from "next-mdx-remote";
 
 import { Image, type ImageProps } from "@/components/image";
 import { Link, type LinkProps } from "@/components/link";

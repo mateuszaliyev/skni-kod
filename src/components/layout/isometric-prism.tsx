@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import dynamic from "next/dynamic";
 
@@ -36,7 +36,7 @@ export const LayoutIsometricPrism = ({
       <div
         className={cx(
           CONTAINER_STYLES,
-          "relative my-20 flex flex-col justify-center gap-8 py-8"
+          "relative my-28 flex flex-col justify-center gap-8 py-8"
         )}
       >
         {header}

@@ -8,10 +8,12 @@ import { SKNI_KOD } from "@/constants/strings";
 import { BASE_URL } from "@/environment";
 
 import { Hero } from "@/home/hero";
+import { Join } from "@/home/join";
 import { Partners } from "@/home/partners";
+import { Sections } from "@/home/sections";
 
 const HomePage = () => (
-  <LayoutMain>
+  <LayoutMain className="flex flex-col gap-20 md:gap-28">
     <Meta />
     <OpenGraph
       og={{
@@ -34,6 +36,8 @@ const HomePage = () => (
     <Robots />
     <Hero />
     <Partners />
+    <Sections />
+    <Join />
   </LayoutMain>
 );
 

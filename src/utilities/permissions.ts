@@ -1,4 +1,4 @@
-import { UserRole } from "@prisma/client";
+import type { UserRole } from "@prisma/client";
 
 export type ModeratorRole = (typeof MODERATOR_ROLES)[number];
 

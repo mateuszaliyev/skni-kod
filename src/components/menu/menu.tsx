@@ -9,11 +9,12 @@ import { cx } from "@/utilities/cx";
 export type MenuProps = {
   button: ReactNode;
   children: ReactNode;
+  className?: string;
   placement?: "left" | "right";
 };
 
-export const Menu = ({ button, children, placement }: MenuProps) => (
-  <HeadlessUiMenu as="div" className="relative flex items-center">
+export const Menu = ({ button, children, className, placement }: MenuProps) => (
+  <HeadlessUiMenu as="div" className={cx("relative", className)}>
     <HeadlessUiMenu.Button as={Fragment}>{button}</HeadlessUiMenu.Button>
     <Transition as={Fragment} {...TRANSITION_STYLES}>
       <HeadlessUiMenu.Items

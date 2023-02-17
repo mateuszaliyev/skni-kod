@@ -2,7 +2,6 @@ import type { GetStaticProps } from "next";
 
 import { api } from "@/api";
 
-import { BalancerProvider } from "@/components/balancer";
 import { LayoutIsometricPrism } from "@/components/layout/isometric-prism";
 import { Meta } from "@/components/meta";
 import { OpenGraph } from "@/components/open-graph";
@@ -77,31 +76,29 @@ const ArticlesPage = () => {
           "flex flex-col gap-16 md:gap-24 lg:gap-32"
         )}
       >
-        <BalancerProvider>
-          {posts?.map((post, index) => (
-            <PostCard
-              authors={post.authors.map(({ user }) => ({
-                id: user.id,
-                image: user.image ?? undefined,
-                name: user.name ?? undefined,
-              }))}
-              category={CATEGORIES[post.category as PostCategory]}
-              date={post.publishedAt ?? undefined}
-              href={`/blog/${post.slug}`}
-              image={
-                index
-                  ? post.image
-                  : post.image
-                  ? { ...post.image, priority: true }
-                  : undefined
-              }
-              key={post.id}
-              summary={post.summary}
-              title={post.title}
-              views={Number(post.views)}
-            />
-          ))}
-        </BalancerProvider>
+        {posts?.map((post, index) => (
+          <PostCard
+            authors={post.authors.map(({ user }) => ({
+              id: user.id,
+              image: user.image ?? undefined,
+              name: user.name ?? undefined,
+            }))}
+            category={CATEGORIES[post.category as PostCategory]}
+            date={post.publishedAt ?? undefined}
+            href={`/blog/${post.slug}`}
+            image={
+              index
+                ? post.image
+                : post.image
+                ? { ...post.image, priority: true }
+                : undefined
+            }
+            key={post.id}
+            summary={post.summary}
+            title={post.title}
+            views={Number(post.views)}
+          />
+        ))}
       </section>
     </LayoutIsometricPrism>
   );

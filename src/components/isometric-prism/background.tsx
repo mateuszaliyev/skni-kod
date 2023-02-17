@@ -20,7 +20,7 @@ export const IsometricPrismCanvasBackground = (
 
   if (resolvedTheme === "dark") {
     return (
-      <div className="relative h-full w-full">
+      <div className="absolute h-full w-full animate-fade-in">
         <div className="absolute inset-0 animate-gradient bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-500" />
         <div className="absolute inset-0 bg-prism" />
         {/* <div className="absolute inset-0 [background-image:radial-gradient(circle,#000_35%,#00000000_75%)]" /> */}

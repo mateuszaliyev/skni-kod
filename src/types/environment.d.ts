@@ -9,6 +9,7 @@ declare global {
       NEXT_PUBLIC_SKNI_KOD_FACEBOOK: string;
       NEXT_PUBLIC_SKNI_KOD_GITHUB: string;
       NEXT_PUBLIC_SKNI_KOD_INSTAGRAM: string;
+      NEXT_PUBLIC_SKNI_KOD_LINKED_IN: string;
       NEXTAUTH_SECRET: string;
     }
   }
