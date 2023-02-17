@@ -6,6 +6,7 @@ import { api } from "@/api";
 
 import { Meta } from "@/components/meta";
 import { OpenGraph } from "@/components/open-graph";
+import { Robots } from "@/components/robots";
 
 import { SKNI_KOD, SKNI_KOD_ABBREVIATION } from "@/constants/strings";
 
@@ -124,6 +125,18 @@ const PostPage = ({
           title: post.title,
           type: "article",
         }}
+      />
+      <Robots
+        indexIfEmbedded={false}
+        maxImagePreview="none"
+        maxVideoPreview={0}
+        noArchive
+        noFollow
+        noImageIndex
+        noIndex
+        noSiteLinksSearchBox
+        noSnippet
+        noTranslate
       />
       <Post
         post={{ ...post, authors: post.authors.map(({ user }) => user) }}

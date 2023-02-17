@@ -33,7 +33,18 @@ const HomePage = () => (
         type: "website",
       }}
     />
-    <Robots />
+    <Robots
+      indexIfEmbedded={false}
+      maxImagePreview="none"
+      maxVideoPreview={0}
+      noArchive
+      noFollow
+      noImageIndex
+      noIndex
+      noSiteLinksSearchBox
+      noSnippet
+      noTranslate
+    />
     <Hero />
     <Partners />
     <Sections />
