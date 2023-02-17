@@ -334,15 +334,6 @@ export type OpenGraphVideoTvShow = {
   video: OpenGraphVideo;
 };
 
-/**
- * The type `{}` doesn't mean "any empty object", it means "any non-nullish
- * value". There is just one case where it actually does mean something akin to
- * "empty object"; in an intersection type. This is technically safe in this
- * instance, because the `{}` type is passed into an intersection type.
- *
- * @see {@link https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492 See this comment for more information}
- */
-/* eslint-disable-next-line @typescript-eslint/ban-types */
 export type OpenGraphWebsite = {};
 
 /* Component types. */

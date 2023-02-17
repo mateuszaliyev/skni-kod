@@ -1,19 +1,32 @@
-import { ApplicationProvider } from "@/providers/application";
+import { Provider as BalancerProvider } from "react-wrap-balancer";
 
-import { trpc } from "@/trpc";
+import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "next-themes";
+
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import { api } from "@/api";
+
+import { Fonts } from "@/components/fonts";
 
 import type { Application } from "@/types";
 
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
+import "@/styles/katex.css";
 
 const Application: Application = ({
   Component,
-  pageProps: { i18n, session, ...pageProps },
-  router,
+  pageProps: { session, ...pageProps },
 }) => (
-  <ApplicationProvider i18n={i18n} locale={router.locale} session={session}>
-    <Component {...pageProps} />
-  </ApplicationProvider>
+  <SessionProvider session={session}>
+    <ThemeProvider attribute="class" disableTransitionOnChange>
+      <BalancerProvider>
+        <Fonts />
+        <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </BalancerProvider>
+    </ThemeProvider>
+  </SessionProvider>
 );
 
-export default trpc.withTRPC(Application);
+export default api.withTRPC(Application);

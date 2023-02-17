@@ -2,5 +2,4 @@ User-agent: Googlebot-Image
 Disallow: /
 
 User-agent: *
-Disallow: /fonts
-Disallow: /images
+Disallow: /assets

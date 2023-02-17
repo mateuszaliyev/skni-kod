@@ -1,10 +1,18 @@
-generator client {
-    provider = "prisma-client-js"
+datasource db {
+    provider     = "mysql"
+    relationMode = "prisma"
+    url          = env("DATABASE_URL")
 }
 
-datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+enum UserRole {
+    ADMINISTRATOR
+    MEMBER
+    MODERATOR
+    USER
+}
+
+generator client {
+    provider = "prisma-client-js"
 }
 
 model Account {
@@ -22,44 +30,104 @@ model Account {
     type              String
     userId            String    @map("user_id")
     // Timestamps
-    createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamptz
-    deletedAt         DateTime? @map("deleted_at") @db.Timestamptz
-    updatedAt         DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+    createdAt         DateTime  @default(now()) @map("created_at")
+    deletedAt         DateTime? @map("deleted_at")
+    updatedAt         DateTime  @updatedAt @map("updated_at")
     // Relations
     user              User      @relation(fields: [userId], onDelete: Cascade, references: [id])
 
     @@unique([provider, providerAccountId])
+    @@index([userId])
     @@map("accounts")
+}
+
+model Authorship {
+    id        String    @id
+    postId    String    @map("post_id")
+    userId    String    @map("user_id")
+    // Timestamps
+    createdAt DateTime  @default(now()) @map("created_at")
+    deletedAt DateTime? @map("deleted_at")
+    updatedAt DateTime  @updatedAt @map("updated_at")
+    // Relations
+    post      Post      @relation(fields: [postId], onDelete: Cascade, references: [id])
+    user      User      @relation(fields: [userId], onDelete: Cascade, references: [id])
+
+    @@unique([postId, userId])
+    @@index([postId])
+    @@index([userId])
+    @@map("authorships")
+}
+
+model Image {
+    id        String    @id
+    height    Int
+    url       String    @unique @db.VarChar(767)
+    width     Int
+    // Timestamps
+    createdAt DateTime  @default(now()) @map("created_at")
+    deletedAt DateTime? @map("deleted_at")
+    updatedAt DateTime  @updatedAt @map("updated_at")
+    // Relations
+    posts     Post[]
+
+    @@map("images")
+}
+
+model Post {
+    id          String       @id
+    body        String       @db.Text
+    category    String
+    imageId     String?      @map("image_id")
+    public      Boolean      @default(false)
+    publishedAt DateTime?    @map("published_at")
+    slug        String       @unique
+    summary     String       @db.Text
+    title       String
+    views       BigInt       @default(0) @db.BigInt
+    // Timestamps
+    createdAt   DateTime     @default(now()) @map("created_at")
+    deletedAt   DateTime?    @map("deleted_at")
+    updatedAt   DateTime     @updatedAt @map("updated_at")
+    // Relations
+    authors     Authorship[]
+    image       Image?       @relation(fields: [imageId], onDelete: SetNull, references: [id])
+
+    @@index([imageId])
+    @@map("posts")
 }
 
 model Session {
     id           String   @id
     // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
-    expires      DateTime @map("expires") @db.Timestamptz
+    expires      DateTime @map("expires")
     sessionToken String   @unique @map("session_token")
     userId       String   @map("user_id")
     // Timestamps
-    createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
-    updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz
+    createdAt    DateTime @default(now()) @map("created_at")
+    updatedAt    DateTime @updatedAt @map("updated_at")
     // Relations
     user         User     @relation(fields: [userId], onDelete: Cascade, references: [id])
 
+    @@index([userId])
     @@map("sessions")
 }
 
 model User {
-    id            String    @id
+    id            String       @id
+    role          UserRole     @default(USER)
     // NextAuth.js fields - https://next-auth.js.org/adapters/prisma
-    email         String?   @unique
-    emailVerified DateTime? @map("email_verified") @db.Timestamptz
+    email         String?      @unique
+    emailVerified DateTime?    @map("email_verified")
     image         String?
     name          String?
     // Timestamps
-    createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz
-    deletedAt     DateTime? @map("deleted_at") @db.Timestamptz
-    updatedAt     DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+    createdAt     DateTime     @default(now()) @map("created_at")
+    deletedAt     DateTime?    @map("deleted_at")
+    updatedAt     DateTime     @updatedAt @map("updated_at")
     // Relations
     accounts      Account[]
+    authorships   Authorship[]
     sessions      Session[]
 
     @@map("users")

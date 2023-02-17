@@ -11,6 +11,7 @@ export const OPENAPI_URL = `${BASE_URL}/api/openapi`;
 export const SKNI_KOD_FACEBOOK = process.env.NEXT_PUBLIC_SKNI_KOD_FACEBOOK;
 export const SKNI_KOD_GITHUB = process.env.NEXT_PUBLIC_SKNI_KOD_GITHUB;
 export const SKNI_KOD_INSTAGRAM = process.env.NEXT_PUBLIC_SKNI_KOD_INSTAGRAM;
+export const SKNI_KOD_LINKED_IN = process.env.NEXT_PUBLIC_SKNI_KOD_LINKED_IN;
 
 export const TRPC_URL =
   typeof window !== "undefined" ? "/api/trpc" : `${BASE_URL}/api/trpc`;

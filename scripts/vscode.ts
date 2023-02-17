@@ -1,7 +1,7 @@
 import { randomBytes } from "crypto";
 import { mkdir, readdir, readFile, stat, writeFile } from "fs/promises";
 
-import { type Options, format, resolveConfig } from "prettier";
+import { format, type Options, resolveConfig } from "prettier";
 import { z } from "zod";
 
 const cssCustomData = {

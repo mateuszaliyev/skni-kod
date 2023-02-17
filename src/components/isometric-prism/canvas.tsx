@@ -1,7 +1,12 @@
-import { memo, useCallback, useEffect, useRef } from "react";
+import {
+  type HTMLAttributes,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 
 import { useMediaQuery } from "@/hooks/media-query";
-import { useWindowSize } from "@/hooks/window-size";
 
 type GetTrianglesOptions = HSLRanges & {
   height?: number;
@@ -9,62 +14,46 @@ type GetTrianglesOptions = HSLRanges & {
   width?: number;
 };
 
-type HSLRanges = {
-  hue: {
-    max: number;
-    min: number;
-  };
-  lightness: {
-    max: number;
-    min: number;
-  };
-  saturation: {
-    max: number;
-    min: number;
-  };
-};
+export type HSLRanges = Record<
+  "hue" | "lightness" | "saturation",
+  { max: number; min: number }
+>;
 
-export type IsometricPrismCanvasProps = HSLRanges & {
-  animationFrequency?: number;
-  animationSpeed?: number;
-  background?: string;
-  height?: number;
-  size: number;
-  width?: number;
-};
+export type IsometricPrismCanvasProps = HTMLAttributes<HTMLDivElement> &
+  HSLRanges & {
+    animationFrequency?: number;
+    animationSpeed?: number;
+    background?: string;
+    size: number;
+  };
 
-type Triangle = {
+type Triangle = Record<keyof HSLRanges, number> & {
   animationDirection: "down" | "up";
-  hue: number;
-  lightness: number;
   path: Path2D;
-  saturation: number;
 };
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(Math.min(value, max), min);
 
-const getRandomValue = (min: number, max: number): number =>
-  Math.floor(Math.random() * (Math.max(max, min) - Math.min(max, min))) +
-  Math.min(max, min);
-
-const getTriangle = (
+const getPath = (
   ax: number,
   ay: number,
   bx: number,
   by: number,
   cx: number,
   cy: number
-): Path2D => {
-  const triangle = new Path2D();
-
-  triangle.moveTo(ax, ay);
-  triangle.lineTo(bx, by);
-  triangle.lineTo(cx, cy);
-  triangle.closePath();
-
-  return triangle;
+) => {
+  const path = new Path2D();
+  path.moveTo(ax, ay);
+  path.lineTo(bx, by);
+  path.lineTo(cx, cy);
+  path.closePath();
+  return path;
 };
+
+const getRandomValue = (min: number, max: number): number =>
+  Math.floor(Math.random() * (Math.max(max, min) - Math.min(max, min))) +
+  Math.min(max, min);
 
 const getRandomHSL = ({
   hue,
@@ -89,63 +78,49 @@ const getTriangles = ({
   saturation,
   size,
   width,
-}: GetTrianglesOptions): Map<number, Triangle> => {
-  if (!height || !width) {
-    return new Map();
-  }
+}: GetTrianglesOptions) => {
+  if (!height || !width) return new Map<number, Triangle>();
 
-  const triangles: Triangle[] = [];
-
+  const triangles = new Map<number, Triangle>();
   const triangleHeight = 2 * size;
   const triangleWidth = Math.sqrt(3) * size;
-
   const columns = Math.ceil(width / triangleWidth);
   const rows = Math.ceil(height / triangleHeight);
+  let index = 0;
 
   for (let row = 0; row < rows; row++) {
     for (let column = 0; column < columns; column++) {
-      const color1 = getRandomHSL({
-        hue,
-        lightness,
-        saturation,
-      });
+      const colors = [
+        getRandomHSL({ hue, lightness, saturation }),
+        getRandomHSL({ hue, lightness, saturation }),
+      ];
 
-      const color2 = getRandomHSL({
-        hue,
-        lightness,
-        saturation,
-      });
-
-      triangles.push(
-        {
-          ...color1,
+      for (const color of colors) {
+        triangles.set(index++, {
+          ...color,
           animationDirection: Math.random() < 0.5 ? "down" : "up",
-          path: getTriangle(
+          path: getPath(
             column * triangleWidth,
             row * triangleHeight,
             (column + 1) * triangleWidth,
-            row * triangleHeight - triangleHeight / 2,
-            (column + 1) * triangleWidth,
-            row * triangleHeight + triangleHeight / 2
+            ...(index % 2
+              ? ([
+                  row * triangleHeight + triangleHeight / 2,
+                  column * triangleWidth,
+                  (row + 1) * triangleHeight,
+                ] as const)
+              : ([
+                  row * triangleHeight - triangleHeight / 2,
+                  (column + 1) * triangleWidth,
+                  row * triangleHeight + triangleHeight / 2,
+                ] as const))
           ),
-        },
-        {
-          ...color2,
-          animationDirection: Math.random() < 0.5 ? "down" : "up",
-          path: getTriangle(
-            column * triangleWidth,
-            row * triangleHeight,
-            (column + 1) * triangleWidth,
-            row * triangleHeight + triangleHeight / 2,
-            column * triangleWidth,
-            (row + 1) * triangleHeight
-          ),
-        }
-      );
+        });
+      }
     }
   }
 
-  return new Map(triangles.map((triangle, index) => [index, triangle]));
+  return triangles;
 };
 
 export const IsometricPrismCanvas = memo(
@@ -159,41 +134,29 @@ export const IsometricPrismCanvas = memo(
     size,
     ...props
   }: IsometricPrismCanvasProps) => {
+    const animationFrame = useRef<number | null>(null);
+    const canvas = useRef<HTMLCanvasElement | null>(null);
+    const container = useRef<HTMLDivElement | null>(null);
+    const triangles = useRef(new Map<number, Triangle>());
+    const height = container.current?.getBoundingClientRect().height ?? 0;
+    const width = container.current?.getBoundingClientRect().width ?? 0;
     const prefersReducedMotion = useMediaQuery(
       "(prefers-reduced-motion)",
       true
     );
 
-    const canvas = useRef<HTMLCanvasElement | null>(null);
-
-    const animationFrame = useRef<number | null>(null);
-
-    const triangles = useRef(new Map<number, Triangle>());
-
-    const windowSize = useWindowSize();
-
-    const height = props.height ?? windowSize.height;
-    const width = props.width ?? windowSize.width;
-
     const renderFrame = useCallback(() => {
-      if (!canvas.current) {
-        return;
-      }
-
+      if (!canvas.current) return;
       const context = canvas.current.getContext("2d");
-
-      if (!context) {
-        return;
-      }
+      if (!context) return;
 
       context.clearRect(0, 0, canvas.current.width, canvas.current.height);
-
       context.fillStyle = background;
       context.fillRect(0, 0, canvas.current.width, canvas.current.height);
 
-      triangles.current.forEach((triangle, key) => {
+      for (const [key, triangle] of triangles.current) {
         if (Math.random() < animationFrequency) {
-          const newLightNess =
+          const newLightness =
             triangle.animationDirection === "down"
               ? Math.max(lightness.min, triangle.lightness - animationSpeed)
               : Math.min(lightness.max, triangle.lightness + animationSpeed);
@@ -217,7 +180,7 @@ export const IsometricPrismCanvas = memo(
           triangles.current.set(key, {
             ...triangle,
             animationDirection: newAnimationDirection,
-            lightness: newLightNess,
+            lightness: newLightness,
           });
         }
 
@@ -240,70 +203,73 @@ export const IsometricPrismCanvas = memo(
           2
         )}%, ${color.lightness.toFixed(2)}%)`;
         context.fill(triangle.path);
-      });
+      }
     }, [animationFrequency, animationSpeed, background, lightness]);
 
     const tick = useCallback(() => {
-      if (!canvas.current || animationFrequency <= 0) {
-        return;
-      }
-
+      if (!canvas.current || animationFrequency <= 0) return;
       renderFrame();
       animationFrame.current = requestAnimationFrame(tick);
     }, [animationFrequency, renderFrame]);
 
     useEffect(() => {
-      if (canvas.current) {
-        canvas.current.height = height;
-        canvas.current.width = width;
-        triangles.current = getTriangles({
-          height,
-          hue,
-          lightness,
-          saturation,
-          size,
-          width,
-        });
-      }
+      if (!container.current) return;
+
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          if (!canvas.current) break;
+
+          const { height, width } = entry.target.getBoundingClientRect();
+          canvas.current.height = height;
+          canvas.current.width = width;
+
+          triangles.current = getTriangles({
+            height,
+            hue,
+            lightness,
+            saturation,
+            size,
+            width,
+          });
+
+          break;
+        }
+      });
+
+      resizeObserver.observe(container.current);
+      return () => resizeObserver.disconnect();
     }, [height, hue, lightness, saturation, size, width]);
 
     useEffect(() => {
-      if (animationFrequency > 0 && !prefersReducedMotion) {
-        animationFrame.current = requestAnimationFrame(tick);
-      } else {
-        if (animationFrame.current) {
-          cancelAnimationFrame(animationFrame.current);
-          animationFrame.current = null;
-        }
-
-        renderFrame();
-      }
-
-      return () => {
-        if (animationFrame.current) {
-          cancelAnimationFrame(animationFrame.current);
-          animationFrame.current = null;
-        }
+      const cancelAnimation = () => {
+        if (!animationFrame.current) return;
+        cancelAnimationFrame(animationFrame.current);
+        animationFrame.current = null;
       };
+
+      if (animationFrequency <= 0 || prefersReducedMotion) {
+        cancelAnimation();
+        renderFrame();
+      } else animationFrame.current = requestAnimationFrame(tick);
+
+      return () => cancelAnimation();
     }, [animationFrequency, prefersReducedMotion, renderFrame, tick]);
 
-    return <canvas ref={canvas} />;
+    return (
+      <div ref={container} {...props}>
+        <canvas ref={canvas} />
+      </div>
+    );
   },
-  (previousProps, nextProps) => {
-    if (
-      previousProps.animationFrequency !== nextProps.animationFrequency ||
-      previousProps.animationSpeed !== nextProps.animationSpeed ||
-      previousProps.background !== nextProps.background ||
-      previousProps.hue.max !== nextProps.hue.max ||
-      previousProps.hue.min !== nextProps.hue.min ||
-      previousProps.lightness.max !== nextProps.lightness.max ||
-      previousProps.lightness.min !== nextProps.lightness.min ||
-      previousProps.saturation.max !== nextProps.saturation.max ||
-      previousProps.saturation.min !== nextProps.saturation.min ||
-      previousProps.size !== nextProps.size
-    )
-      return false;
-
-    return true;
-  }
+  (previousProps, nextProps) =>
+    previousProps.animationFrequency === nextProps.animationFrequency &&
+    previousProps.animationSpeed === nextProps.animationSpeed &&
+    previousProps.background === nextProps.background &&
+    previousProps.hue.max === nextProps.hue.max &&
+    previousProps.hue.min === nextProps.hue.min &&
+    previousProps.lightness.max === nextProps.lightness.max &&
+    previousProps.lightness.min === nextProps.lightness.min &&
+    previousProps.saturation.max === nextProps.saturation.max &&
+    previousProps.saturation.min === nextProps.saturation.min &&
+    previousProps.size === nextProps.size
 );

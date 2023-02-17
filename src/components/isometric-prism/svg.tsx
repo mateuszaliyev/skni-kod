@@ -66,7 +66,7 @@ export const IsometricPrismSvg = ({
       {triangles.map(([ax, ay, bx, by, cx, cy], index) => (
         <path
           d={`M ${ax} ${ay} L ${bx} ${by} L ${cx} ${cy} Z`}
-          fill={`hsl(210 16% ${Math.random() * 10 + 90}%)`}
+          fill={`hsl(210 16% ${Math.random() * 5 + 95}%)`}
           key={index}
         />
       ))}

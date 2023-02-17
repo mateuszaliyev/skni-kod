@@ -23,7 +23,7 @@ const nextConfig = {
           child-src 'none';
           default-src 'self';
           frame-ancestors 'none';
-          img-src 'self' data:;
+          img-src avatars.githubusercontent.com kod.prz.edu.pl 'self' data:;
           media-src 'none';
           script-src 'self' 'unsafe-eval' 'unsafe-inline';
           style-src 'self' 'unsafe-inline';
@@ -67,7 +67,10 @@ const nextConfig = {
   ],
   i18n: {
     defaultLocale: "pl",
-    locales: ["en", "pl"],
+    locales: ["pl"],
+  },
+  images: {
+    domains: ["kod.prz.edu.pl", "localhost"],
   },
   poweredByHeader: false,
   reactStrictMode: true,

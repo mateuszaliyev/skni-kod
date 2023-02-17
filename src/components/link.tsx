@@ -1,36 +1,34 @@
-import { AnchorHTMLAttributes, forwardRef } from "react";
-import { type AriaLinkOptions, mergeProps, useLink } from "react-aria";
+import { type AnchorHTMLAttributes, forwardRef } from "react";
 
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
-import { useRouter } from "next/router";
 
-import { useForwardedRef } from "@/hooks/forwarded-ref";
-
-import type { Locale } from "@/i18n";
-import { getI18nUrl } from "@/i18n/routes";
+import { cva, VariantProps } from "class-variance-authority";
 
 import type { Merge } from "@/types";
 
+// declare module "react" {
+//   function forwardRef<Element, Props = {}>(
+//     render: (props: Props, ref: Ref<Element>) => ReactElement | null
+//   ): (props: Props & RefAttributes<Element>) => ReactElement | null;
+// }
+
 export type LinkProps = Merge<
-  Merge<
-    Merge<AnchorHTMLAttributes<HTMLAnchorElement>, AriaLinkOptions>,
-    Omit<NextLinkProps, "locale">
-  >,
-  {
-    locale?: Locale;
-  }
->;
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  NextLinkProps
+> &
+  VariantProps<typeof link>;
+
+const link = cva("", {
+  variants: {
+    variant: {
+      content:
+        "break-words text-sky-500 outline-none transition hover:text-black focus-visible:text-black dark:hover:text-white dark:focus-visible:text-white",
+    },
+  },
+});
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  (props, forwardedRef) => {
-    const { href, locale, rel, target, ...otherProps } = props;
-
-    const ref = useForwardedRef(forwardedRef);
-
-    const { locale: currentLocale } = useRouter();
-
-    const { linkProps } = useLink(props, ref);
-
+  ({ className, href, rel, target, variant, ...props }, ref) => {
     const newRel =
       target === "_blank"
         ? rel
@@ -40,26 +38,25 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
           : "noreferrer"
         : rel;
 
-    if (typeof href === "string" && !href.startsWith("/")) {
-      return (
-        <a
-          href={href}
-          rel={rel}
-          target={target}
-          {...mergeProps(linkProps, otherProps)}
-        />
-      );
-    }
+    const samePage = typeof href === "string" && href.startsWith("#");
 
-    const newHref = getI18nUrl(href, currentLocale);
-
-    return (
-      <NextLink
-        href={newHref}
-        locale={locale}
+    return samePage ? (
+      <a
+        className={link({ className, variant })}
+        href={href}
+        ref={ref}
         rel={newRel}
         target={target}
-        {...mergeProps(linkProps, otherProps)}
+        {...props}
+      />
+    ) : (
+      <NextLink
+        className={link({ className, variant })}
+        href={href}
+        ref={ref}
+        rel={newRel}
+        target={target}
+        {...props}
       />
     );
   }

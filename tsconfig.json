@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
     "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -13,12 +14,13 @@
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
+      "@/public/*": ["./public/*"],
       "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es5"
+    "target": "es2015"
   },
   "exclude": ["node_modules"],
   "include": [
