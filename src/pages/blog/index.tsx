@@ -5,6 +5,7 @@ import { api } from "@/api";
 import { LayoutIsometricPrism } from "@/components/layout/isometric-prism";
 import { Meta } from "@/components/meta";
 import { OpenGraph } from "@/components/open-graph";
+import { Robots } from "@/components/robots";
 
 import {
   CATEGORIES,
@@ -69,6 +70,18 @@ const ArticlesPage = () => {
           title,
           type: "website",
         }}
+      />
+      <Robots
+        indexIfEmbedded={false}
+        maxImagePreview="none"
+        maxVideoPreview={0}
+        noArchive
+        noFollow
+        noImageIndex
+        noIndex
+        noSiteLinksSearchBox
+        noSnippet
+        noTranslate
       />
       <section
         className={cx(
