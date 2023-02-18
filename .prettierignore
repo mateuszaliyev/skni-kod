@@ -37,5 +37,8 @@ yarn-error.log*
 # vercel
 .vercel
 
+# shiki
+/src/content/mdx/shiki
+
 # typescript
 *.tsbuildinfo

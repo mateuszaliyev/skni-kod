@@ -19,10 +19,11 @@
     "dev": "next dev",
     "format": "prettier --config ./prettier.config.js --write \"**/*.{css,js,md,mjs,scss,ts,tsx}\"",
     "lint": "next lint",
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate && pnpm shiki:initialize",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:studio": "prisma studio -b none",
+    "shiki:initialize": "pnpm dlx mkdirp ./src/content/mdx/shiki && cp -r ./node_modules/shiki/{languages,themes} ./src/content/mdx/shiki/",
     "start": "next start",
     "typecheck": "tsc",
     "vscode:generate": "pnpm dlx tsx ./scripts/vscode.ts"
