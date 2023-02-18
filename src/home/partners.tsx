@@ -17,6 +17,7 @@ const Partner = ({ className, href, name, ...props }: PartnerProps) => (
     aria-label={name}
     className="group mx-4 outline-none transition md:mx-8"
     href={href}
+    target="_blank"
   >
     <span className="sr-only">{name}</span>
     <svg
