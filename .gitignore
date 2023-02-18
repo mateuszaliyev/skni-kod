@@ -39,8 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# shiki
-/src/content/mdx/shiki
-
 # visual studio code
 /.vscode

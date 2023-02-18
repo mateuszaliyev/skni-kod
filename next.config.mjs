@@ -11,6 +11,12 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   experimental: {
     legacyBrowsers: false,
+    outputFileTracingIncludes: {
+      "/api/*": [
+        "node_modules/**/shiki/**/*.json",
+        "node_modules/.pnpm/**/shiki/**/*.json",
+      ],
+    },
   },
   headers: async () => [
     {
