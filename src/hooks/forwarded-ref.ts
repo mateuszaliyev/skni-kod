@@ -1,6 +1,6 @@
 import {
   type ForwardedRef,
-  RefObject,
+  type RefObject,
   useImperativeHandle,
   useRef,
 } from "react";
