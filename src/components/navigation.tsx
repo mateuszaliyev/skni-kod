@@ -3,6 +3,7 @@ import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import {
   MdClose,
   MdLightMode,
+  MdLogin,
   MdLogout,
   MdMonitor,
   MdMoreVert,
@@ -64,74 +65,87 @@ export const Navigation = ({ className, ...props }: NavigationProps) => {
           ))}
         </ul>
       </nav>
-      <Menu
-        button={
-          <button className="rounded-full outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-500">
-            <span className="sr-only">Więcej</span>
-            <Avatar
-              alt={session.data?.user?.name ?? undefined}
-              size={48}
-              src={session.data?.user?.image ?? undefined}
-              title={session.data?.user?.name ?? undefined}
-            />
-          </button>
-        }
-        className="hidden md:block"
-        placement="right"
-      >
-        {session.data?.user?.role && isModerator(session.data.user.role) && (
-          <MenuSection title={ROLES[session.data.user.role]}>
-            <MenuItemLink
-              href="/blog/formularz"
-              icon={<MdPostAdd className="h-5 w-5" />}
+      <div className="hidden gap-6 border-l border-gray-200 pl-6 text-gray-500 dark:border-gray-700 md:flex">
+        <Menu
+          button={
+            <Button
+              aria-label="Motyw"
+              className="flex items-center justify-center"
             >
-              Nowy post
-            </MenuItemLink>
-          </MenuSection>
-        )}
-        <MenuSection>
-          <MenuItemButton
-            icon={
-              theme === "dark" ? (
-                <MdNightlightRound className="h-5 w-5" />
-              ) : theme === "light" ? (
-                <MdLightMode className="h-5 w-5" />
-              ) : (
-                <MdMonitor className="h-5 w-5" />
-              )
-            }
-            onClick={() =>
-              theme === "system"
-                ? setTheme("dark")
-                : theme === "dark"
-                ? setTheme("light")
-                : setTheme("system")
-            }
-          >
-            Motyw
-          </MenuItemButton>
-          {session.status !== "loading" && (
+              <MdNightlightRound className="hidden h-5 w-5 dark:flex" />
+              <MdLightMode className="h-5 w-5 dark:hidden" />
+            </Button>
+          }
+          className="flex"
+          placement="right"
+        >
+          <MenuSection title="Motyw">
             <MenuItemButton
-              icon={
-                session.status === "unauthenticated" ? (
-                  <FaGithub className="h-5 w-5" />
-                ) : (
-                  <MdLogout className="h-5 w-5" />
-                )
-              }
-              onClick={() =>
-                session.status === "unauthenticated"
-                  ? void signIn("github")
-                  : void signOut()
-              }
+              icon={<MdNightlightRound className="h-5 w-5" />}
+              onClick={() => setTheme("dark")}
             >
-              {session.status === "unauthenticated"
-                ? "Zaloguj się"
-                : "Wyloguj się"}
+              Ciemny
             </MenuItemButton>
-          )}
-        </MenuSection>
-      </Menu>
+            <MenuItemButton
+              icon={<MdLightMode className="h-5 w-5" />}
+              onClick={() => setTheme("light")}
+            >
+              Jasny
+            </MenuItemButton>
+            <MenuItemButton
+              icon={<MdMonitor className="h-5 w-5" />}
+              onClick={() => setTheme("system")}
+            >
+              Systemowy
+            </MenuItemButton>
+          </MenuSection>
+        </Menu>
+        {session.status === "authenticated" ? (
+          <Menu
+            button={
+              <button className="rounded-full outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
+                <span className="sr-only">Więcej</span>
+                <Avatar
+                  alt={session.data?.user?.name ?? undefined}
+                  size={20}
+                  src={session.data?.user?.image ?? undefined}
+                  title={session.data?.user?.name ?? undefined}
+                />
+              </button>
+            }
+            className="flex items-center"
+            placement="right"
+          >
+            {session.data?.user?.role &&
+              isModerator(session.data.user.role) && (
+                <MenuSection title={ROLES[session.data.user.role]}>
+                  <MenuItemLink
+                    href="/blog/formularz"
+                    icon={<MdPostAdd className="h-5 w-5" />}
+                  >
+                    Nowy post
+                  </MenuItemLink>
+                </MenuSection>
+              )}
+            <MenuSection>
+              <MenuItemButton
+                icon={<MdLogout className="h-5 w-5" />}
+                onClick={() => void signOut()}
+              >
+                Wyloguj się
+              </MenuItemButton>
+            </MenuSection>
+          </Menu>
+        ) : (
+          <Button
+            aria-label="Zaloguj się"
+            className="flex items-center justify-center"
+            onClick={() => void signIn("github")}
+          >
+            <MdLogin className="h-5 w-5" />
+          </Button>
+        )}
+      </div>
       <Button
         aria-label="Otwórz menu"
         className={cx("ml-auto md:hidden", open && "hidden")}
