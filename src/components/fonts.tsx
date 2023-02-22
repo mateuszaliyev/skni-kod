@@ -1,6 +1,5 @@
+import { Lato } from "next/font/google";
 import Head from "next/head";
-
-import { Lato } from "@next/font/google";
 
 const lato = Lato({
   display: "fallback",
