@@ -2,7 +2,7 @@ import { type AnchorHTMLAttributes, forwardRef } from "react";
 
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 
-import { cva, VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import type { Merge } from "@/types";
 

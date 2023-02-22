@@ -3,7 +3,7 @@ import { type ButtonHTMLAttributes, Fragment, type ReactNode } from "react";
 import { Menu } from "@headlessui/react";
 import { cva } from "class-variance-authority";
 
-import { Link, LinkProps } from "@/components/link";
+import { Link, type LinkProps } from "@/components/link";
 
 import { cx } from "@/utilities/cx";
 

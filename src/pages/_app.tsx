@@ -1,5 +1,7 @@
 import { Provider as BalancerProvider } from "react-wrap-balancer";
 
+import type { AppType } from "next/app";
+import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 
@@ -9,12 +11,10 @@ import { api } from "@/api";
 
 import { Fonts } from "@/components/fonts";
 
-import type { Application } from "@/types";
-
 import "@/styles/globals.scss";
 import "@/styles/katex.css";
 
-const Application: Application = ({
+const Application: AppType<{ session: Session }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => (

@@ -1,4 +1,4 @@
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import { CATEGORIES } from "@/constants/strings";
 
