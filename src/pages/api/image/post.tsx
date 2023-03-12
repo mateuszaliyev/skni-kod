@@ -2,7 +2,7 @@
 
 import type { NextApiHandler } from "next";
 
-import { ImageResponse, type ImageResponseOptions } from "@vercel/og";
+import { ImageResponse } from "@vercel/og";
 
 import { IsometricPrismSvg } from "@/components/isometric-prism";
 
@@ -14,7 +14,10 @@ export const config = {
   runtime: "edge",
 };
 
-type Font = Exclude<ImageResponseOptions["fonts"], undefined>[number];
+type Font = Exclude<
+  NonNullable<ConstructorParameters<typeof ImageResponse>[1]>["fonts"],
+  undefined
+>[number];
 
 const getFont = async ({
   url,
