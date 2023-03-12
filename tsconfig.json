@@ -24,6 +24,7 @@
   },
   "exclude": ["node_modules"],
   "include": [
+    ".eslintrc.js",
     "next-auth.d.ts",
     "next-env.d.ts",
     "**/*.js",
