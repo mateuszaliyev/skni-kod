@@ -29,6 +29,13 @@ const IsometricPrismCanvasLogo = dynamic(
   }
 );
 
+/**
+ * TODO: Remove `supports-[not-(-moz-appearance:none)]:` modifiers from
+ * `Barrel` components lines when `background-clip: text` bug in Firefox is
+ * fixed.
+ *
+ * @see {@link https://bugzilla.mozilla.org/show_bug.cgi?id=1545128 -webkit-background-clip: text fill disappears when translated farther than text bounding box width or height}
+ */
 export const Hero = () => (
   <section className="relative h-screen min-h-[40rem] md:min-h-[56rem]">
     <IsometricPrismCanvasBackground className="absolute inset-0 animate-fade-in" />
@@ -39,10 +46,10 @@ export const Hero = () => (
           <h1 className="animate-fade-in select-none text-center text-6xl font-thin sm:text-8xl md:text-9xl xl:text-left">
             Tworzymy
             <Barrel
-              className="text-center xl:text-left"
+              className="text-center text-sky-500 xl:text-left"
               lineProps={{
                 className:
-                  "bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 bg-clip-text font-bold leading-tight text-transparent",
+                  "from-cyan-400 via-sky-500 to-blue-600 font-bold leading-tight supports-[not(-moz-appearance:none)]:bg-gradient-to-br supports-[not(-moz-appearance:none)]:bg-clip-text supports-[not(-moz-appearance:none)]:text-transparent",
               }}
               lines={[
                 `KOD.`,
