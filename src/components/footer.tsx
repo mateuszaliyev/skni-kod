@@ -29,7 +29,7 @@ const FooterSocialMediaLink = ({
 }: FooterSocialMediaLinkProps) => (
   <li>
     <Link
-      className={cx("text-gray-500 outline-none transition", className)}
+      className={cx("outline-none transition", className)}
       href={href}
       target="_blank"
     >
@@ -43,7 +43,7 @@ export const Footer = () => (
   <footer
     className={cx(
       CONTAINER_STYLES,
-      "mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-gray-200 py-12 dark:border-none sm:grid-cols-2"
+      "mt-20 flex flex-wrap items-center justify-between gap-6 border-t border-gray-200 py-12 text-gray-400 dark:border-none dark:text-gray-500 sm:grid-cols-2 md:mt-28"
     )}
   >
     <ul className="flex gap-4">
@@ -54,7 +54,7 @@ export const Footer = () => (
         name="Facebook"
       />
       <FooterSocialMediaLink
-        className="hover:text-current focus-visible:text-current"
+        className="hover:text-black focus-visible:text-black dark:hover:text-white dark:focus-visible:text-white"
         href={SKNI_KOD_GITHUB}
         icon={FaGithub}
         name="GitHub"
@@ -72,8 +72,6 @@ export const Footer = () => (
         name="LinkedIn"
       />
     </ul>
-    <div className="text-gray-500">
-      &copy; {new Date().getFullYear()} SKNI KOD
-    </div>
+    <div>&copy; {new Date().getFullYear()} SKNI KOD</div>
   </footer>
 );

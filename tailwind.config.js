@@ -11,6 +11,7 @@ const tailwindCssConfig = {
     hoverOnlyWhenSupported: true,
   },
   plugins: [
+    require("@tailwindcss/line-clamp"),
     require("@tailwindcss/typography"),
     plugin(({ addUtilities, matchUtilities, theme }) => {
       addUtilities({

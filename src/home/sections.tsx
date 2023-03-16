@@ -45,9 +45,13 @@ const SectionCard = ({ body, href, icon: Icon, title }: SectionProps) => {
             fill={`url(#${id})`}
           />
         </div>
-        <span className="text-2xl text-gray-500">Sekcja</span>
+        <span className="text-2xl text-gray-500 dark:text-gray-400">
+          Sekcja
+        </span>
         <h3 className="text-2xl font-bold">{title}</h3>
-        <p className="mt-2 text-lg text-gray-500 md:text-xl">{body}</p>
+        <p className="mt-2 text-lg text-gray-500 dark:text-gray-400 md:text-xl">
+          {body}
+        </p>
       </div>
     </Link>
   );

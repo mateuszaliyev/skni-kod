@@ -44,7 +44,7 @@ export const Join = () => {
   });
 
   return (
-    <section className="py-20 md:py-28" ref={ref}>
+    <section ref={ref}>
       <div className={CONTAINER_STYLES}>
         <div
           className={cx(

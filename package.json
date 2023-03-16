@@ -66,6 +66,7 @@
   },
   "devDependencies": {
     "@matali/eslint-config": "1.0.0",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "0.5.9",
     "@types/eslint": "8.21.1",
     "@types/node": "18.15.0",
