@@ -61,7 +61,7 @@ export const Hero = () => (
               ]}
             />
           </h1>
-          <p className="my-16 max-w-prose animate-fade-in text-center text-lg text-gray-500 animation-delay-500 md:text-2xl xl:text-left">
+          <p className="my-16 max-w-prose animate-fade-in text-center text-lg text-gray-400 animation-delay-500 md:text-2xl xl:text-left">
             <Balancer>
               Studenckie Koło Naukowe Informatyków &quot;KOD&quot; to miejsce, w
               którym wspólnie tworzymy projekty z użyciem interesujących nas,
