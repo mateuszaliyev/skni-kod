@@ -58,7 +58,7 @@
     "rehype-slug": "5.1.0",
     "remark-gfm": "3.0.1",
     "remark-math": "5.1.1",
-    "sharp": "0.31.3",
+    "sharp": "0.32.6",
     "shiki": "0.14.1",
     "superjson": "1.12.2",
     "trpc-openapi": "1.1.2",
